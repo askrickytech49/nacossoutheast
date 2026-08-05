@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Import Poppins from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Poppins', Arial, sans-serif; background-color: #ffffff;">
+  
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff;">
+    <tr>
+      <td align="center">
+        <!-- Main Email Container (Full Width) -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; width: 100%;">
+
+          <!-- Body Content -->
+          <tr>
+            <td align="center" style="padding: 40px 15px;">
+              
+              <!-- Inner Content Wrapper -->
+              <table width="100%" max-width="800" cellpadding="0" cellspacing="0" border="0" style="max-width: 800px; text-align: left;">
+                <tr>
+                  <td>
+                    <h1 style="margin: 0 0 15px; font-size: 24px; color: #042e0f; font-weight: 700;">Payment Successful</h1>
+                    <p style="margin: 0 0 20px; font-size: 16px; color: #333333; line-height: 1.5; font-weight: 400;">
+                      Hello <strong>{{from_name}}</strong>,
+                    </p>
+                    <p style="margin: 0 0 25px; font-size: 15px; color: #555555; line-height: 1.6; font-weight: 400;">
+                      Thank you for your payment regarding the <strong>NACOS South East Convention 2026</strong>. We have successfully received your {{reg_type}}. Below is a summary of your transaction.
+                    </p>
+
+                    <!-- Transaction Summary Box -->
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f8fff9; border: 1px solid #c3e6cb; padding: 20px; margin-bottom: 25px;">
+                      <tr>
+                        <td style="padding-bottom: 10px;">
+                          <span style="font-size: 12px; color: #666666; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Type</span><br>
+                          <strong style="font-size: 15px; color: #008f39; font-weight: 600;">{{reg_type}}</strong>
+                        </td>
+                        <td style="padding-bottom: 10px;">
+                          <span style="font-size: 12px; color: #666666; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Package</span><br>
+                          <strong style="font-size: 15px; color: #333333; font-weight: 600;">{{package_name}}</strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding-top: 10px; border-top: 1px solid #e2f3e7;">
+                          <span style="font-size: 12px; color: #666666; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Amount Paid</span><br>
+                          <strong style="font-size: 16px; color: #008f39; font-weight: 600;">₦{{amount}}</strong>
+                        </td>
+                        <td style="padding-top: 10px; border-top: 1px solid #e2f3e7;">
+                          <span style="font-size: 12px; color: #666666; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Transaction Ref</span><br>
+                          <strong style="font-size: 14px; color: #333333; font-weight: 600;">{{tx_ref}}</strong>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Event Reminder Block -->
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #fdfdfd; border-left: 4px solid #008f39; padding: 15px 20px; margin-bottom: 25px;">
+                      <tr>
+                        <td>
+                          <h4 style="margin: 0 0 5px; font-size: 15px; color: #042e0f; font-weight: 600;">Event Details Reminder:</h4>
+                          <p style="margin: 0; font-size: 14px; color: #555555; line-height: 1.5; font-weight: 400;">
+                            <strong style="font-weight: 600;">Date:</strong> 22nd - 26th September, 2026<br>
+                            <strong style="font-weight: 600;">Venue:</strong> Ogbonnaya Onu Polytechnic Aba, Abia State, Nigeria
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Registration Details block -->
+                    <h3 style="margin: 0 0 10px; font-size: 16px; color: #042e0f; border-bottom: 2px solid #008f39; padding-bottom: 5px; display: inline-block; font-weight: 600;">Submitted Details</h3>
+                    <p style="margin: 0 0 30px; font-size: 14px; color: #555555; line-height: 1.6; background-color: #f1f5f9; padding: 15px; font-weight: 400;">
+                      {{registration_details}}
+                    </p>
+
+                    <p style="margin: 0; font-size: 15px; color: #333333; line-height: 1.6; font-weight: 400;">
+                      If you have any questions or concerns, please reply directly to this email.<br><br>
+                      Warm regards,<br>
+                      <strong style="font-weight: 600;">The NACOS South East Team</strong>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- Clean Professional Footer -->
+          <tr>
+            <td align="center" style="padding: 20px 15px 40px; border-top: 1px solid #eeeeee;">
+              <table width="100%" max-width="800" cellpadding="0" cellspacing="0" border="0" style="max-width: 800px; text-align: center;">
+                <tr>
+                  <td>
+                    <p style="margin: 0 0 8px; font-size: 16px; color: #042e0f; font-weight: 700; letter-spacing: 1px;">
+                      NACOS SOUTH EAST
+                    </p>
+                    <p style="margin: 0 0 20px; font-size: 13px; color: #008f39; font-style: italic; font-weight: 400;">
+                      Networking the world
+                    </p>
+                    <a href="https://www.nacosoutheast.org.ng/" style="display: inline-block; background-color: #f1f5f9; color: #008f39; text-decoration: none; font-size: 13px; font-weight: 600; padding: 10px 24px; border: 1px solid #c3e6cb; border-radius: 4px;">Visit Website</a>
+                    
+                    <p style="margin: 25px 0 0; font-size: 12px; color: #999999; line-height: 1.6; font-weight: 400;">
+                      &copy; 2026 NACOS South East. All rights reserved.<br>
+                      Tech by <a href="https://askricky.org" style="color: #008f39; text-decoration: underline;">askricky.org</a>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
+        </table>
+      </td>
+    </tr>
+  </table>
+  
+</body>
+</html>

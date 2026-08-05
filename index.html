@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NACOS South East Convention 2026 | Nigerian Association of Computer Science Students</title>
+  <meta name="description" content="Join the NACOS South East Convention 2026 at Ogbonnaya Onu Polytechnic, Aba. Register now for the biggest gathering of computing students in South East Nigeria." />
+  <meta name="keywords" content="NACOS South East, NACOS Convention, NACOS South East Convention 2026, Nigerian Association of Computer Science Students, NACOS East, Tech Convention Aba" />
+  
+  <!-- GOOGLE FONTS: POPPINS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500;1,700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+
+  <!-- Social sharing meta (Open Graph & Twitter Card) -->
+  <meta property="og:title" content="Register for NACOS SouthEast Convention 2026" />
+  <meta property="og:description" content="Register for NACOS South East Convention 2026 — 22nd-26th September, Ogbonnaya Onu Polytechnic, Aba." />
+  <meta property="og:image" content="https://www.nacosoutheast.org.ng/images/link-banner2.jpeg" />
+  <meta property="og:image:secure_url" content="https://www.nacosoutheast.org.ng/images/link-banner2.jpeg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="NACOS South East Convention 2026" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.nacosoutheast.org.ng/" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Register for NACOS SouthEast Convention 2026" />
+  <meta name="twitter:description" content="Register for NACOS South East Convention 2026 — 22nd-26th September, Ogbonnaya Onu Polytechnic, Aba." />
+  <meta name="twitter:image" content="https://www.nacosoutheast.org.ng/images/link-banner2.jpeg" />
+
+  <!-- EmailJS & Flutterwave SDKs -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body>
+
+  <!-- PAGE LOADER OVERLAY -->
+  <div id="page-loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(248, 249, 250, 0.92), rgba(233, 235, 239, 0.92)), url('images/preload.jpg'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 99999; opacity: 1; transition: opacity 0.4s ease !important;">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <img src="images/nacos-logo.jpg" alt="NACOS Logo" style="width: 120px; height: 120px; object-fit: cover; border-radius: 50%; border: 2px solid rgba(0, 143, 57, 0.2); animation: pulse 1.5s infinite;" />
+      <h3 style="margin-top: 14px; margin-bottom: 0px; font-family: 'Poppins', sans-serif; font-weight: 700; color: #008f39; font-size: 16px; letter-spacing: 1.5px; text-align: center; line-height: 1.2;">NACOS SOUTH EAST</h3>
+      <p style="margin-top: 2px; margin-bottom: 0px; font-family: 'Poppins', sans-serif; font-weight: 600; font-style: italic; color: #008f39; font-size: 12px; letter-spacing: 1px; text-align: center; line-height: 1.2;">Networking the world</p>
+    </div>
+  </div>
+
+  <style>
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.9; }
+  }
+  </style>
+
+  <!-- SPONSOR POPUP STYLES -->
+  <style>
+    /* === Backdrop — column layout so close btn sits below card === */
+    #sponsor-popup-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 99998;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      gap: 16px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+
+    #sponsor-popup-backdrop.visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* === Modal card === */
+    #sponsor-popup {
+      position: relative;
+      width: 100%;
+      max-width: 340px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.35s ease;
+      background: #042e0f;
+    }
+
+    #sponsor-popup-backdrop.visible #sponsor-popup {
+      transform: translateY(0) scale(1);
+    }
+
+    /* === Image fills top of card === */
+    .sp-image-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .sp-image-wrap img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    /* Dark gradient at bottom so title text and button are readable */
+    .sp-image-wrap::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 55%;
+      background: linear-gradient(to bottom, transparent 0%, rgba(4,46,15,0.82) 60%, rgba(4,46,15,0.97) 100%);
+      pointer-events: none;
+    }
+
+    /* === Title overlaid on image === */
+    .sp-title {
+      position: absolute;
+      bottom: 80px;
+      left: 0;
+      right: 0;
+      padding: 0 20px;
+      z-index: 2;
+      font-family: 'Poppins', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.25;
+      text-align: center;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+
+    .sp-title span {
+      color: #5ddb8a;
+    }
+
+    /* === CTA button — pulled up to overlap bottom of image === */
+    .sp-btn-wrap {
+      background: #042e0f;
+      padding: 0 20px 22px;
+      margin-top: -30px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .sp-cta-btn {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, #0b6623, #12a33a);
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      padding: 14px 20px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.3px;
+      box-shadow: 0 6px 24px rgba(11, 102, 35, 0.55);
+    }
+
+    .sp-cta-btn:hover {
+      background: linear-gradient(135deg, #084c1a, #0f8a30);
+      transform: translateY(-1px);
+    }
+
+    .sp-cta-btn:active {
+      transform: translateY(0);
+    }
+
+    /* === Close X button — OUTSIDE the card, centred below === */
+    #sp-close-btn {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.50);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      padding: 0;
+    }
+
+    #sp-close-btn:hover {
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    /* === Responsive === */
+    @media (max-width: 400px) {
+      #sponsor-popup {
+        max-width: 100%;
+        border-radius: 14px;
+      }
+
+      .sp-image-wrap {
+        border-radius: 14px;
+      }
+
+      .sp-title {
+        font-size: 18px;
+        bottom: 48px;
+      }
+    }
+  </style>
+
+  <!-- NAV + SIDE DRAWER STYLES -->
+  <style>
+    /* === Hero nav bar === */
+    .hero-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    /* Desktop: show sponsor link, hide hamburger */
+    .nav-sponsor-link {
+      display: inline-flex;
+      align-items: center;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+
+    .nav-sponsor-link:hover {
+      color: rgba(255,255,255,0.75);
+    }
+
+    .hamburger-btn {
+      display: none;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: #ffffff;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .hamburger-btn:hover {
+      background: rgba(255,255,255,0.22);
+    }
+
+    /* Mobile: hide sponsor link, show hamburger */
+    @media (max-width: 849px) {
+      .nav-sponsor-link { display: none; }
+      .hamburger-btn    { display: flex; }
+    }
+
+    /* === Side drawer backdrop === */
+    #drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 88888;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    #drawer-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* === Side drawer panel === */
+    #side-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 240px;
+      height: 100%;
+      background: #ffffff;
+      z-index: 88889;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 24px 20px;
+      overflow: hidden;
+    }
+
+    #side-drawer.open {
+      transform: translateX(0);
+    }
+
+    /* "Networking the world" watermark effect */
+    #side-drawer::before {
+      content: "Networking\A the world";
+      white-space: pre;
+      position: absolute;
+      bottom: 30px;
+      right: 0px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: rgba(11, 102, 35, 0.06);
+      line-height: 1.15;
+      text-align: right;
+      pointer-events: none;
+      letter-spacing: -0.5px;
+      z-index: 0;
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .drawer-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .drawer-logo-wrap img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(11, 102, 35, 0.3);
+      object-fit: cover;
+    }
+
+    .drawer-logo-wrap span {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0b6623;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+    }
+
+    .drawer-close-btn {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      color: #64748b;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .drawer-close-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .drawer-nav a {
+      display: block;
+      padding: 10px 6px;
+      text-decoration: none;
+      color: #334155;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      border-bottom: 1px solid #f1f5f9;
+      transition: color 0.2s;
+    }
+
+    .drawer-nav a:last-child {
+      border-bottom: none;
+    }
+
+    .drawer-nav a:hover {
+      color: #0b6623;
+    }
+
+    .drawer-nav a.active {
+      color: #0b6623;
+      font-weight: 600;
+    }
+  </style>
+
+  <!-- SIDE DRAWER HTML -->
+  <div id="drawer-backdrop"></div>
+  <nav id="side-drawer" aria-label="Side menu">
+    <div class="drawer-header">
+      <div class="drawer-logo-wrap">
+        <img src="images/nacos-logo.jpg" alt="NACOS Logo" />
+        <span>NACOS<br>SOUTH EAST</span>
+      </div>
+      <button class="drawer-close-btn" id="drawer-close" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="sponsor.html">Become a Sponsor</a>
+    </div>
+  </nav>
+
+  <!-- SPONSOR POPUP HTML -->
+  <div id="sponsor-popup-backdrop" role="dialog" aria-modal="true" aria-label="Sponsorship Opportunity">
+
+    <!-- Modal card -->
+    <div id="sponsor-popup">
+      <!-- Image fills top of card -->
+      <div class="sp-image-wrap">
+        <img src="images/spad.png" alt="NACOS South East Convention 2026 Sponsorship" />
+
+        <!-- Title overlaid on the image -->
+        <h2 class="sp-title">Support the Future<br>of <span>Tech in Nigeria</span></h2>
+      </div>
+
+      <!-- Button sits below image, pulled up to overlap its bottom edge -->
+      <div class="sp-btn-wrap">
+        <a href="sponsor.html" class="sp-cta-btn" id="sp-cta-link">Become a Sponsor</a>
+      </div>
+    </div>
+
+    <!-- Close X — outside the card, centred below -->
+    <button id="sp-close-btn" aria-label="Close popup">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+  </div>
+
+
+  <!-- HERO HEADER -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+
+      <!-- NAV BAR -->
+      <div class="hero-nav">
+        <!-- Logo + brand name (left) -->
+        <div class="brand" style="margin-bottom:0;">
+          <img src="images/nacos-logo.jpg" alt="NACOS Logo" class="brand-logo" />
+          <div class="brand-text">
+            <span class="brand-name">NACOS <br>SOUTH EAST <br><span class="brand-tagline">Networking the world</span></span>
+          </div>
+        </div>
+        <!-- Desktop: Become a Sponsor link -->
+        <a href="sponsor.html" class="nav-sponsor-link">
+          Become a Sponsor
+        </a>
+        <!-- Mobile: hamburger -->
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <h1>Register for<br />NACOS South East <br>Convention 2026</h1>
+      <div class="hero-meta">
+        <span class="meta-item">
+          <!-- Calendar SVG Icon -->
+          <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path fill="currentColor" d="M17 14a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m-4-5a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-6-3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2" />
+            <path fill="currentColor" fill-rule="evenodd" d="M7 1.75a.75.75 0 0 1 .75.75v.763c.662-.013 1.391-.013 2.193-.013h4.113c.803 0 1.532 0 2.194.013V2.5a.75.75 0 0 1 1.5 0v.827q.39.03.739.076c1.172.158 2.121.49 2.87 1.238c.748.749 1.08 1.698 1.238 2.87c.153 1.14.153 2.595.153 4.433v2.112c0 1.838 0 3.294-.153 4.433c-.158 1.172-.49 2.121-1.238 2.87c-.749.748-1.698 1.08-2.87 1.238c-1.14.153-2.595.153-4.433.153H9.945c-1.838 0-3.294 0-4.433-.153c-1.172-.158-2.121-.49-2.87-1.238c-.748-.749-1.08-1.698-1.238-2.87c-.153-1.14-.153-2.595-.153-4.433v-2.112c0-1.838 0-3.294.153-4.433c.158-1.172.49-2.121 1.238-2.87c.749-.748 1.698-1.08 2.87-1.238q.35-.046.739-.076V2.5A.75.75 0 0 1 7 1.75M5.71 4.89c-1.005.135-1.585.389-2.008.812S3.025 6.705 2.89 7.71q-.034.255-.058.539h18.336q-.024-.284-.058-.54c-.135-1.005-.389-1.585-.812-2.008s-1.003-.677-2.009-.812c-1.027-.138-2.382-.14-4.289-.14h-4c-1.907 0-3.261.002-4.29.14M2.75 12c0-.854 0-1.597.013-2.25h18.474c.013.653.013 1.396.013 2.25v2c0 1.907-.002 3.262-.14 4.29c-.135 1.005-.389 1.585-.812 2.008s-1.003.677-2.009.812c-1.027.138-2.382.14-4.289.14h-4c-1.907 0-3.261-.002-4.29-.14c-1.005-.135-1.585-.389-2.008-.812s-.677-1.003-.812-2.009c-.138-1.027-.14-2.382-.14-4.289z" clip-rule="evenodd" />
+          </svg>
+          22nd - 26th September, 2026
+        </span>
+        <span class="meta-item">
+          <!-- Location Pin SVG Icon -->
+          <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M0 0h20v20H0z" fill="none" />
+            <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+              <path d="M10 11.5a3.5 3.5 0 1 0 0-7a3.5 3.5 0 0 0 0 7m0-5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3" />
+              <path d="M2.5 8.123C2.5 12.366 6.882 19.5 10 19.5s7.5-7.134 7.5-11.377C17.5 3.917 14.146.5 10 .5S2.5 3.917 2.5 8.123m13 0c0 3.28-3.745 9.377-5.5 9.377s-5.5-6.097-5.5-9.377C4.5 5.013 6.967 2.5 10 2.5s5.5 2.513 5.5 5.623" />
+            </g>
+          </svg>
+          Ogbonnaya Onu Polytechnic Aba, Abia State, Nigeria
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="layout">
+    <form id="convention-form">
+      <div class="form-grid-layout">
+        
+        <!-- LEFT MAIN COLUMN -->
+        <div class="main-column">
+
+          <!-- STEP 1: REGISTRATION TYPE -->
+          <section class="card">
+            <div class="card-head">
+              <span class="step-num">1</span>
+              <div>
+                <h2>Registration Type</h2>
+                <p class="card-sub">Choose how you are registering.</p>
+              </div>
+            </div>
+
+            <div class="type-grid">
+              <!-- SINGLE REGISTRATION TILE -->
+              <label class="type-tile active" id="tile-single">
+                <div class="tile-left">
+                  <div class="tile-icon">
+                    <svg class="tile-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none" />
+                      <g fill="none">
+                        <path fill="currentColor" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2" opacity=".16" />
+                        <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" />
+                        <circle cx="12" cy="7" r="3" stroke="currentColor" stroke-width="2" />
+                      </g>
+                    </svg>
+                  </div>
+                  <div>
+                    <strong>Single Registration</strong>
+                    <small>Register as an individual.</small>
+                  </div>
+                </div>
+                <input type="radio" name="regType" value="single" id="type-single-radio" checked />
+              </label>
+
+              <!-- BULK REGISTRATION TILE -->
+              <label class="type-tile" id="tile-bulk">
+                <div class="tile-left">
+                  <div class="tile-icon">
+                    <svg class="tile-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none" />
+                      <circle cx="9" cy="8.5" r="1.5" fill="currentColor" opacity=".3" />
+                      <path fill="currentColor" d="M4.34 17h9.32c-.84-.58-2.87-1.25-4.66-1.25s-3.82.67-4.66 1.25" opacity=".3" />
+                      <path fill="currentColor" d="M9 12c1.93 0 3.5-1.57 3.5-3.5S10.93 5 9 5S5.5 6.57 5.5 8.5S7.07 12 9 12m0-5c.83 0 1.5.67 1.5 1.5S9.83 10 9 10s-1.5-.67-1.5-1.5S8.17 7 9 7m0 6.75c-2.34 0-7 1.17-7 3.5V19h14v-1.75c0-2.33-4.66-3.5-7-3.5M4.34 17c.84-.58 2.87-1.25 4.66-1.25s3.82.67 4.66 1.25zm11.7-3.19c1.16.84 1.96 1.96 1.96 3.44V19h4v-1.75c0-2.02-3.5-3.17-5.96-3.44M15 12c1.93 0 3.5-1.57 1.93 0 3.5-1.57 3.5-3.5S16.93 5 15 5c-.54 0-1.04.13-1.5.35c.63.89 1 1.98 1 3.15s-.37 2.26-1 3.15c.46.22.96.35 1.5.35" />
+                    </svg>
+                  </div>
+                  <div>
+                    <strong>Bulk Student Registration</strong>
+                    <small>Register multiple students.</small>
+                  </div>
+                </div>
+                <input type="radio" name="regType" value="bulk" id="type-bulk-radio" />
+              </label>
+            </div>
+          </section>
+
+          <!-- STEP 2: REGISTRANT DETAILS -->
+          <section class="card">
+            <!-- SINGLE FORM -->
+            <div id="single-form">
+              <div class="card-head">
+                <span class="step-num">2</span>
+                <div>
+                  <h2>Registrant Details <span class="card-sub">(Single)</span></h2>
+                </div>
+              </div>
+
+              <div class="input-grid">
+                <div class="form-group">
+                  <label>Full Name *</label>
+                  <input type="text" id="single-fullname" placeholder="Enter your full name" />
+                </div>
+                <div class="form-group">
+                  <label>Email Address *</label>
+                  <input type="email" id="single-email" placeholder="Enter your email" />
+                </div>
+                <div class="form-group">
+                  <label>Phone Number *</label>
+                  <input type="tel" id="single-phone" placeholder="Enter your phone number" />
+                </div>
+                <div class="form-group">
+                  <label>Institution *</label>
+                  <select id="single-institution">
+                    <option value="Ogbonnaya Onu Polytechnic">Ogbonnaya Onu Polytechnic</option>
+                    <option value="other">Other (Specify below)</option>
+                  </select>
+                </div>
+                <div class="form-group" id="single-other-inst-group" style="display: none;">
+                  <label>Specify Institution *</label>
+                  <input type="text" id="single-other-inst" placeholder="Enter school name" />
+                </div>
+                <div class="form-group">
+                  <label>State *</label>
+                  <select id="single-state">
+                    <option value="">Select state</option>
+                    <option value="Abia">Abia State</option>
+                    <option value="Anambra">Anambra State</option>
+                    <option value="Ebonyi">Ebonyi State</option>
+                    <option value="Enugu">Enugu State</option>
+                    <option value="Imo">Imo State</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- BULK FORM -->
+            <div id="bulk-form" style="display: none;">
+              <div class="card-head-flex">
+                <div class="card-head">
+                  <span class="step-num">2</span>
+                  <div>
+                    <h2>Bulk Student Registration</h2>
+                  </div>
+                </div>
+                <span class="badge">For multiple students</span>
+              </div>
+
+              <div class="input-grid">
+                <div class="form-group">
+                  <label>Institution *</label>
+                  <select id="bulk-institution">
+                    <option value="Ogbonnaya Onu Polytechnic">Ogbonnaya Onu Polytechnic</option>
+                    <option value="other">Other (Specify below)</option>
+                  </select>
+                </div>
+                <div class="form-group" id="bulk-other-inst-group" style="display: none;">
+                  <label>Specify Institution *</label>
+                  <input type="text" id="bulk-other-inst" placeholder="Enter school name" />
+                </div>
+              </div>
+
+              <div class="info-box">
+                You can add multiple students below. Fill in each student's details.
+              </div>
+
+              <div class="students-section">
+                <h3>Students List</h3>
+                <div class="table-responsive">
+                  <table class="students-table">
+                    <thead>
+                      <tr>
+                        <th>S/N</th>
+                        <th>Full Name</th>
+                        <th>Email Address</th>
+                        <th>Phone Number</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="students-table-body">
+                      <!-- Dynamic Rows -->
+                    </tbody>
+                  </table>
+                </div>
+                <button type="button" id="add-student-btn" class="btn-secondary">Add Student</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- STEP 3: SELECT A PACKAGE -->
+          <section class="card">
+            <div class="card-head">
+              <span class="step-num">3</span>
+              <div>
+                <h2>Select a Package</h2>
+              </div>
+            </div>
+
+            <div class="packages-grid">
+              <!-- HOME NACOSITE -->
+              <label class="package-card active">
+                <input type="radio" name="package" value="10000" data-name="HOME NACOSITE" checked />
+                <div class="pkg-head">
+                  <strong>HOME NACOSITE</strong>
+                  <span class="pkg-price">₦10,000.00</span>
+                </div>
+                <ul class="pkg-features">
+                  <li> Conference Access Tag</li>
+                  <li> Free Lunch and Coffee</li>
+                  <li> Certification</li>
+                  <li> Conference Materials</li>
+                </ul>
+              </label>
+
+              <!-- VISITING NACOSITE -->
+              <label class="package-card">
+                <input type="radio" name="package" value="15000" data-name="VISITING NACOSITE" />
+                <div class="pkg-head">
+                  <strong>VISITING NACOSITE</strong>
+                  <span class="pkg-price">₦15,000.00</span>
+                </div>
+                <ul class="pkg-features">
+                  <li> Conference Access Tag</li>
+                  <li> Free Lunch and Coffee</li>
+                  <li> Certification</li>
+                  <li> Conference Materials</li>
+                </ul>
+              </label>
+
+              <!-- HOME NON NACOSITE -->
+              <label class="package-card">
+                <input type="radio" name="package" value="15000" data-name="HOME NON NACOSITE" />
+                <div class="pkg-head">
+                  <strong>HOME NON NACOSITE</strong>
+                  <span class="pkg-price">₦15,000.00</span>
+                </div>
+                <ul class="pkg-features">
+                  <li> Conference Access Tag</li>
+                  <li> Free Lunch and Coffee</li>
+                  <li> Certification</li>
+                  <li> Conference Materials</li>
+                </ul>
+              </label>
+
+              <!-- VISITING NON NACOSITE -->
+              <label class="package-card">
+                <input type="radio" name="package" value="20000" data-name="VISITING NON NACOSITE" />
+                <div class="pkg-head">
+                  <strong>VISITING NON NACOSITE</strong>
+                  <span class="pkg-price">₦20,000.00</span>
+                </div>
+                <ul class="pkg-features">
+                  <li> Conference Access Tag</li>
+                  <li> Free Lunch and Coffee</li>
+                  <li> Conference Materials</li>
+                </ul>
+              </label>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- RIGHT SIDEBAR COLUMN -->
+        <div class="sidebar-column">
+
+          <!-- STEP 4: ORDER SUMMARY -->
+          <section class="card">
+            <div class="card-head">
+              <span class="step-num">4</span>
+              <div>
+                <h2>Order Summary</h2>
+              </div>
+            </div>
+
+            <div class="summary-details">
+              <div class="sum-row">
+                <span>Package Selected</span>
+                <strong id="summary-pkg-name">HOME NACOSITE</strong>
+              </div>
+              <div class="sum-row">
+                <span>Quantity</span>
+                <strong id="summary-qty">1</strong>
+              </div>
+              <hr class="sum-divider" />
+              <div class="sum-row total">
+                <span>Total Amount</span>
+                <strong class="total-green" id="summary-total">₦10,000.00</strong>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-pay-submit" id="btn-pay-submit">
+               Proceed to Payment
+            </button>
+            <p class="secure-text">You will be redirected to our secure payment gateway.</p>
+          </section>
+
+        </div>
+
+      </div>
+    </form>
+  </main>
+
+  <script>
+    // Enforce 5-second lock on page loader, preventing external scripts from hiding it early
+    const loader = document.getElementById("page-loader");
+    if (loader) {
+      const observer = new MutationObserver(() => {
+        if (loader.style.display === "none" || loader.style.opacity === "0") {
+          loader.style.display = "flex";
+          loader.style.opacity = "1";
+        }
+      });
+      observer.observe(loader, { attributes: true, attributeFilter: ["style"] });
+
+      setTimeout(() => {
+        observer.disconnect();
+        loader.style.opacity = "0";
+        setTimeout(() => {
+          loader.style.display = "none";
+        }, 400);
+      }, 5000);
+    }
+  </script>
+
+  <!-- SPONSOR POPUP SCRIPT -->
+  <script>
+    (function () {
+      var backdrop = document.getElementById('sponsor-popup-backdrop');
+      var closeBtn = document.getElementById('sp-close-btn');
+
+      function closePopup() {
+        backdrop.classList.remove('visible');
+      }
+
+      function openPopup() {
+        backdrop.classList.add('visible');
+      }
+
+      // Always show popup after loader finishes
+      setTimeout(openPopup, 5500);
+
+      // Close on X button
+      if (closeBtn) closeBtn.addEventListener('click', closePopup);
+
+      // Close on backdrop click (outside modal)
+      if (backdrop) {
+        backdrop.addEventListener('click', function(e) {
+          if (e.target === backdrop) closePopup();
+        });
+      }
+
+      // Close on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closePopup();
+      });
+    })();
+  </script>
+
+  <!-- SIDE DRAWER SCRIPT -->
+  <script>
+    (function () {
+      var hamburger = document.getElementById('hamburger-btn');
+      var drawer    = document.getElementById('side-drawer');
+      var backdrop  = document.getElementById('drawer-backdrop');
+      var closeBtn  = document.getElementById('drawer-close');
+
+      function openDrawer() {
+        drawer.classList.add('open');
+        backdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeDrawer() {
+        drawer.classList.remove('open');
+        backdrop.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      if (hamburger) hamburger.addEventListener('click', openDrawer);
+      if (closeBtn)  closeBtn.addEventListener('click', closeDrawer);
+      if (backdrop)  backdrop.addEventListener('click', closeDrawer);
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeDrawer();
+      });
+    })();
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>

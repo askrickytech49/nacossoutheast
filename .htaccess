@@ -1,0 +1,10 @@
+# Serve custom 404 page
+ErrorDocument 404 /404.html
+
+# Fallback for SPA apps (optional) - uncomment if needed
+# RewriteEngine On
+# RewriteBase /
+# RewriteCond %{REQUEST_FILENAME} -f [OR]
+# RewriteCond %{REQUEST_FILENAME} -d
+# RewriteRule ^ - [L]
+# RewriteRule ^ index.html [L]

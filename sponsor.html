@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sponsor NACOS South East Convention 2026 | Tech Convention Sponsorship</title>
+  <meta name="description" content="Support the NACOS South East Convention 2026. Become a sponsor and reach thousands of computing students and tech enthusiasts at Ogbonnaya Onu Polytechnic, Aba." />
+  <meta name="keywords" content="NACOS South East, NACOS Convention Sponsorship, NACOS South East Convention 2026, Tech Convention Aba, Sponsor Tech Event Nigeria" />
+
+  <!-- GOOGLE FONTS: POPPINS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+
+  <!-- Social sharing meta (Open Graph & Twitter Card) -->
+  <meta property="og:title" content="Sponsor NACOS SouthEast Convention 2026" />
+  <meta property="og:description" content="Support NACOS South East Convention 2026 — 22nd-26th September, Ogbonnaya Onu Polytechnic, Aba." />
+  <meta property="og:image" content="https://www.nacosoutheast.org.ng/images/link-banner.jpeg" />
+  <meta property="og:image:secure_url" content="https://www.nacosoutheast.org.ng/images/link-banner.jpeg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="NACOS South East Convention 2026 Sponsorship" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.nacosoutheast.org.ng/sponsor.html" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sponsor NACOS SouthEast Convention 2026" />
+  <meta name="twitter:description" content="Support NACOS South East Convention 2026 — 22nd-26th September, Ogbonnaya Onu Polytechnic, Aba." />
+  <meta name="twitter:image" content="https://www.nacosoutheast.org.ng/images/link-banner.jpeg" />
+
+  <!-- EmailJS & Flutterwave SDKs -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
+  <style>
+    /* Hide scrollbar on all screen sizes */
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      position: relative;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;     /* Firefox */
+    }
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none;             /* Chrome, Safari, Opera */
+      width: 0;
+      height: 0;
+    }
+
+    /* Sponsorship-specific additions */
+    .sponsor-info-banner {
+      background: linear-gradient(135deg, rgba(11, 102, 35, 0.08), rgba(11, 102, 35, 0.03));
+      border: 1.5px solid rgba(11, 102, 35, 0.18);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .sponsor-info-banner svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--primary-green);
+    }
+
+    .sponsor-info-banner p {
+      font-size: 12px;
+      color: var(--text-dark);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .sponsor-info-banner strong {
+      color: var(--primary-green);
+    }
+
+    /* Custom amount input wrapper */
+    .custom-amount-wrapper {
+      display: none;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border-color);
+    }
+
+    .custom-amount-wrapper.visible {
+      display: block;
+    }
+
+    .custom-amount-field {
+      position: relative;
+    }
+
+    .custom-amount-field span {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary-green);
+      pointer-events: none;
+    }
+
+    .custom-amount-field input {
+      padding-left: 28px !important;
+    }
+
+    /* Org name toggle */
+    #org-name-group {
+      display: none;
+    }
+
+    /* Textarea */
+    .form-group textarea {
+      padding: 10px 12px;
+      border: 1px solid var(--input-border);
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+      background-color: #fff;
+      transition: border-color 0.2s;
+      resize: vertical;
+      min-height: 90px;
+      font-family: var(--font-main);
+      color: var(--text-dark);
+    }
+
+    .form-group textarea:focus {
+      border-color: var(--primary-green);
+      box-shadow: 0 0 0 3px rgba(11, 102, 35, 0.1);
+    }
+
+    .form-group textarea::placeholder {
+      color: #94a3b8;
+      font-size: 12px;
+    }
+
+    /* Sponsor hero back link */
+    .hero-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      margin-bottom: 18px;
+      transition: color 0.2s;
+    }
+
+    .hero-back-link:hover {
+      color: #ffffff;
+    }
+
+    .hero-back-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Package card sponsor label tweak: push price below name cleanly */
+    .pkg-head {
+      margin-bottom: 8px;
+    }
+
+    /* Perks list for sponsor tiers */
+    .sponsor-perks {
+      list-style: none;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin: 0;
+      padding: 0;
+    }
+
+    .sponsor-perks li {
+      margin-bottom: 3px;
+    }
+
+    .sponsor-perks li::before {
+      content: "";
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      margin-right: 6px;
+      vertical-align: -0.15em;
+      background-color: var(--primary-green);
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath d='M0 0h24v24H0z' fill='none' /%3E%3Cpath fill='%23ffffff' d='M.41 13.41L6 19l1.41-1.42L1.83 12m20.41-6.42L11.66 16.17L7.5 12l-1.43 1.41L11.66 19l12-12M18 7l-1.41-1.42l-6.35 6.35l1.42 1.41z'/%3E%3C/svg%3E") no-repeat center / contain;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath d='M0 0h24v24H0z' fill='none' /%3E%3Cpath fill='%23ffffff' d='M.41 13.41L6 19l1.41-1.42L1.83 12m20.41-6.42L11.66 16.17L7.5 12l-1.43 1.41L11.66 19l12-12M18 7l-1.41-1.42l-6.35 6.35l1.42 1.41z'/%3E%3C/svg%3E") no-repeat center / contain;
+    }
+
+    /* Custom tier card — subtle dashed border style */
+    .package-card.custom-tier {
+      border-style: dashed;
+    }
+
+    .package-card.custom-tier.active {
+      border-style: solid;
+      border-color: var(--primary-green);
+    }
+
+    @media (max-width: 480px) {
+      textarea {
+        font-size: 16px !important;
+      }
+    }
+
+    /* Ensure sponsor form controls don't overflow on mobile */
+    .form-group textarea {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE LOADER OVERLAY -->
+  <div id="page-loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(248, 249, 250, 0.92), rgba(233, 235, 239, 0.92)), url('images/preload.jpg'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 99999; opacity: 1; transition: opacity 0.4s ease !important;">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <img src="images/nacos-logo.jpg" alt="NACOS Logo" style="width: 120px; height: 120px; object-fit: cover; border-radius: 50%; border: 2px solid rgba(0, 143, 57, 0.2); animation: pulse 1.5s infinite;" />
+      <h3 style="margin-top: 14px; margin-bottom: 0px; font-family: 'Poppins', sans-serif; font-weight: 700; color: #008f39; font-size: 16px; letter-spacing: 1.5px; text-align: center; line-height: 1.2;">NACOS SOUTH EAST</h3>
+      <p style="margin-top: 2px; margin-bottom: 0px; font-family: 'Poppins', sans-serif; font-weight: 600; font-style: italic; color: #008f39; font-size: 12px; letter-spacing: 1px; text-align: center; line-height: 1.2;">Networking the world</p>
+    </div>
+  </div>
+
+  <style>
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.9; }
+  }
+  </style>
+
+  <!-- HERO HEADER -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="brand">
+        <img src="images/nacos-logo.jpg" alt="NACOS Logo" class="brand-logo" />
+        <div class="brand-text">
+          <span class="brand-name">NACOS <br>SOUTH EAST <br><span class="brand-tagline">Networking the world</span></span>
+        </div>
+      </div>
+      <!-- Back link to registration page -->
+      <a href="index.html" class="hero-back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+        Back to Registration
+      </a>
+      <h1>Sponsor the<br />NACOS South East <br>Convention 2026</h1>
+      <div class="hero-meta">
+        <span class="meta-item">
+          <!-- Calendar SVG Icon -->
+          <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path fill="currentColor" d="M17 14a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m-4-5a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-6-3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2" />
+            <path fill="currentColor" fill-rule="evenodd" d="M7 1.75a.75.75 0 0 1 .75.75v.763c.662-.013 1.391-.013 2.193-.013h4.113c.803 0 1.532 0 2.194.013V2.5a.75.75 0 0 1 1.5 0v.827q.39.03.739.076c1.172.158 2.121.49 2.87 1.238c.748.749 1.08 1.698 1.238 2.87c.153 1.14.153 2.595.153 4.433v2.112c0 1.838 0 3.294-.153 4.433c-.158 1.172-.49 2.121-1.238 2.87c-.749.748-1.698 1.08-2.87 1.238c-1.14.153-2.595.153-4.433.153H9.945c-1.838 0-3.294 0-4.433-.153c-1.172-.158-2.121-.49-2.87-1.238c-.748-.749-1.08-1.698-1.238-2.87c-.153-1.14-.153-2.595-.153-4.433v-2.112c0-1.838 0-3.294.153-4.433c.158-1.172.49-2.121 1.238-2.87c.749-.748 1.698-1.08 2.87-1.238q.35-.046.739-.076V2.5A.75.75 0 0 1 7 1.75M5.71 4.89c-1.005.135-1.585.389-2.008.812S3.025 6.705 2.89 7.71q-.034.255-.058.539h18.336q-.024-.284-.058-.54c-.135-1.005-.389-1.585-.812-2.008s-1.003-.677-2.009-.812c-1.027-.138-2.382-.14-4.289-.14h-4c-1.907 0-3.261.002-4.29.14M2.75 12c0-.854 0-1.597.013-2.25h18.474c.013.653.013 1.396.013 2.25v2c0 1.907-.002 3.262-.14 4.29c-.135 1.005-.389 1.585-.812 2.008s-1.003.677-2.009.812c-1.027.138-2.382.14-4.289.14h-4c-1.907 0-3.261-.002-4.29-.14c-1.005-.135-1.585-.389-2.008-.812s-.677-1.003-.812-2.009c-.138-1.027-.14-2.382-.14-4.289z" clip-rule="evenodd" />
+          </svg>
+          22nd - 26th September, 2026
+        </span>
+        <span class="meta-item">
+          <!-- Location Pin SVG Icon -->
+          <svg class="meta-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M0 0h20v20H0z" fill="none" />
+            <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+              <path d="M10 11.5a3.5 3.5 0 1 0 0-7a3.5 3.5 0 0 0 0 7m0-5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3" />
+              <path d="M2.5 8.123C2.5 12.366 6.882 19.5 10 19.5s7.5-7.134 7.5-11.377C17.5 3.917 14.146.5 10 .5S2.5 3.917 2.5 8.123m13 0c0 3.28-3.745 9.377-5.5 9.377s-5.5-6.097-5.5-9.377C4.5 5.013 6.967 2.5 10 2.5s5.5 2.513 5.5 5.623" />
+            </g>
+          </svg>
+          Ogbonnaya Onu Polytechnic Aba, Abia State, Nigeria
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="layout">
+    <form id="sponsor-form">
+      <div class="form-grid-layout">
+
+        <!-- LEFT MAIN COLUMN -->
+        <div class="main-column">
+
+          <!-- STEP 1: SPONSOR DETAILS -->
+          <section class="card">
+            <div class="card-head">
+              <span class="step-num">1</span>
+              <div>
+                <h2>Sponsor Details</h2>
+                <p class="card-sub">Tell us about yourself or your organisation.</p>
+              </div>
+            </div>
+
+            <!-- Info banner -->
+            <div class="sponsor-info-banner">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              <p>Your sponsorship directly supports <strong>Nigerian tech students</strong> and helps make NACOS South East Convention 2026 a success. A confirmation receipt will be emailed to you after payment.</p>
+            </div>
+
+            <div class="input-grid">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="sponsor-fullname" placeholder="Enter your full name" />
+              </div>
+              <div class="form-group">
+                <label>Email Address *</label>
+                <input type="email" id="sponsor-email" placeholder="Enter your email address" />
+              </div>
+              <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" id="sponsor-phone" placeholder="Enter your phone number" />
+              </div>
+              <div class="form-group">
+                <label>Sponsor Category *</label>
+                <select id="sponsor-category">
+                  <option value="">Select category</option>
+                  <option value="Individual">Individual</option>
+                  <option value="Corporate">Corporate / Company</option>
+                  <option value="NGO">NGO / Non-profit</option>
+                  <option value="Government">Government Agency</option>
+                  <option value="Alumni">Alumni / Past NACOS Member</option>
+                </select>
+              </div>
+              <div class="form-group" id="org-name-group">
+                <label>Organisation / Company Name *</label>
+                <input type="text" id="sponsor-org-name" placeholder="Enter organisation name" />
+              </div>
+            </div>
+          </section>
+
+          <!-- STEP 2: SPONSORSHIP PACKAGE -->
+          <section class="card">
+            <div class="card-head">
+              <span class="step-num">2</span>
+              <div>
+                <h2>Sponsorship Package</h2>
+                <p class="card-sub">Choose a tier or enter your own amount.</p>
+              </div>
+            </div>
+
+            <div class="packages-grid">
+
+              <!-- HEADLINE SPONSOR -->
+              <label class="package-card active" id="pkg-headline">
+                <input type="radio" name="sponsor-package" value="10000000" data-name="HEADLINE SPONSOR" checked />
+                <div class="pkg-head">
+                  <strong>HEADLINE SPONSOR</strong>
+                  <span class="pkg-price">₦10,000,000.00</span>
+                </div>
+              </label>
+
+              <!-- DIAMOND SPONSOR -->
+              <label class="package-card" id="pkg-diamond">
+                <input type="radio" name="sponsor-package" value="5000000" data-name="DIAMOND SPONSOR" />
+                <div class="pkg-head">
+                  <strong>DIAMOND SPONSOR</strong>
+                  <span class="pkg-price">₦5,000,000.00</span>
+                </div>
+              </label>
+
+              <!-- PLATINUM SPONSOR -->
+              <label class="package-card" id="pkg-platinum">
+                <input type="radio" name="sponsor-package" value="3000000" data-name="PLATINUM SPONSOR" />
+                <div class="pkg-head">
+                  <strong>PLATINUM SPONSOR</strong>
+                  <span class="pkg-price">₦3,000,000.00</span>
+                </div>
+              </label>
+
+              <!-- GOLD SPONSOR -->
+              <label class="package-card" id="pkg-gold">
+                <input type="radio" name="sponsor-package" value="2000000" data-name="GOLD SPONSOR" />
+                <div class="pkg-head">
+                  <strong>GOLD SPONSOR</strong>
+                  <span class="pkg-price">₦2,000,000.00</span>
+                </div>
+              </label>
+
+              <!-- SILVER SPONSOR -->
+              <label class="package-card" id="pkg-silver">
+                <input type="radio" name="sponsor-package" value="1000000" data-name="SILVER SPONSOR" />
+                <div class="pkg-head">
+                  <strong>SILVER SPONSOR</strong>
+                  <span class="pkg-price">₦1,000,000.00</span>
+                </div>
+              </label>
+
+              <!-- BRONZE SPONSOR -->
+              <label class="package-card" id="pkg-bronze">
+                <input type="radio" name="sponsor-package" value="500000" data-name="BRONZE SPONSOR" />
+                <div class="pkg-head">
+                  <strong>BRONZE SPONSOR</strong>
+                  <span class="pkg-price">₦500,000.00</span>
+                </div>
+              </label>
+
+              <!-- CUSTOM AMOUNT -->
+              <label class="package-card custom-tier" id="pkg-custom">
+                <input type="radio" name="sponsor-package" value="custom" data-name="CUSTOM SPONSOR" />
+                <div class="pkg-head">
+                  <strong>CUSTOM AMOUNT</strong>
+                  <span class="pkg-price" id="custom-price-display">Enter below</span>
+                </div>
+                <ul class="sponsor-perks">
+                  <li>Any amount you choose</li>
+                  <li>Every contribution counts</li>
+                </ul>
+              </label>
+
+            </div>
+
+            <!-- Custom amount input — shown only when custom tile is selected -->
+            <div class="custom-amount-wrapper" id="custom-amount-wrapper">
+              <div class="form-group">
+                <label>Enter Your Sponsorship Amount (₦) *</label>
+                <div class="custom-amount-field">
+                  <span>₦</span>
+                  <input type="number" id="custom-amount-input" placeholder="e.g. 75000" min="1000" step="500" />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- STEP 3: MESSAGE (OPTIONAL) -->
+          <section class="card">
+            <div class="card-head">
+              <span class="step-num">3</span>
+              <div>
+                <h2>Message <span class="card-sub">(Optional)</span></h2>
+                <p class="card-sub">Leave a short dedication or message to be recorded with your sponsorship.</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Your Message</label>
+              <textarea id="sponsor-message" placeholder="e.g. In support of Nigerian tech education and the next generation of computer science professionals..."></textarea>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- RIGHT SIDEBAR COLUMN -->
+        <div class="sidebar-column">
+
+          <!-- STEP 4: SPONSORSHIP SUMMARY -->
+          <section class="card">
+            <div class="card-head">
+              <span class="step-num">4</span>
+              <div>
+                <h2>Sponsorship Summary</h2>
+              </div>
+            </div>
+
+            <div class="summary-details">
+              <div class="sum-row">
+                <span>Sponsor Name</span>
+                <strong id="summary-sponsor-name">—</strong>
+              </div>
+              <div class="sum-row">
+                <span>Category</span>
+                <strong id="summary-sponsor-category">—</strong>
+              </div>
+              <div class="sum-row">
+                <span>Package</span>
+                <strong id="summary-pkg-name">HEADLINE SPONSOR</strong>
+              </div>
+              <hr class="sum-divider" />
+              <div class="sum-row total">
+                <span>Total Amount</span>
+                <strong class="total-green" id="summary-total">₦10,000,000.00</strong>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-pay-submit" id="btn-sponsor-submit">
+              Sponsor Now
+            </button>
+            <p class="secure-text">You will be redirected to our secure payment gateway.</p>
+          </section>
+
+        </div>
+
+      </div>
+    </form>
+  </main>
+
+  <script>
+    // Enforce 5-second lock on page loader
+    const loader = document.getElementById("page-loader");
+    if (loader) {
+      const observer = new MutationObserver(() => {
+        if (loader.style.display === "none" || loader.style.opacity === "0") {
+          loader.style.display = "flex";
+          loader.style.opacity = "1";
+        }
+      });
+      observer.observe(loader, { attributes: true, attributeFilter: ["style"] });
+
+      setTimeout(() => {
+        observer.disconnect();
+        loader.style.opacity = "0";
+        setTimeout(() => {
+          loader.style.display = "none";
+        }, 400);
+      }, 5000);
+    }
+  </script>
+  <script src="sponsor.js"></script>
+</body>
+</html>

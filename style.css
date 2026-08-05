@@ -1,0 +1,716 @@
+:root {
+  --primary-green: #0b6623;
+  --light-green: #f0fdf4;
+  --border-color: #e2e8f0;
+  --input-border: #cbd5e1;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --radius: 12px;
+  --font-main: 'Poppins', sans-serif;
+}
+
+/* Global Font & Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+
+body, input, select, textarea, button {
+  font-family: var(--font-main);
+}
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: #ffffff;
+  line-height: 1.5;
+}
+
+/* HERO HEADER */
+.hero {
+  position: relative;
+  background: url("images/hero.jpg") center/cover no-repeat #042e0f;
+  color: #ffffff;
+  padding: 40px 16px 80px;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(4,46,15,0.9) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.brand-logo {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.brand-tagline {
+  display: block;
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-top: 2px;
+  padding: 0;
+}
+
+.hero h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 40px 0 15px;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.meta-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* MAIN LAYOUT GRID */
+.layout {
+  max-width: 1050px;
+  margin: -40px auto 40px;
+  padding: 0 16px;
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  width: 100%;
+  min-width: 0;
+}
+
+.main-column, .sidebar-column {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 850px) {
+  .form-grid-layout {
+    grid-template-columns: 1.8fr 1fr;
+  }
+}
+
+/* CARDS */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .layout {
+    padding: 0 12px;
+  }
+  .card {
+    padding: 16px 12px;
+  }
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.card-head-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.step-num {
+  background-color: var(--primary-green);
+  color: #ffffff;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.card-head h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* STEP 1: TYPE SELECTION */
+.type-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 550px) {
+  .type-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.type-tile {
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #ffffff;
+}
+
+.tile-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tile-icon {
+  width: 38px;
+  height: 38px;
+  background: #f1f5f9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-green);
+  flex-shrink: 0;
+}
+
+.tile-svg {
+  width: 22px;
+  height: 22px;
+}
+
+.type-tile strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.type-tile small {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.type-tile input[type="radio"] {
+  accent-color: var(--primary-green);
+}
+
+.type-tile.active {
+  border-color: var(--primary-green);
+  background-color: transparent;
+}
+
+/* STEP 2: FORM INPUTS */
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+@media (min-width: 550px) {
+  .input-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  width: 100%;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
+  background-color: #fff;
+  transition: border-color 0.2s;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(11, 102, 35, 0.1);
+}
+
+/* BULK REGISTRATION & TABLE STYLING */
+.badge {
+  background-color: transparent;
+  color: var(--text-dark);
+  border: 1.5px solid var(--primary-green);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (min-width: 550px) {
+  .badge {
+    font-size: 11px;
+  }
+}
+
+.info-box {
+  background-color: transparent;
+  border-left: 3px solid var(--primary-green);
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--text-dark);
+  margin: 16px 0;
+}
+
+.students-section h3 {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.students-table th {
+  background: #f8fafc;
+  padding: 10px 12px;
+  text-align: left;
+  color: var(--text-muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.students-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+/* Table Input Design */
+.students-table input {
+  width: 100%;
+  height: 38px;
+  padding: 8px 10px;
+  font-size: 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  outline: none;
+  background-color: #fafafa;
+  color: var(--text-dark);
+  transition: all 0.2s ease;
+}
+
+.students-table input::placeholder {
+  color: #94a3b8;
+}
+
+.students-table input:focus {
+  background-color: #ffffff;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 2px rgba(11, 102, 35, 0.15);
+}
+
+/* RESPONSIVE MOBILE TILE VIEW FOR BULK TABLE */
+@media (max-width: 640px) {
+  .students-table thead {
+    display: none;
+  }
+
+  .students-table, 
+  .students-table tbody, 
+  .students-table tr, 
+  .students-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .students-table tr {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  }
+
+  .students-table td {
+    padding: 4px 0;
+    border: none;
+  }
+
+  .students-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+    margin-top: 4px;
+  }
+
+  .students-table td:first-child {
+    font-weight: 700;
+    color: var(--primary-green);
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+  }
+
+  .students-table td:first-child::before {
+    content: "Student #" attr(data-index);
+    display: inline-block;
+  }
+
+  .students-table td[data-label="S/N"] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .students-table td[data-label="Action"] {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border-color);
+  }
+
+  .students-table td[data-label="Action"]::before {
+    display: none;
+  }
+
+  .btn-danger {
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+  }
+}
+
+.btn-secondary {
+  background-color: var(--primary-green);
+  color: #ffffff;
+  border: 1.5px solid var(--primary-green);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+@media (min-width: 641px) {
+  .btn-secondary {
+    width: auto;
+  }
+}
+
+.btn-secondary:hover {
+  background-color: #084c1a;
+}
+
+.btn-danger {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-danger:hover {
+  background-color: #fca5a5;
+}
+
+/* STEP 3: PACKAGES GRID */
+.packages-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 550px) {
+  .packages-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.package-card {
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff;
+}
+
+/* STANDARD RADIO BUTTON MATCHING BULK STATE */
+.package-card input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--input-border);
+  border-radius: 50%;
+  outline: none;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.package-card input[type="radio"]:checked {
+  background-color: #ffffff;
+  border-color: var(--primary-green);
+  box-shadow: inset 0 0 0 5px var(--primary-green);
+}
+
+.package-card.active {
+  border-color: var(--primary-green);
+  background-color: transparent;
+}
+
+.pkg-head strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.pkg-price {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary-green);
+  display: block;
+  margin: 4px 0 8px;
+}
+
+.pkg-features {
+  list-style: none;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.pkg-features li {
+  margin-bottom: 2px;
+}
+
+/* FEATURE LIST TICKS */
+.pkg-features li::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 6px;
+  vertical-align: -0.15em;
+  background-color: var(--primary-green);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath d='M0 0h24v24H0z' fill='none' /%3E%3Cpath fill='%23ffffff' d='M.41 13.41L6 19l1.41-1.42L1.83 12m20.41-6.42L11.66 16.17L7.5 12l-1.43 1.41L11.66 19l12-12M18 7l-1.41-1.42l-6.35 6.35l1.42 1.41z'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath d='M0 0h24v24H0z' fill='none' /%3E%3Cpath fill='%23ffffff' d='M.41 13.41L6 19l1.41-1.42L1.83 12m20.41-6.42L11.66 16.17L7.5 12l-1.43 1.41L11.66 19l12-12M18 7l-1.41-1.42l-6.35 6.35l1.42 1.41z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+/* STEP 4: ORDER SUMMARY */
+.summary-details {
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.sum-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.sum-divider {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 8px 0;
+}
+
+.sum-row.total {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.total-green {
+  color: var(--primary-green);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.btn-pay-submit {
+  width: 100%;
+  background-color: var(--primary-green);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-pay-submit:hover {
+  background-color: #084c1a;
+}
+
+.secure-text {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Hide scrollbars on mobile devices but keep scrolling functional */
+@media (max-width: 768px) {
+  html, body {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  html::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+    width: 0;
+    height: 0;
+  }
+}
+
+/* Prevent iOS Safari from auto-zooming when inputs are focused.
+   Strategy: allow text-size-adjust and ensure form controls on small screens
+   use a minimum font-size of 16px (iOS zooms when font-size < 16px). */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+@media (max-width: 480px) {
+  input, select, textarea, button {
+    font-size: 16px !important;
+    line-height: 1.3;
+  }
+}

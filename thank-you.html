@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You — NACOS South East Convention 2026</title>
+
+  <!-- GOOGLE FONTS: POPPINS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+
+  <style>
+    /* Hide scrollbar */
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      position: relative;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
+    /* Thank-you card */
+    .thank-you-card {
+      max-width: 520px;
+      margin: -50px auto 40px;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px 28px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Green checkmark circle */
+    .check-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0b6623, #12a33a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 6px 20px rgba(11, 102, 35, 0.3);
+    }
+
+    .check-circle svg {
+      width: 36px;
+      height: 36px;
+      color: #ffffff;
+    }
+
+    .thank-you-card h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .thank-you-card .thank-sub {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* Event details section */
+    .event-details {
+      background: #f0fdf4;
+      border: 1px solid rgba(11, 102, 35, 0.12);
+      border-radius: 12px;
+      padding: 20px 18px;
+      margin-bottom: 28px;
+    }
+
+    .event-details-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #0b6623;
+      margin-bottom: 14px;
+    }
+
+    .event-detail-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .event-detail-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .event-detail-row svg {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      color: #0b6623;
+      margin-top: 2px;
+    }
+
+    .event-detail-row span {
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    /* Email note */
+    .email-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+
+    .email-note svg {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .email-note span {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* Back to Home button - matching registration page .btn-pay-submit */
+    .btn-home {
+      display: block;
+      width: 100%;
+      background-color: #0b6623;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-home:hover {
+      background-color: #084c1a;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .thank-you-card {
+        margin: -40px 16px 32px;
+        padding: 32px 20px;
+      }
+
+      .thank-you-card h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE LOADER OVERLAY -->
+  <div id="page-loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(248, 249, 250, 0.92), rgba(233, 235, 239, 0.92)), url('images/preload.jpg'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 99999; opacity: 1; transition: opacity 0.4s ease !important;">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <img src="images/nacos-logo.jpg" alt="NACOS Logo" style="width: 120px; height: 120px; object-fit: cover; border-radius: 50%; border: 2px solid rgba(0, 143, 57, 0.2); animation: pulse 1.5s infinite;" />
+      <h3 style="margin-top: 14px; margin-bottom: 0px; font-family: 'Poppins', sans-serif; font-weight: 700; color: #008f39; font-size: 16px; letter-spacing: 1.5px; text-align: center; line-height: 1.2;">NACOS SOUTH EAST</h3>
+      <p style="margin-top: 2px; margin-bottom: 0px; font-family: 'Poppins', sans-serif; font-weight: 600; font-style: italic; color: #008f39; font-size: 12px; letter-spacing: 1px; text-align: center; line-height: 1.2;">Networking the world</p>
+    </div>
+  </div>
+
+  <style>
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.9; }
+  }
+  </style>
+
+  <!-- HERO HEADER -->
+  <header class="hero" style="padding-bottom: 90px;">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="brand">
+        <img src="images/nacos-logo.jpg" alt="NACOS Logo" class="brand-logo" />
+        <div class="brand-text">
+          <span class="brand-name">NACOS <br>SOUTH EAST <br><span class="brand-tagline">Networking the world</span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- THANK YOU CARD -->
+  <main>
+    <div class="thank-you-card">
+
+      <!-- Green checkmark icon -->
+      <div class="check-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <h2>Payment Successful</h2>
+      <p class="thank-sub">Thank you for your support. Your registration for the NACOS South East Convention 2026 has been confirmed.</p>
+
+      <!-- Conference date and venue -->
+      <div class="event-details">
+        <div class="event-details-title">Event Details</div>
+
+        <!-- Date -->
+        <div class="event-detail-row">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path fill="currentColor" d="M17 14a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m-4-5a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-6-3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2" />
+            <path fill="currentColor" fill-rule="evenodd" d="M7 1.75a.75.75 0 0 1 .75.75v.763c.662-.013 1.391-.013 2.193-.013h4.113c.803 0 1.532 0 2.194.013V2.5a.75.75 0 0 1 1.5 0v.827q.39.03.739.076c1.172.158 2.121.49 2.87 1.238c.748.749 1.08 1.698 1.238 2.87c.153 1.14.153 2.595.153 4.433v2.112c0 1.838 0 3.294-.153 4.433c-.158 1.172-.49 2.121-1.238 2.87c-.749.748-1.698 1.08-2.87 1.238c-1.14.153-2.595.153-4.433.153H9.945c-1.838 0-3.294 0-4.433-.153c-1.172-.158-2.121-.49-2.87-1.238c-.748-.749-1.08-1.698-1.238-2.87c-.153-1.14-.153-2.595-.153-4.433v-2.112c0-1.838 0-3.294.153-4.433c.158-1.172.49-2.121 1.238-2.87c.749-.748 1.698-1.08 2.87-1.238q.35-.046.739-.076V2.5A.75.75 0 0 1 7 1.75M5.71 4.89c-1.005.135-1.585.389-2.008.812S3.025 6.705 2.89 7.71q-.034.255-.058.539h18.336q-.024-.284-.058-.54c-.135-1.005-.389-1.585-.812-2.008s-1.003-.677-2.009-.812c-1.027-.138-2.382-.14-4.289-.14h-4c-1.907 0-3.261.002-4.29.14M2.75 12c0-.854 0-1.597.013-2.25h18.474c.013.653.013 1.396.013 2.25v2c0 1.907-.002 3.262-.14 4.29c-.135 1.005-.389 1.585-.812 2.008s-1.003.677-2.009.812c-1.027.138-2.382.14-4.289.14h-4c-1.907 0-3.261-.002-4.29-.14c-1.005-.135-1.585-.389-2.008-.812s-.677-1.003-.812-2.009c-.138-1.027-.14-2.382-.14-4.289z" clip-rule="evenodd" />
+          </svg>
+          <span>22nd - 26th September, 2026</span>
+        </div>
+
+        <!-- Venue -->
+        <div class="event-detail-row">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M0 0h20v20H0z" fill="none" />
+            <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+              <path d="M10 11.5a3.5 3.5 0 1 0 0-7a3.5 3.5 0 0 0 0 7m0-5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3" />
+              <path d="M2.5 8.123C2.5 12.366 6.882 19.5 10 19.5s7.5-7.134 7.5-11.377C17.5 3.917 14.146.5 10 .5S2.5 3.917 2.5 8.123m13 0c0 3.28-3.745 9.377-5.5 9.377s-5.5-6.097-5.5-9.377C4.5 5.013 6.967 2.5 10 2.5s5.5 2.513 5.5 5.623" />
+            </g>
+          </svg>
+          <span>Ogbonnaya Onu Polytechnic Aba, Abia State, Nigeria</span>
+        </div>
+      </div>
+
+      <!-- Email confirmation note -->
+      <div class="email-note">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        <span>A confirmation receipt has been sent to your email address. Please check your inbox or spam folder.</span>
+      </div>
+
+      <!-- Back to Home -->
+      <a href="index.html" class="btn-home">Back to Home</a>
+
+    </div>
+  </main>
+
+  <!-- PAGE LOADER SCRIPT -->
+  <script>
+    const loader = document.getElementById("page-loader");
+    if (loader) {
+      const observer = new MutationObserver(() => {
+        if (loader.style.display === "none" || loader.style.opacity === "0") {
+          loader.style.display = "flex";
+          loader.style.opacity = "1";
+        }
+      });
+      observer.observe(loader, { attributes: true, attributeFilter: ["style"] });
+
+      setTimeout(() => {
+        observer.disconnect();
+        loader.style.opacity = "0";
+        setTimeout(() => {
+          loader.style.display = "none";
+        }, 400);
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
