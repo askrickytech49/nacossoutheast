@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mr &amp; Miss NACOS | NACOS South East 2026</title>
+  <meta name="description" content="Register for the Mr & Miss NACOS competition at the NACOS South East Convention 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500;1,700&display=swap" rel="stylesheet" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+</head>
+<body class="mr-page">
+  <div id="mr-drawer-backdrop" aria-hidden="true"></div>
+  <nav id="mr-side-drawer" aria-label="Mobile menu" aria-hidden="true">
+    <div class="mr-drawer-header">
+      <div class="mr-drawer-brand">
+        <img src="images/nacos-logo.jpg" alt="NACOS logo" />
+        <span>NACOS<br />SOUTH EAST</span>
+      </div>
+      <button class="mr-drawer-close" id="mr-drawer-close" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="mr-drawer-nav">
+      <a href="index.html">Home</a>
+      <a href="mr_nacos.html" class="active">Mr &amp; Miss NACOS</a>
+      <a href="sponsor.html">Become a Sponsor</a>
+    </div>
+  </nav>
+
+  <main class="mr-hero">
+    <div class="mr-hero-overlay"></div>
+    <div class="mr-page-content">
+      <nav class="mr-nav" aria-label="Main navigation">
+        <a href="index.html" class="mr-brand" aria-label="NACOS South East home">
+          <img src="images/nacos-logo.jpg" alt="NACOS logo" class="brand-logo" />
+          <span class="mr-brand-text">NACOS<br />SOUTH EAST<small>Networking the world</small></span>
+        </a>
+        <div class="mr-nav-links">
+          <a href="index.html">Convention Registration</a>
+          <a href="mr_nacos.html" class="active">Mr &amp; Miss NACOS</a>
+          <a href="sponsor.html">Become a Sponsor</a>
+        </div>
+        <button class="mr-hamburger-btn" id="mr-hamburger-btn" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </nav>
+
+      <section class="mr-intro" aria-labelledby="mr-title">
+        <p class="mr-kicker">NACOS SOUTH EAST 2026</p>
+        <h1 id="mr-title">MR &amp; MISS NACOS</h1>
+        <p>Step into the spotlight, represent your institution and celebrate the confidence, creativity and character of NACOS students.</p>
+      </section>
+
+      <section class="mr-form-card" aria-labelledby="form-title">
+        <div class="mr-form-heading">
+          <div>
+            <p class="mr-form-eyebrow">Competition registration</p>
+            <h2 id="form-title">Tell us about yourself</h2>
+            <p>Complete the form below to submit your application for the 2026 pageant.</p>
+          </div>
+          <span class="mr-required-note">* Required</span>
+        </div>
+
+        <div class="mr-payment-summary" aria-label="Mr and Miss NACOS registration fee">
+          <span class="mr-payment-label">Registration fee</span>
+          <strong>₦20,000</strong>
+        </div>
+
+        <div class="mr-form-alert" id="mr-form-alert" role="alert" aria-live="polite"></div>
+
+        <form id="mr-nacos-form" novalidate>
+          <fieldset class="mr-fieldset">
+            <legend>Choose your category <span aria-hidden="true">*</span></legend>
+            <div class="mr-category-grid">
+              <label class="mr-category-card is-selected">
+                <input type="radio" name="category" value="Mr NACOS" checked required />
+                <span class="mr-category-copy"><strong>Mr NACOS</strong><small>Represent with confidence</small></span>
+                <span class="mr-radio-mark" aria-hidden="true"></span>
+              </label>
+              <label class="mr-category-card">
+                <input type="radio" name="category" value="Miss NACOS" required />
+                <span class="mr-category-copy"><strong>Miss NACOS</strong><small>Represent with grace</small></span>
+                <span class="mr-radio-mark" aria-hidden="true"></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="input-grid">
+            <div class="form-group">
+              <label for="mr-full-name">Full Name <span aria-hidden="true">*</span></label>
+              <input id="mr-full-name" name="fullName" type="text" autocomplete="name" placeholder="Enter your full name" required />
+            </div>
+            <div class="form-group">
+              <label for="mr-email">Email Address <span aria-hidden="true">*</span></label>
+              <input id="mr-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="mr-phone">Phone Number <span aria-hidden="true">*</span></label>
+              <input id="mr-phone" name="phone" type="tel" autocomplete="tel" placeholder="0800 000 0000" required />
+            </div>
+            <div class="form-group">
+              <label for="mr-institution">Institution / School <span aria-hidden="true">*</span></label>
+              <input id="mr-institution" name="institution" type="text" placeholder="Your institution" required />
+            </div>
+            <div class="form-group">
+              <label for="mr-department">Department <span aria-hidden="true">*</span></label>
+              <input id="mr-department" name="department" type="text" placeholder="e.g. Computer Science" required />
+            </div>
+            <div class="form-group">
+              <label for="mr-level">Level <span aria-hidden="true">*</span></label>
+              <select id="mr-level" name="level" required>
+                <option value="">Select your level</option>
+                <option>100 Level</option>
+                <option>200 Level</option>
+                <option>300 Level</option>
+                <option>400 Level</option>
+                <option>500 Level</option>
+                <option>Postgraduate</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mr-state">State <span aria-hidden="true">*</span></label>
+              <input id="mr-state" name="state" type="text" placeholder="State of residence" required />
+            </div>
+            <div class="form-group">
+              <label for="mr-dob">Date of Birth <span aria-hidden="true">*</span></label>
+              <input id="mr-dob" name="dateOfBirth" type="date" required />
+            </div>
+            <div class="form-group mr-full-width">
+              <label for="mr-bio">Short Bio / About Yourself <span aria-hidden="true">*</span></label>
+              <textarea id="mr-bio" name="bio" rows="4" minlength="30" maxlength="500" placeholder="Tell the judges a little about your interests, strengths and personality (30–500 characters)." required></textarea>
+              <small class="mr-field-help">Minimum 30 characters.</small>
+            </div>
+            <div class="form-group">
+              <label for="mr-social">Social Media Handle(s)</label>
+              <input id="mr-social" name="socialHandles" type="text" placeholder="@instagram, @tiktok" />
+            </div>
+            <div class="form-group">
+              <label for="mr-photo">Profile / Passport Photograph <span aria-hidden="true">*</span></label>
+              <input id="mr-photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" required />
+              <small class="mr-field-help">JPG, PNG or WEBP, maximum 5 MB.</small>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-pay-submit mr-submit-button" id="mr-submit-button">
+            <span class="mr-submit-label">REGISTER FOR MR &amp; MISS NACOS</span>
+            <span class="mr-submit-loading" aria-hidden="true">Submitting...</span>
+          </button>
+          <p class="secure-text">Your details will be reviewed by the NACOS South East pageant committee.</p>
+        </form>
+
+        <div class="mr-success" id="mr-success" hidden>
+          <div class="mr-success-icon" aria-hidden="true">✓</div>
+          <h2>Application received</h2>
+          <p>Thank you for registering for Mr &amp; Miss NACOS 2026. The NACOS South East team will contact you using the details provided.</p>
+          <a href="index.html" class="btn-secondary mr-back-button">Back to convention registration</a>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="mr_nacos.js"></script>
+</body>
+</html>

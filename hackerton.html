@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hackathon | NACOS South East 2026</title>
+  <meta name="description" content="Join the NACOS South East Hackathon 2026. Think it. Hack it. Launch it. Stand a chance to win ₦500,000 and other gadgets." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+  <style>
+    :root {
+      --hack-dark-1: #021c13;
+      --hack-dark-2: #062d22;
+      --hack-dark-3: #0b3b2d;
+      --hack-green: #1fe27d;
+      --hack-green-2: #85f7c1;
+      --hack-green-3: #dffef0;
+      --hack-surface: rgba(6, 45, 34, 0.76);
+      --hack-glow: rgba(31, 226, 125, 0.28);
+      --hack-line: rgba(255, 255, 255, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, var(--hack-dark-1) 0%, #061e18 100%);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    a { text-decoration: none; }
+
+    .hackathon-page {
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(1, 19, 15, 0.88), rgba(2, 28, 19, 0.92)),
+        radial-gradient(circle at center, rgba(31, 226, 125, 0.12), transparent 48%),
+        #021c13;
+      overflow-x: hidden;
+    }
+
+    .hackathon-page::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(circle at center, black 25%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hackathon-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 18px 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hackathon-hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--hack-line);
+      background:
+        linear-gradient(180deg, rgba(2, 28, 19, 0.72), rgba(3, 42, 31, 0.86)),
+        url('images/hero.jpg') center/cover no-repeat;
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.22);
+      border-radius: 26px;
+      padding: 28px 28px 18px;
+    }
+
+    .hackathon-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(11, 102, 35, 0.38), transparent 18%, transparent 82%, rgba(11, 102, 35, 0.38)),
+        linear-gradient(180deg, rgba(10, 24, 18, 0.12), rgba(3, 34, 24, 0.36));
+      pointer-events: none;
+    }
+
+    .hackathon-hero .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hackathon-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+
+    .hackathon-header-row .brand {
+      margin-bottom: 0;
+    }
+
+    .hackathon-brand-band {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 12px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hackathon-logo-mark {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.6);
+      box-shadow: 0 0 0 4px rgba(31,226,125,0.12);
+    }
+
+    .hackathon-brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      text-align: left;
+      margin-right: 8px;
+    }
+
+    .hackathon-brand-text strong {
+      display: block;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .hackathon-brand-text span {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      opacity: 0.8;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .hackathon-badges {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .hackathon-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.24);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: all 220ms ease;
+    }
+
+    .hackathon-pill.primary {
+      background: linear-gradient(135deg, rgba(31, 226, 125, 0.24), rgba(255,255,255,0.1));
+      border-color: rgba(31,226,125,0.66);
+    }
+
+    .hackathon-pill:hover,
+    .hackathon-pill:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.1);
+      outline: none;
+    }
+
+    .hackathon-main-layout {
+      display: grid;
+      grid-template-columns: 1.45fr 0.8fr;
+      gap: 28px;
+      align-items: end;
+      margin-top: 12px;
+      min-height: 540px;
+      position: relative;
+    }
+
+    .hackathon-copy {
+      position: relative;
+      padding-top: 8px;
+    }
+
+    .hackathon-kicker {
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.76);
+      margin: 0 0 16px;
+      font-weight: 600;
+    }
+
+    .hackathon-title-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .hackathon-annual {
+      font-size: clamp(36px, 4vw, 64px);
+      font-weight: 800;
+      line-height: 0.8;
+      color: rgba(255,255,255,0.95);
+      letter-spacing: -0.08em;
+      text-shadow: 0 0 16px rgba(31, 226, 125, 0.18);
+    }
+
+    .hackathon-annual .hackathon-year {
+      display: inline-block;
+      font-size: clamp(32px, 3vw, 54px);
+      font-weight: 700;
+      margin-left: 8px;
+      opacity: 0.9;
+    }
+
+    .hackathon-title {
+      font-size: clamp(52px, 9vw, 166px);
+      line-height: 0.82;
+      letter-spacing: -0.08em;
+      margin: 0;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 0 0 18px rgba(31, 226, 125, 0.18);
+    }
+
+    .hackathon-title .accent {
+      display: block;
+      color: #7ef7ba;
+      text-shadow: 0 0 18px rgba(126,247,186,0.45);
+    }
+
+    .hackathon-tagline {
+      margin-top: 18px;
+      font-size: clamp(18px, 2vw, 38px);
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: -0.04em;
+      font-style: italic;
+      opacity: 0.96;
+    }
+
+    .hackathon-tagline .green {
+      color: var(--hack-green-2);
+    }
+
+    .hackathon-subtitle {
+      margin-top: 18px;
+      max-width: 620px;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.84);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: inset 0 0 0 1px rgba(31,226,125,0.08);
+    }
+
+    .hackathon-visual {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      min-height: 430px;
+      padding-bottom: 14px;
+    }
+
+    .hackathon-visual::before {
+      content: "";
+      position: absolute;
+      inset: 8% 5% 8% 5%;
+      border-radius: 18px;
+      background: radial-gradient(circle at center, rgba(31,226,125,0.2), rgba(2,28,19,0.08) 42%, transparent 72%);
+      filter: blur(10px);
+    }
+
+    .hackathon-figure {
+      position: relative;
+      width: min(100%, 500px);
+      height: 340px;
+      border-radius: 24px 24px 0 0;
+      background: linear-gradient(180deg, rgba(18, 53, 44, 0.54), rgba(11, 74, 58, 0.06));
+      border: 1px solid rgba(31, 226, 125, 0.22);
+      box-shadow: inset 0 0 40px rgba(31,226,125,0.1), 0 0 24px rgba(31,226,125,0.08);
+      overflow: hidden;
+    }
+
+    .hackathon-figure::before,
+    .hackathon-figure::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.08) 0, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 28px),
+        linear-gradient(180deg, rgba(255,255,255,0.08) 0, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 28px);
+      opacity: 0.72;
+    }
+
+    .hackathon-figure::after {
+      background:
+        linear-gradient(180deg, rgba(31,226,125,0.04), rgba(31,226,125,0.2)),
+        radial-gradient(circle at center, rgba(31,226,125,0.42), transparent 58%);
+      mask-image: radial-gradient(circle at center, black 16%, transparent 72%);
+    }
+
+    .hackathon-figure-inner {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 68%;
+      height: 68%;
+      border: 2px solid rgba(31, 226, 125, 0.42);
+      border-bottom: none;
+      border-radius: 32% 32% 0 0 / 30% 30% 0 0;
+      background: rgba(21, 54, 42, 0.3);
+      box-shadow: inset 0 0 24px rgba(31, 226, 125, 0.22), 0 0 20px rgba(31, 226, 125, 0.22);
+    }
+
+    .hackathon-figure-inner::before,
+    .hackathon-figure-inner::after {
+      content: "";
+      position: absolute;
+      inset: 16% 18% 0 18%;
+      border: 2px solid rgba(31,226,125,0.48);
+      border-bottom: none;
+      border-radius: 48% 48% 0 0 / 50% 50% 0 0;
+      background: rgba(18, 39, 30, 0.42);
+    }
+
+    .hackathon-figure-inner::after {
+      inset: 26% 30% 0 30%;
+      border-width: 1.5px;
+      border-color: rgba(31,226,125,0.8);
+      background: rgba(12, 42, 30, 0.28);
+    }
+
+    .hackathon-prize {
+      position: absolute;
+      right: 16px;
+      bottom: 12px;
+      width: 182px;
+      height: 182px;
+      border-radius: 50%;
+      border: 4px solid rgba(31,226,125,0.8);
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(31,226,125,0.1));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: inset 0 0 16px rgba(255,255,255,0.12), 0 0 24px rgba(31,226,125,0.18);
+      backdrop-filter: blur(1px);
+    }
+
+    .hackathon-prize strong {
+      display: block;
+      font-size: 36px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.08em;
+      color: #ffffff;
+    }
+
+    .hackathon-prize span {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    .hackathon-form-area {
+      margin-top: 26px;
+      background: rgba(5, 28, 21, 0.72);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .hackathon-info-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .hackathon-info-card {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 16px 18px;
+      min-height: 92px;
+    }
+
+    .hackathon-info-card .icon-wrap {
+      display: flex;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      align-items: center;
+      justify-content: center;
+      background: rgba(31, 226, 125, 0.12);
+      color: var(--hack-green-2);
+      flex-shrink: 0;
+      border: 1px solid rgba(31,226,125,0.2);
+    }
+
+    .hackathon-info-card .icon-wrap svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+    }
+
+    .hackathon-info-card strong {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--hack-green-2);
+      margin-bottom: 6px;
+    }
+
+    .hackathon-info-card span,
+    .hackathon-info-card a {
+      color: #fff;
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .hackathon-info-card a {
+      text-decoration: none;
+    }
+
+    .hackathon-form-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 28px;
+    }
+
+    .hackathon-form-card h3 {
+      margin: 0 0 16px;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: #fff;
+    }
+
+    .hackathon-form-card .form-group label {
+      color: rgba(255,255,255,0.86);
+    }
+
+    .hackathon-form-card .form-group input,
+    .hackathon-form-card .form-group textarea,
+    .hackathon-form-card .form-group select {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    .hackathon-form-card .form-group input::placeholder,
+    .hackathon-form-card .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.48);
+    }
+
+    .hackathon-form-card .form-group input:focus,
+    .hackathon-form-card .form-group textarea:focus,
+    .hackathon-form-card .form-group select:focus {
+      border-color: rgba(31,226,125,0.8);
+      box-shadow: 0 0 0 3px rgba(31,226,125,0.14);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .hackathon-choice {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 10px 0 18px;
+    }
+
+    .hackathon-choice label {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: all 220ms ease;
+      color: rgba(255,255,255,0.9);
+      font-weight: 600;
+      min-height: 55px;
+    }
+
+    .hackathon-choice input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .hackathon-choice .mark {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.4);
+      background: transparent;
+      box-shadow: inset 0 0 0 3px transparent;
+      transition: all 200ms ease;
+      flex-shrink: 0;
+    }
+
+    .hackathon-choice label.active {
+      border-color: rgba(31,226,125,0.9);
+      background: rgba(31,226,125,0.08);
+      box-shadow: inset 0 0 0 1px rgba(31,226,125,0.18);
+    }
+
+    .hackathon-choice label.active .mark {
+      border-color: rgba(31,226,125,1);
+      background: rgba(31,226,125,1);
+      box-shadow: inset 0 0 0 3px rgba(2,28,19,0.9);
+    }
+
+    .team-extra {
+      display: none;
+    }
+
+    .team-extra.visible {
+      display: block;
+    }
+
+    .hackathon-submit {
+      width: 100%;
+      margin-top: 8px;
+      border: none;
+    }
+
+    .hackathon-success {
+      display: none;
+      margin-top: 16px;
+      border-radius: 12px;
+      background: rgba(31,226,125,0.12);
+      border: 1px solid rgba(31,226,125,0.35);
+      color: #dffef0;
+      padding: 14px 16px;
+      font-weight: 600;
+    }
+
+    .hackathon-success.visible {
+      display: block;
+    }
+
+    @media (max-width: 980px) {
+      .hackathon-main-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hackathon-visual {
+        min-height: 260px;
+      }
+
+      .hackathon-prize {
+        right: 24px;
+        bottom: 20px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hackathon-hero {
+        padding: 20px 16px 18px;
+      }
+
+      .hackathon-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hackathon-badges {
+        justify-content: flex-start;
+      }
+
+      .hackathon-info-bar {
+        grid-template-columns: 1fr;
+      }
+
+      .hackathon-choice {
+        grid-template-columns: 1fr;
+      }
+
+      .hackathon-title {
+        letter-spacing: -0.06em;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .hackathon-shell {
+        padding: 12px 12px 36px;
+      }
+
+      .hackathon-hero {
+        border-radius: 18px;
+      }
+
+      .hackathon-brand-band {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .hackathon-prize {
+        position: static;
+        margin: 20px auto 0;
+      }
+
+      .hackathon-visual {
+        min-height: 210px;
+      }
+    }
+  </style>
+</head>
+<body class="hackathon-page">
+  <div class="hackathon-shell">
+    <header class="hackathon-hero">
+      <div class="hero-content">
+        <div class="hackathon-header-row">
+          <div class="brand" style="margin-bottom:0;">
+            <img src="images/nacos-logo.jpg" alt="NACOS Logo" class="brand-logo" />
+            <div class="brand-text">
+              <span class="brand-name">NACOS <br>SOUTH EAST <br><span class="brand-tagline">Networking the world</span></span>
+            </div>
+          </div>
+
+          <div class="hackathon-badges" aria-label="Hackathon navigation and event status">
+            <a href="index.html" class="hackathon-pill">Home</a>
+            <a href="mr_nacos.html" class="hackathon-pill">Mr &amp; Miss NACOS</a>
+            <a href="sponsor.html" class="hackathon-pill primary">Become a Sponsor</a>
+          </div>
+        </div>
+
+        <div class="hackathon-main-layout">
+          <div class="hackathon-copy">
+            <p class="hackathon-kicker">NACOS South East 2026</p>
+            <div class="hackathon-title-row">
+              <span class="hackathon-annual">16<span class="hackathon-year">2026</span></span>
+            </div>
+            <h1 class="hackathon-title">HACK<span class="accent">ATHON</span></h1>
+            <div class="hackathon-tagline">Think It. <span class="green">Hack It.</span> Launch It.</div>
+            <p class="hackathon-subtitle">Stand a chance to win ₦500,000 and other gadgets.</p>
+          </div>
+
+          <div class="hackathon-visual" aria-hidden="true">
+            <div class="hackathon-figure">
+              <div class="hackathon-figure-inner"></div>
+            </div>
+            <div class="hackathon-prize">
+              <div>
+                <strong>₦500K</strong>
+                <span>Other gadgets<br />up for grabs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hackathon-info-bar" aria-label="Hackathon event information">
+        <div class="hackathon-info-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s6-5.5 6-11a6 6 0 1 0-12 0c0 5.5 6 11 6 11Z"></path>
+              <circle cx="12" cy="10" r="2.6"></circle>
+            </svg>
+          </div>
+          <div>
+            <strong>Location</strong>
+            <span>Ogbonnaya Onu Polytechnic<br />Aba, Abia State, Nigeria</span>
+          </div>
+        </div>
+
+        <div class="hackathon-info-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+              <path d="M16 2v4M8 2v4M3 10h18"></path>
+            </svg>
+          </div>
+          <div>
+            <strong>Date</strong>
+            <span>20th – 24th October, 2026</span>
+          </div>
+        </div>
+
+        <div class="hackathon-info-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.38 12.38 0 0 0 .7 6.4a2 2 0 0 1-.28 2.11L3 10.79a16 16 0 0 0 10.21 10.21l.28-.28a2 2 0 0 1 2.11-.28 12.38 12.38 0 0 0 2.68-.98A2 2 0 0 1 22 16.92Z"></path>
+            </svg>
+          </div>
+          <div>
+            <strong>Contact</strong>
+            <a href="tel:+2349083731989">0908 373 1989</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="hackathon-form-area">
+        <div class="hackathon-form-card">
+          <h3>Register for the Hackathon</h3>
+          <form id="hackathon-form" novalidate>
+            <div class="input-grid">
+              <div class="form-group">
+                <label for="hack-full-name">Full Name <span aria-hidden="true">*</span></label>
+                <input id="hack-full-name" type="text" placeholder="Enter your full name" required />
+              </div>
+
+              <div class="form-group">
+                <label for="hack-email">Email Address <span aria-hidden="true">*</span></label>
+                <input id="hack-email" type="email" placeholder="you@example.com" required />
+              </div>
+
+              <div class="form-group">
+                <label for="hack-phone">Phone Number <span aria-hidden="true">*</span></label>
+                <input id="hack-phone" type="tel" placeholder="0800 000 0000" required />
+              </div>
+
+              <div class="form-group">
+                <label for="hack-institution">Institution <span aria-hidden="true">*</span></label>
+                <input id="hack-institution" type="text" placeholder="Your institution" required />
+              </div>
+
+              <div class="form-group">
+                <label for="hack-department">Department <span aria-hidden="true">*</span></label>
+                <input id="hack-department" type="text" placeholder="e.g. Computer Science" required />
+              </div>
+
+              <div class="form-group">
+                <label for="hack-level">Level <span aria-hidden="true">*</span></label>
+                <select id="hack-level" required>
+                  <option value="">Select your level</option>
+                  <option>100 Level</option>
+                  <option>200 Level</option>
+                  <option>300 Level</option>
+                  <option>400 Level</option>
+                  <option>500 Level</option>
+                  <option>Postgraduate</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="hack-state">State <span aria-hidden="true">*</span></label>
+                <input id="hack-state" type="text" placeholder="State of residence" required />
+              </div>
+
+              <div class="form-group">
+                <label for="hack-team-name">Team Name</label>
+                <input id="hack-team-name" type="text" placeholder="If team registration" />
+              </div>
+
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label for="hack-idea">Short Project / Idea Description <span aria-hidden="true">*</span></label>
+                <textarea id="hack-idea" rows="4" placeholder="Briefly describe your project idea or concept" required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="hack-github">GitHub / Portfolio URL</label>
+                <input id="hack-github" type="url" placeholder="https://github.com/yourprofile" />
+              </div>
+
+              <div class="form-group">
+                <label for="hack-other-info">Other Relevant Information</label>
+                <input id="hack-other-info" type="text" placeholder="Skills, stack, previous projects" />
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 16px;">
+              <label>Participation Type <span aria-hidden="true">*</span></label>
+              <div class="hackathon-choice" aria-label="Participation type">
+                <label class="active">
+                  <span>Individual</span>
+                  <span class="mark" aria-hidden="true"></span>
+                  <input type="radio" name="hack-participation" value="Individual" checked />
+                </label>
+                <label>
+                  <span>Team</span>
+                  <span class="mark" aria-hidden="true"></span>
+                  <input type="radio" name="hack-participation" value="Team" />
+                </label>
+              </div>
+            </div>
+
+            <div class="team-extra" id="team-extra">
+              <div class="form-group">
+                <label for="hack-team-size">Team Size</label>
+                <select id="hack-team-size">
+                  <option value="">Select team size</option>
+                  <option>2 Members</option>
+                  <option>3 Members</option>
+                  <option>4 Members</option>
+                  <option>5 Members</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-pay-submit hackathon-submit">REGISTER FOR HACKATHON</button>
+            <div class="hackathon-success" id="hackathon-success" role="status" aria-live="polite">Your hackathon registration has been received. Our team will contact you soon.</div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <div class="brand footer-brand" style="margin-bottom:0;">
+          <img src="images/nacos-logo.jpg" alt="NACOS Logo" class="brand-logo" />
+          <div class="brand-text">
+            <span class="brand-name">NACOS <br>SOUTH EAST <br><span class="brand-tagline">Networking the world</span></span>
+          </div>
+        </div>
+        <p>Fostering a vibrant ecosystem of builders, problem-solvers, and future-ready technologists in South East Nigeria.</p>
+        <a href="sponsor.html" class="footer-button">Become a Sponsor</a>
+      </div>
+
+      <div class="site-footer__links">
+        <h4>Explore</h4>
+        <a href="index.html">Home</a>
+        <a href="hackerton.html">Hackathon</a>
+        <a href="mr_nacos.html">Mr &amp; Miss NACOS</a>
+        <a href="sponsor.html">Sponsor</a>
+      </div>
+
+      <div class="site-footer__links">
+        <h4>Contact</h4>
+        <a href="tel:+2349083731989">0908 373 1989</a>
+        <a href="mailto:hello@nacosoutheast.org.ng">hello@nacosoutheast.org.ng</a>
+        <a href="https://www.nacosoutheast.org.ng/">nacosoutheast.org.ng</a>
+        <a href="index.html">Ogbonnaya Onu Polytechnic, Aba</a>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 NACOS South East. All rights reserved.</p>
+      <p>Built for innovation. Designed for impact.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const selection = document.querySelectorAll('.hackathon-choice label');
+      const teamExtra = document.getElementById('team-extra');
+      const form = document.getElementById('hackathon-form');
+      const success = document.getElementById('hackathon-success');
+
+      selection.forEach((label) => {
+        label.addEventListener('click', () => {
+          selection.forEach((item) => item.classList.remove('active'));
+          label.classList.add('active');
+          const input = label.querySelector('input');
+          if (input && input.value === 'Team') {
+            teamExtra.classList.add('visible');
+          } else {
+            teamExtra.classList.remove('visible');
+          }
+        });
+      });
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        form.querySelector('button[type="submit"]').disabled = true;
+        form.querySelector('button[type="submit"]').textContent = 'REGISTERING...';
+
+        setTimeout(() => {
+          success.classList.add('visible');
+          form.reset();
+          form.querySelector('button[type="submit"]').disabled = false;
+          form.querySelector('button[type="submit"]').textContent = 'REGISTER FOR HACKATHON';
+          teamExtra.classList.remove('visible');
+          selection.forEach((item) => item.classList.remove('active'));
+          selection[0].classList.add('active');
+          success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 700);
+      });
+    });
+  </script>
+</body>
+</html>
