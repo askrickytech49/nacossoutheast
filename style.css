@@ -1,7 +1,10 @@
 :root {
   --primary-green: #0b6623;
+<<<<<<< HEAD
   --primary-green-strong: #084c1a;
   --primary-green-soft: #e8f9ed;
+=======
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
   --light-green: #f0fdf4;
   --border-color: #e2e8f0;
   --input-border: #cbd5e1;
@@ -11,8 +14,11 @@
   --text-muted: #64748b;
   --radius: 12px;
   --font-main: 'Poppins', sans-serif;
+<<<<<<< HEAD
   --shadow-soft: 0 14px 30px rgba(2, 31, 19, 0.10);
   --shadow-strong: 0 16px 36px rgba(11, 102, 35, 0.18);
+=======
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
 }
 
 /* Global Font & Reset */
@@ -23,6 +29,7 @@
   font-family: var(--font-main);
 }
 
+<<<<<<< HEAD
 html {
   scroll-behavior: smooth;
 }
@@ -31,6 +38,8 @@ a, button, input, select, textarea {
   transition: all 220ms ease;
 }
 
+=======
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
 body, input, select, textarea, button {
   font-family: var(--font-main);
 }
@@ -48,6 +57,7 @@ body {
   line-height: 1.5;
 }
 
+<<<<<<< HEAD
 .site-footer {
   position: relative;
   margin-top: 40px;
@@ -172,6 +182,8 @@ body {
   }
 }
 
+=======
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
 /* HERO HEADER */
 .hero {
   position: relative;
@@ -374,6 +386,7 @@ body {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+<<<<<<< HEAD
   transition: all 220ms ease;
   background-color: #ffffff;
   box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02);
@@ -384,6 +397,10 @@ body {
   transform: translateY(-2px);
   border-color: rgba(11, 102, 35, 0.45);
   box-shadow: var(--shadow-soft);
+=======
+  transition: all 0.2s;
+  background-color: #ffffff;
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
 }
 
 .tile-left {
@@ -428,8 +445,12 @@ body {
 
 .type-tile.active {
   border-color: var(--primary-green);
+<<<<<<< HEAD
   background: linear-gradient(180deg, rgba(11, 102, 35, 0.04), rgba(11, 102, 35, 0.01));
   box-shadow: 0 10px 20px rgba(11, 102, 35, 0.08);
+=======
+  background-color: transparent;
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
 }
 
 /* STEP 2: FORM INPUTS */
@@ -642,7 +663,11 @@ body {
 }
 
 .btn-secondary {
+<<<<<<< HEAD
   background: linear-gradient(135deg, var(--primary-green), var(--primary-green-strong));
+=======
+  background-color: var(--primary-green);
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
   color: #ffffff;
   border: 1.5px solid var(--primary-green);
   padding: 10px 16px;
@@ -651,9 +676,14 @@ body {
   font-size: 12px;
   margin-top: 12px;
   cursor: pointer;
+<<<<<<< HEAD
   transition: all 220ms ease;
   width: 100%;
   box-shadow: 0 10px 24px rgba(11, 102, 35, 0.16);
+=======
+  transition: all 0.2s;
+  width: 100%;
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
 }
 
 @media (min-width: 641px) {
@@ -662,11 +692,16 @@ body {
   }
 }
 
+<<<<<<< HEAD
 .btn-secondary:hover,
 .btn-secondary:focus-visible {
   background: linear-gradient(135deg, var(--primary-green-strong), var(--primary-green));
   transform: translateY(-1px);
   box-shadow: 0 14px 28px rgba(11, 102, 35, 0.24);
+=======
+.btn-secondary:hover {
+  background-color: #084c1a;
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
 }
 
 .btn-danger {
@@ -678,12 +713,19 @@ body {
   font-size: 11px;
   font-weight: 500;
   cursor: pointer;
+<<<<<<< HEAD
   transition: background-color 0.2s ease, transform 0.2s ease;
+=======
+  transition: background-color 0.2s;
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
 }
 
 .btn-danger:hover {
   background-color: #fca5a5;
+<<<<<<< HEAD
   transform: translateY(-1px);
+=======
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
 }
 
 /* STEP 3: PACKAGES GRID */
@@ -705,11 +747,16 @@ body {
   padding: 14px;
   cursor: pointer;
   position: relative;
+<<<<<<< HEAD
   transition: all 220ms ease;
+=======
+  transition: all 0.2s;
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #ffffff;
+<<<<<<< HEAD
   box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02);
 }
 
@@ -718,6 +765,8 @@ body {
   transform: translateY(-2px);
   border-color: rgba(11, 102, 35, 0.45);
   box-shadow: var(--shadow-soft);
+=======
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
 }
 
 /* STANDARD RADIO BUTTON MATCHING BULK STATE */
@@ -837,6 +886,7 @@ body {
   background-color: #084c1a;
 }
 
+<<<<<<< HEAD
 /* MR & MISS NACOS PAGE */
 .mr-page {
   background: #042e0f;
@@ -1389,6 +1439,8 @@ body {
   }
 }
 
+=======
+>>>>>>> 1cbf83b8d39dc404607eb73f10419e5f0bca8f6d
 .secure-text {
   font-size: 11px;
   color: var(--text-muted);
