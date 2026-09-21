@@ -366,12 +366,33 @@
       transform: translateY(-1px);
     }
 
-    /* Mobile: hide sponsor link, show hamburger */
+    /* Mobile: keep the three key actions visible in the header */
     @media (max-width: 849px) {
-      .hero-nav .nav-button-group {
-        display: none;
+      .hero-nav {
+        flex-wrap: wrap;
+        row-gap: 12px;
       }
-      .hamburger-btn    { display: flex; }
+
+      .hero-nav .nav-button-group {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        order: 3;
+        flex-basis: 100%;
+        width: 100%;
+        gap: 6px;
+      }
+
+      .hero-nav .nav-button-group a {
+        min-height: 36px;
+        padding: 7px 4px;
+        border-radius: 9px;
+        font-size: 9px;
+        line-height: 1.15;
+        text-align: center;
+        white-space: normal;
+      }
+
+      .hamburger-btn { display: none; }
     }
 
     /* === Side drawer backdrop === */

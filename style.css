@@ -1351,16 +1351,32 @@ body {
   }
 
   .mr-nav {
+    flex-wrap: wrap;
     align-items: flex-start;
     margin-bottom: 38px;
   }
 
   .mr-nav-links {
-    display: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    order: 3;
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .mr-nav-links a {
+    min-height: 36px;
+    padding: 7px 4px;
+    border-radius: 9px;
+    font-size: 9px;
+    line-height: 1.15;
+    text-align: center;
+    white-space: normal;
   }
 
   .mr-hamburger-btn {
-    display: flex;
+    display: none;
   }
 
   .mr-intro h1 {
