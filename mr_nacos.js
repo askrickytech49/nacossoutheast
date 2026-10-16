@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+﻿document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("mr-nacos-form");
   const alertBox = document.getElementById("mr-form-alert");
   const submitButton = document.getElementById("mr-submit-button");
@@ -36,6 +36,58 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (!form || !alertBox || !submitButton || !success || !photoInput) return;
+  const photoPreview = document.getElementById("mr-photo-preview");
+  const photoPreviewImage = document.getElementById("mr-photo-preview-image");
+  const photoFileName = document.getElementById("mr-photo-filename");
+
+  const uploadCard = photoInput.closest(".mr-upload-card");
+  if (uploadCard) {
+    ["dragenter", "dragover"].forEach((eventName) => {
+      uploadCard.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        uploadCard.classList.add("is-dragging");
+      });
+    });
+
+    ["dragleave", "dragend", "drop"].forEach((eventName) => {
+      uploadCard.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        uploadCard.classList.remove("is-dragging");
+      });
+    });
+
+    uploadCard.addEventListener("drop", (event) => {
+      const droppedFile = event.dataTransfer.files[0];
+      if (!droppedFile) return;
+      const transfer = new DataTransfer();
+      transfer.items.add(droppedFile);
+      photoInput.files = transfer.files;
+      photoInput.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+  }
+  photoInput.addEventListener("change", () => {
+    const photo = photoInput.files[0];
+    if (!photo) {
+      photoPreview.hidden = true;
+      photoPreviewImage.removeAttribute("src");
+      photoFileName.textContent = "No photo selected";
+      return;
+    }
+
+    photoFileName.textContent = photo.name;
+    if (!photo.type.startsWith("image/") || photo.size > 5 * 1024 * 1024) {
+      photoPreview.hidden = true;
+      photoPreviewImage.removeAttribute("src");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      photoPreviewImage.src = reader.result;
+      photoPreview.hidden = false;
+    });
+    reader.readAsDataURL(photo);
+  });
 
   categoryCards.forEach((card) => {
     const radio = card.querySelector('input[type="radio"]');
@@ -51,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return checked ? checked.value : "Mr NACOS";
   };
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
     alertBox.textContent = "";
     alertBox.className = "mr-form-alert";
@@ -80,20 +132,60 @@ document.addEventListener("DOMContentLoaded", () => {
     const state = document.getElementById("mr-state").value.trim();
     const bio = document.getElementById("mr-bio").value.trim();
     const socialHandles = document.getElementById("mr-social").value.trim();
+    const dateOfBirth = document.getElementById("mr-dob").value;
     const category = getSelectedCategory();
 
     const amount = 20000;
 
+    window.NacosPaymentOverlay?.show();
+    let paystackPublicKey = "";
+    try {
+      const readinessResponse = await fetch("api/payment-readiness.php", { cache: "no-store" });
+      const readiness = await readinessResponse.json();
+      if (!readinessResponse.ok || !readiness.enabled || !readiness.public_key) throw new Error("Payment verification is not configured yet. Please contact the NACOS team.");
+      paystackPublicKey = readiness.public_key;
+    } catch (error) {
+      window.NacosPaymentOverlay?.hide();
+      alertBox.textContent = error.message || "Payments are temporarily unavailable. Please contact the NACOS team.";
+      alertBox.classList.add("is-error");
+      return;
+    }
+
     submitButton.disabled = true;
     submitButton.classList.add("is-loading");
 
-    if (window.PaystackPop) {
+    if (!window.PaystackPop || typeof window.PaystackPop.setup !== "function") {
+      try {
+        await new Promise((resolve, reject) => {
+          const checkoutScript = document.createElement("script");
+          const loadTimeout = window.setTimeout(() => reject(new Error("The secure payment checkout took too long to load. Please try again.")), 12000);
+          checkoutScript.src = "https://js.paystack.co/v1/inline.js";
+          checkoutScript.async = true;
+          checkoutScript.onload = () => { window.clearTimeout(loadTimeout); resolve(); };
+          checkoutScript.onerror = () => {
+            window.clearTimeout(loadTimeout);
+            reject(new Error("The secure payment checkout could not load. Check your internet connection and try again."));
+          };
+          document.head.appendChild(checkoutScript);
+        });
+      } catch (error) {
+        window.NacosPaymentOverlay?.hide();
+        alertBox.textContent = error.message || "Paystack is unavailable right now. Please refresh and try again.";
+        alertBox.classList.add("is-error");
+        submitButton.disabled = false;
+        submitButton.classList.remove("is-loading");
+        return;
+      }
+    }
+
+    if (window.PaystackPop && typeof window.PaystackPop.setup === "function") {
+      try {
       const handler = PaystackPop.setup({
-        key: "pk_live_2ddd7e34db28418ede6056484eb10fe3a3d55ee9",
+        key: paystackPublicKey,
         email: email,
         amount: amount * 100,
         currency: "NGN",
-        ref: "NACOS_MR_MISS_" + Date.now() + "_" + Math.floor(Math.random() * 100000),
+        ref: "NACOS-MR-MISS-" + Date.now() + "-" + Math.floor(Math.random() * 100000),
         metadata: {
           custom_fields: [
             { display_name: "Full Name", variable_name: "full_name", value: fullName },
@@ -105,48 +197,45 @@ document.addEventListener("DOMContentLoaded", () => {
           ]
         },
         callback: function (response) {
-          try {
-            const templateParams = {
-              reg_type: "Mr & Miss NACOS",
-              package_name: category,
-              amount: amount.toLocaleString("en-US", { minimumFractionDigits: 2 }),
-              tx_ref: response.reference,
-              registration_details: `
-                <p><strong>Category:</strong> ${category}</p>
-                <p><strong>Full Name:</strong> ${fullName}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Phone:</strong> ${phone}</p>
-                <p><strong>Institution:</strong> ${institution}</p>
-                <p><strong>Department:</strong> ${department}</p>
-                <p><strong>Level:</strong> ${level}</p>
-                <p><strong>State:</strong> ${state}</p>
-                <p><strong>Bio:</strong> ${bio}</p>
-                <p><strong>Social Handles:</strong> ${socialHandles || "Not provided"}</p>
-              `,
-              to_email: email,
-              from_name: fullName
+          window.NacosPaymentOverlay?.show("Verifying payment", "Payment received. We are verifying it and saving your application.");
+          (async function () {
+            try {
+            const submission = {
+              type: "pageant",
+              reference: response.reference,
+              category,
+              full_name: fullName,
+              email,
+              phone,
+              institution,
+              department,
+              level,
+              state,
+              date_of_birth: dateOfBirth,
+              bio,
+              social_handles: socialHandles
             };
+            const formData = new FormData();
+            formData.append("submission", JSON.stringify(submission));
+            formData.append("photo", photo, photo.name);
+            const saveResponse = await fetch("api/save-paid-registration.php", { method: "POST", body: formData });
+            const saved = await saveResponse.json();
+            if (!saveResponse.ok || !saved.ok) throw new Error(saved.error || "Payment could not be verified.");
 
-            if (window.emailjs) {
-              emailjs.init("VMO83Ev6znjpADXp8");
-              emailjs.send("service_yb50t9c", "template_pz1fk73", templateParams)
-                .catch((error) => console.error("EmailJS Error:", error));
+            window.location.href = "mr-miss-confirmation.html?email=" + encodeURIComponent(saved.email_status || "failed");
+            } catch (error) {
+              console.error("Mr & Miss NACOS payment callback error:", error);
+              alertBox.textContent = `${error.message || "Payment was received, but the application could not be saved."} Keep your payment reference: ${response.reference}. Please contact the NACOS team.`;
+              alertBox.classList.add("is-error");
+            } finally {
+              window.NacosPaymentOverlay?.hide();
+              submitButton.disabled = false;
+              submitButton.classList.remove("is-loading");
             }
-
-            form.hidden = true;
-            success.hidden = false;
-            success.scrollIntoView({ behavior: "smooth", block: "center" });
-            alertBox.textContent = "";
-          } catch (error) {
-            console.error("Mr & Miss NACOS payment callback error:", error);
-            alertBox.textContent = "Payment was received, but the final confirmation could not be completed. Please contact the NACOS team.";
-            alertBox.classList.add("is-error");
-          } finally {
-            submitButton.disabled = false;
-            submitButton.classList.remove("is-loading");
-          }
+          })();
         },
         onClose: function () {
+          window.NacosPaymentOverlay?.hide();
           submitButton.disabled = false;
           submitButton.classList.remove("is-loading");
           alertBox.textContent = "Payment was cancelled. Your form has not been submitted yet.";
@@ -155,12 +244,24 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       handler.openIframe();
+      window.NacosPaymentOverlay?.hide();
+      } catch (error) {
+        console.error("Could not open Mr & Miss NACOS checkout:", error);
+        window.NacosPaymentOverlay?.hide();
+        alertBox.textContent = error.message || "We could not open secure checkout. Please try again.";
+        alertBox.classList.add("is-error");
+        submitButton.disabled = false;
+        submitButton.classList.remove("is-loading");
+      }
       return;
     }
 
     alertBox.textContent = "Paystack is unavailable right now. Please refresh and try again.";
+    window.NacosPaymentOverlay?.hide();
     alertBox.classList.add("is-error");
     submitButton.disabled = false;
     submitButton.classList.remove("is-loading");
   });
 });
+
+

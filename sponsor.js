@@ -8,9 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 400);
   }
 
-  // Initialize EmailJS with Public Key
-  emailjs.init("VMO83Ev6znjpADXp8");
-
   // --- ELEMENT REFERENCES ---
 
   // Form
@@ -127,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- 6. FORM SUBMIT — VALIDATE → FLUTTERWAVE → EMAILJS ---
-  sponsorForm.addEventListener("submit", (e) => {
+  sponsorForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     // Gather values
@@ -191,20 +188,63 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    window.NacosPaymentOverlay?.show();
+    let paystackPublicKey = "";
+    try {
+      const readinessResponse = await fetch("api/payment-readiness.php", { cache: "no-store" });
+      const readiness = await readinessResponse.json();
+      if (!readinessResponse.ok || !readiness.enabled || !readiness.public_key) throw new Error("Payment verification is not configured yet. Please contact the NACOS team.");
+      paystackPublicKey = readiness.public_key;
+    } catch (error) {
+      window.NacosPaymentOverlay?.hide();
+      alert(error.message || "Payments are temporarily unavailable. Please contact the NACOS team.");
+      return;
+    }
+
     // --- Disable submit button to prevent double clicks ---
     const submitBtn = document.getElementById("btn-sponsor-submit");
     submitBtn.disabled = true;
     submitBtn.textContent = "Processing...";
 
-    // --- Launch Paystack Checkout (Live Keys linked) ---
-    // Public Key: pk_live_2ddd7e34db28418ede6056484eb10fe3a3d55ee9
-    // Secret Key (Server / .env reference): sk_live_***
+    if (!window.PaystackPop || typeof window.PaystackPop.setup !== "function") {
+      try {
+        await new Promise((resolve, reject) => {
+          const checkoutScript = document.createElement("script");
+          const loadTimeout = window.setTimeout(() => reject(new Error("The secure payment checkout took too long to load. Please try again.")), 12000);
+          checkoutScript.src = "https://js.paystack.co/v1/inline.js";
+          checkoutScript.async = true;
+          checkoutScript.onload = () => { window.clearTimeout(loadTimeout); resolve(); };
+          checkoutScript.onerror = () => {
+            window.clearTimeout(loadTimeout);
+            reject(new Error("The secure payment checkout could not load. Check your internet connection and try again."));
+          };
+          document.head.appendChild(checkoutScript);
+        });
+      } catch (error) {
+        window.NacosPaymentOverlay?.hide();
+        alert(error.message || "Paystack is unavailable right now. Please refresh and try again.");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Sponsor Now";
+        return;
+      }
+    }
+
+    if (!window.PaystackPop || typeof window.PaystackPop.setup !== "function") {
+      window.NacosPaymentOverlay?.hide();
+      alert("Paystack is unavailable right now. Please refresh and try again.");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Sponsor Now";
+      return;
+    }
+
+    // --- Launch Paystack Checkout (test mode) ---
+    try {
     var handler = PaystackPop.setup({
-      key: "pk_live_2ddd7e34db28418ede6056484eb10fe3a3d55ee9", // Using provided live key
+      key: paystackPublicKey,
       email: email,
       amount: amount * 100, // Paystack uses kobo (amount × 100)
       currency: "NGN",
-      ref: "NACOS_SE_SPONSOR_" + Math.floor(Math.random() * 1000000000 + 1),
+      ref: "NACOS-SE-SPONSOR-" + Math.floor(Math.random() * 1000000000 + 1),
       metadata: {
         custom_fields: [
           { display_name: "Full Name", variable_name: "full_name", value: fullName },
@@ -214,44 +254,55 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
       },
       callback: function (response) {
-        try {
-          // Payment successful
-          const displayName = orgName ? `${fullName} (${orgName})` : fullName;
-          const sponsorDetailsFormatted =
-            `Name: ${displayName} | Email: ${email} | Phone: ${phone} | Category: ${category} | Package: ${packageName} | Amount: ₦${amount.toLocaleString("en-US", { minimumFractionDigits: 2 })}${message ? " | Message: " + message : ""}`;
-
-          const templateParams = {
-            reg_type: "Sponsorship",
-            package_name: packageName,
-            amount: amount.toLocaleString("en-US", { minimumFractionDigits: 2 }),
-            tx_ref: response.reference,
-            registration_details: sponsorDetailsFormatted,
-            to_email: email,
-            from_name: fullName,
-          };
-
-          emailjs
-            .send("service_yb50t9c", "template_pz1fk73", templateParams)
-            .then(() => {
-              window.location.href = "thank-you.html";
+        window.NacosPaymentOverlay?.show("Verifying payment", "Payment received. We are verifying it and saving your sponsorship.");
+        (async function () {
+          try {
+          const saveResponse = await fetch("api/save-paid-registration.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              type: "sponsorship",
+              reference: response.reference,
+              package_name: packageName,
+              custom_amount: isCustom ? Math.round(amount) : null,
+              full_name: fullName,
+              email,
+              phone,
+              category,
+              organisation: orgName,
+              message
             })
-            .catch((err) => {
-              console.error("EmailJS Error:", err);
-              // Payment succeeded even if email failed — still redirect
-              window.location.href = "thank-you.html";
-            });
-        } catch (e) {
-          console.error("Callback Execution Error:", e);
-          window.location.href = "thank-you.html";
-        }
+          });
+          const saved = await saveResponse.json();
+          if (!saveResponse.ok || !saved.ok) throw new Error(saved.error || "Payment could not be verified.");
+
+          // Payment is verified and notification emails are sent by the server.
+          window.location.href = "sponsor-confirmation.html?email=" + encodeURIComponent(saved.email_status || "failed");
+          } catch (e) {
+            console.error("Callback Execution Error:", e);
+            alert(`${e.message || "We could not save your sponsorship."} Your payment reference is ${response.reference}. Please contact the NACOS team and keep this reference.`);
+            window.NacosPaymentOverlay?.hide();
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Sponsor Now";
+          }
+        })();
       },
       onClose: function () {
         console.log("Sponsorship payment popup closed.");
+        window.NacosPaymentOverlay?.hide();
         submitBtn.disabled = false;
         submitBtn.textContent = "Sponsor Now";
       },
     });
     handler.openIframe();
+    window.NacosPaymentOverlay?.hide();
+    } catch (error) {
+      console.error("Could not open Paystack checkout:", error);
+      window.NacosPaymentOverlay?.hide();
+      alert(error.message || "We could not open secure checkout. Please try again.");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Sponsor Now";
+    }
   });
 
   // --- Initial summary render ---

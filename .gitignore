@@ -2,3 +2,7 @@
 .env
 .env.local
 .env.*.local
+/api/config.local.php
+/Auth
+/uploads/paid/*
+!/uploads/paid/.htaccess

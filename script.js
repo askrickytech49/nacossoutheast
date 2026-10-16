@@ -8,9 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 400);
   }
 
-  // Initialize EmailJS with your Public Key
-  emailjs.init("VMO83Ev6znjpADXp8");
-
   // Navigation & Toggle Elements
   const conventionForm = document.getElementById("convention-form");
   const singleForm = document.getElementById("single-form");
@@ -35,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const bulkOtherInstGroup = document.getElementById("bulk-other-inst-group");
   const tableBody = document.getElementById("students-table-body");
   const addStudentBtn = document.getElementById("add-student-btn");
+  const paySubmitButton = document.getElementById("btn-pay-submit");
 
   // Order Summary Display Nodes
   const summaryPkgName = document.getElementById("summary-pkg-name");
@@ -166,9 +164,16 @@ document.addEventListener("DOMContentLoaded", () => {
     return { unitPrice, packageName, quantity, totalAmount };
   }
 
-  // --- 5. PAYMENT AND EMAIL TRIGGER LOGIC ---
-  conventionForm.addEventListener("submit", (e) => {
+  // --- 5. PAYMENT AND SERVER-SIDE EMAIL NOTIFICATIONS ---
+  conventionForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    const originalButtonText = paySubmitButton ? paySubmitButton.textContent : "";
+    const restorePaymentButton = () => {
+      if (!paySubmitButton) return;
+      paySubmitButton.disabled = false;
+      paySubmitButton.textContent = originalButtonText;
+    };
 
     const isSingle = singleRadio.checked;
     const summary = updateOrderSummary();
@@ -178,6 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let primaryPhone = "";
     let institution = "";
     let registrationDetailsFormatted = "";
+    const attendees = [];
 
     if (isSingle) {
       primaryName = singleFullName.value.trim();
@@ -211,6 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </tbody>
         </table>
       `;
+      attendees.push({ name: primaryName, email: primaryEmail, phone: primaryPhone });
     } else {
       institution = bulkInstSelect.value === "other" ? bulkOtherInst.value.trim() : bulkInstSelect.value;
       const rows = tableBody.querySelectorAll("tr");
@@ -237,6 +244,8 @@ document.addEventListener("DOMContentLoaded", () => {
           primaryEmail = email;
           primaryPhone = phone;
         }
+
+        attendees.push({ name, email, phone });
 
         studentsRowsHTML += `
           <tr>
@@ -271,15 +280,50 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     }
 
-    // Paystack Configuration (Live Keys linked)
-    // Public Key: pk_live_2ddd7e34db28418ede6056484eb10fe3a3d55ee9
-    // Secret Key (Server / .env reference): sk_live_***
+    if (paySubmitButton) {
+      paySubmitButton.disabled = true;
+      paySubmitButton.textContent = "Connecting to payment…";
+    }
+    window.NacosPaymentOverlay?.show();
+
+    let paystackPublicKey = "";
+    try {
+      const readinessResponse = await fetch("api/payment-readiness.php", { cache: "no-store" });
+      const readiness = await readinessResponse.json();
+      if (!readinessResponse.ok || !readiness.enabled || !readiness.public_key) throw new Error("Payment verification is not configured yet. Please contact the NACOS team.");
+      paystackPublicKey = readiness.public_key;
+    } catch (error) {
+      window.NacosPaymentOverlay?.hide();
+      restorePaymentButton();
+      alert(error.message || "Payments are temporarily unavailable. Please contact the NACOS team.");
+      return;
+    }
+
+    try {
+      if (!window.PaystackPop || typeof window.PaystackPop.setup !== "function") {
+        await new Promise((resolve, reject) => {
+          const checkoutScript = document.createElement("script");
+          const loadTimeout = window.setTimeout(() => reject(new Error("The secure payment checkout took too long to load. Please try again.")), 12000);
+          checkoutScript.src = "https://js.paystack.co/v1/inline.js";
+          checkoutScript.async = true;
+          checkoutScript.onload = () => { window.clearTimeout(loadTimeout); resolve(); };
+          checkoutScript.onerror = () => {
+            window.clearTimeout(loadTimeout);
+            reject(new Error("The secure payment checkout could not load. Check your internet connection and try again."));
+          };
+          document.head.appendChild(checkoutScript);
+        });
+      }
+      if (!window.PaystackPop || typeof window.PaystackPop.setup !== "function") {
+        throw new Error("The secure payment checkout is unavailable. Refresh the page and try again.");
+      }
+
     var handler = PaystackPop.setup({
-      key: "pk_live_2ddd7e34db28418ede6056484eb10fe3a3d55ee9", // Using provided live key
+      key: paystackPublicKey,
       email: primaryEmail,
       amount: summary.totalAmount * 100, // Paystack uses kobo (amount × 100)
       currency: "NGN",
-      ref: "NACOS_SE_" + Math.floor(Math.random() * 1000000000 + 1),
+      ref: "NACOS-SE-" + Math.floor(Math.random() * 1000000000 + 1),
       metadata: {
         custom_fields: [
           { display_name: "Full Name", variable_name: "full_name", value: primaryName },
@@ -288,37 +332,48 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
       },
       callback: function (response) {
-        try {
-          // Payment successful
-          const templateParams = {
-            reg_type: isSingle ? "Single Registration" : "Bulk Registration",
-            package_name: summary.packageName,
-            amount: summary.totalAmount.toLocaleString('en-US', { minimumFractionDigits: 2 }),
-            tx_ref: response.reference,
-            registration_details: registrationDetailsFormatted,
-            to_email: isSingle ? primaryEmail : "nacosoutheast@gmail.com",
-            from_name: primaryName
-          };
-
-          emailjs.send("service_yb50t9c", "template_pz1fk73", templateParams)
-            .then(() => {
-              window.location.href = "thank-you.html";
+        window.NacosPaymentOverlay?.show("Verifying payment", "Payment received. We are verifying it and saving your registration.");
+        (async function () {
+          try {
+          const savedResponse = await fetch("api/save-paid-registration.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              type: "convention",
+              reference: response.reference,
+              package_name: summary.packageName,
+              institution,
+              state: isSingle ? singleState.value : "",
+              attendees
             })
-            .catch((err) => {
-              console.error("EmailJS Error:", err);
-              // Payment succeeded even if email failed — still redirect
-              window.location.href = "thank-you.html";
-            });
+          });
+          const saved = await savedResponse.json();
+          if (!savedResponse.ok || !saved.ok) throw new Error(saved.error || "Payment could not be verified.");
+
+          // Payment is verified and notification emails are sent by the server.
+          window.location.href = "thank-you.html?email=" + encodeURIComponent(saved.email_status || "failed");
         } catch (e) {
-          console.error("Callback Execution Error:", e);
-          window.location.href = "thank-you.html";
-        }
+          console.error("Payment verification or registration save failed:", e);
+          alert(`${e.message || "We could not save your registration."} Your payment reference is ${response.reference}. Please contact the NACOS team and keep this reference.`);
+          restorePaymentButton();
+          window.NacosPaymentOverlay?.hide();
+          }
+        })();
       },
       onClose: function() {
         console.log("Payment popup closed.");
+        window.NacosPaymentOverlay?.hide();
+        restorePaymentButton();
       }
     });
     handler.openIframe();
+    window.NacosPaymentOverlay?.hide();
+    } catch (error) {
+      console.error("Could not open Paystack checkout:", error);
+      window.NacosPaymentOverlay?.hide();
+      restorePaymentButton();
+      alert(error.message || "We could not open the secure payment window. Please try again.");
+    }
   });
 
   // Initial Calculation

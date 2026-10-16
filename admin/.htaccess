@@ -1,0 +1,4 @@
+Options -Indexes
+RewriteEngine On
+RewriteRule ^login\.php$ login [R=302,L]
+RewriteRule ^login/?$ login.php [END]

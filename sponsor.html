@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -32,8 +32,7 @@
   <meta name="twitter:description" content="Support NACOS South East Convention 2026 — 20th-24th October, Ogbonnaya Onu Polytechnic, Aba." />
   <meta name="twitter:image" content="https://www.nacosoutheast.org.ng/images/link-banner.jpeg" />
 
-  <!-- EmailJS & Flutterwave SDKs -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <!-- Payment SDK -->
   <script src="https://js.paystack.co/v1/inline.js"></script>
 
   <style>
@@ -263,11 +262,18 @@
   <header class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
+      <div class="sponsor-top-nav">
       <div class="brand">
         <img src="images/nacos-logo.jpg" alt="NACOS Logo" class="brand-logo" />
         <div class="brand-text">
           <span class="brand-name">NACOS <br>SOUTH EAST <br><span class="brand-tagline">Networking the world</span></span>
         </div>
+      </div>
+      <div class="nav-button-group">
+        <a href="hackathon.html" class="nav-secondary-link">Hackathon</a>
+        <a href="mr_nacos.html" class="nav-secondary-link">Mr &amp; Miss NACOS</a>
+        <a href="sponsor.html" class="nav-sponsor-link" aria-current="page">Become a Sponsor</a>
+      </div>
       </div>
       <!-- Back link to registration page -->
       <a href="index.html" class="hero-back-link">
@@ -524,13 +530,12 @@
           </div>
         </div>
         <p>Driving a stronger culture of computing, innovation, and student development across South East Nigeria.</p>
-        <a href="sponsor.html" class="footer-button">Become a Sponsor</a>
       </div>
 
       <div class="site-footer__links">
         <h4>Explore</h4>
         <a href="index.html">Home</a>
-        <a href="hackerton.html">Hackathon</a>
+        <a href="hackathon.html">Hackathon</a>
         <a href="mr_nacos.html">Mr &amp; Miss NACOS</a>
         <a href="sponsor.html">Sponsor</a>
       </div>
@@ -571,6 +576,9 @@
       }, 5000);
     }
   </script>
-  <script src="sponsor.js"></script>
+  <script src="payment-overlay.js?v=20261016-overlay1"></script>
+  <script src="sponsor.js?v=20261016-central-paystack-key-overlay1"></script>
 </body>
 </html>
+
+
