@@ -32,6 +32,10 @@ function paid_send_brevo_email(array $message, string $apiKey): bool
         error_log('Paid form email: PHP cURL extension is not enabled.');
         return false;
     }
+    // Never let a preview marker leak into real paid-registration emails.
+    if (isset($message['subject'])) {
+        $message['subject'] = preg_replace('/^\s*\[\s*SAMPLE(?:\s+PREVIEW)?\s*\]\s*/i', '', (string) $message['subject']);
+    }
     $curl = curl_init('https://api.brevo.com/v3/smtp/email');
     $message = nacos_add_email_banner($message);
     curl_setopt_array($curl, [
