@@ -3,7 +3,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/auth.php';
 
 if (!empty($_SESSION['admin_id'])) {
-    header('Location: index.php');
+    header('Location: payments.php');
     exit;
 }
 
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['admin_csrf'] = bin2hex(random_bytes(32));
             $update = nacos_db()->prepare('UPDATE admin_users SET last_login_at = NOW() WHERE id = :id');
             $update->execute([':id' => $admin['id']]);
-            header('Location: index.php');
+            header('Location: payments.php');
             exit;
         }
 
