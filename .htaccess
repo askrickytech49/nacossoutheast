@@ -4,10 +4,10 @@ ErrorDocument 404 /404.html
 RewriteEngine On
 
 # Keep the homepage at the domain root.
-RewriteRule ^index\.html$ / [R=301,L,NE]
+RewriteRule ^index\.html$ ./ [R=301,L,NE]
 
 # Redirect public pages to their clean URLs.
-RewriteRule ^(hackathon|hackerton|mr_nacos|sponsor|thank-you|sponsor-confirmation|mr-miss-confirmation)\.html$ /$1 [R=301,L,NE]
+RewriteRule ^(hackathon|hackerton|mr_nacos|sponsor|thank-you|sponsor-confirmation|mr-miss-confirmation|hackathon-confirmation)\.html$ $1 [R=301,L,NE]
 
 # Serve the existing HTML files when a clean URL is requested.
 RewriteCond %{REQUEST_FILENAME} !-d

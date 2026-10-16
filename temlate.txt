@@ -63,7 +63,7 @@
                         <td>
                           <h4 style="margin: 0 0 5px; font-size: 15px; color: #042e0f; font-weight: 600;">Event Details Reminder:</h4>
                           <p style="margin: 0; font-size: 14px; color: #555555; line-height: 1.5; font-weight: 400;">
-                            <strong style="font-weight: 600;">Date:</strong> 20–24 October, 2026<br>
+                            <strong style="font-weight: 600;">Date:</strong> 20th–24th October, 2026<br>
                             <strong style="font-weight: 600;">Venue:</strong> Ogbonnaya Onu Polytechnic Aba, Abia State, Nigeria
                           </p>
                         </td>

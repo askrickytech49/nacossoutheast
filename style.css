@@ -616,7 +616,7 @@ body {
 
   .students-table td:first-child {
     font-weight: 700;
-    color: var(--primary-green);
+    color: #000;
     border-bottom: 1px solid #f1f5f9;
     padding-bottom: 6px;
     margin-bottom: 6px;

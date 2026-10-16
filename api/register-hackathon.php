@@ -194,12 +194,13 @@ $adminMessage = [
     'htmlContent' => $adminTemplate['htmlContent'],
     'textContent' => $adminTemplate['textContent'],
 ];
+$participantTemplate = nacos_hackathon_participant_confirmation_template($submission['full_name'], $registrationId);
 $participantMessage = [
     'sender' => ['name' => $senderName, 'email' => $senderEmail],
     'to' => [['email' => $submission['email'], 'name' => $submission['full_name']]],
-    'subject' => 'Hackathon registration received',
-    'htmlContent' => '<p>Hello ' . htmlspecialchars($submission['full_name'], ENT_QUOTES, 'UTF-8') . ',</p><p>Your NACOS South East Hackathon registration has been received. The team will contact you with more information.</p><p>Your registration number is <strong>#' . $registrationId . '</strong>.</p><p>Thank you,<br>NACOS South East</p>',
-    'textContent' => 'Hello ' . $submission['full_name'] . ",\n\nYour NACOS South East Hackathon registration has been received. The team will contact you with more information.\n\nRegistration number: #" . $registrationId . "\n\nThank you,\nNACOS South East",
+    'subject' => $participantTemplate['subject'],
+    'htmlContent' => $participantTemplate['htmlContent'],
+    'textContent' => $participantTemplate['textContent'],
 ];
 
 $teamEmailSent = $brevoReady ? send_brevo_email($adminMessage, $brevoApiKey) : false;

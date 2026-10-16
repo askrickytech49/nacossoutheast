@@ -68,20 +68,43 @@ function nacos_convention_attendee_confirmation_template(int $groupCount, string
         . '<table role="presentation" width="600" cellspacing="0" cellpadding="0" style="width:100%;max-width:600px;background:#fff;border:1px solid #dfe8df;border-radius:12px;overflow:hidden">'
         . '<tr><td style="padding:26px 28px 8px"><div style="color:#16803a;font-size:11px;font-weight:700;letter-spacing:1.5px">CONVENTION REGISTRATION</div><h1 style="margin:8px 0;font-size:23px;line-height:1.3;color:#132219">Payment confirmed</h1><p style="margin:0;color:#617064;font-size:14px;line-height:1.6">Your NACOS South East Convention group registration payment has been verified.</p></td></tr>'
         . '<tr><td style="padding:16px 28px 8px"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f2f8f2;border:1px solid #d8e9d9;border-radius:8px"><tr><td style="padding:15px;color:#294530;font-size:13px"><strong>Registration:</strong> ' . $safe($countLabel) . '<br><strong>Payment reference:</strong> ' . $safeReference . '</td></tr></table></td></tr>'
-        . '<tr><td style="padding:14px 28px 22px"><h2 style="margin:0 0 10px;color:#132219;font-size:16px">Event details</h2><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #e4ebe4;border-collapse:separate;border-radius:8px"><tr><td style="padding:11px 12px;border-bottom:1px solid #e8eee8;color:#536357;font-size:13px;font-weight:600;width:28%">Date</td><td style="padding:11px 12px;border-bottom:1px solid #e8eee8;color:#18251b;font-size:13px">20–24 October, 2026</td></tr><tr><td style="padding:11px 12px;color:#536357;font-size:13px;font-weight:600;vertical-align:top">Venue</td><td style="padding:11px 12px;color:#18251b;font-size:13px;line-height:1.6">Ogbonnaya Onu Polytechnic Aba, Abia State, Nigeria</td></tr></table><p style="margin:18px 0 0;color:#536357;font-size:13px;line-height:1.6">This confirmation was sent to every attendee email provided for the group registration. Please keep this email for your records.</p></td></tr>'
+        . '<tr><td style="padding:14px 28px 22px"><h2 style="margin:0 0 10px;color:#132219;font-size:16px">Event details</h2><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #e4ebe4;border-collapse:separate;border-radius:8px"><tr><td style="padding:11px 12px;border-bottom:1px solid #e8eee8;color:#536357;font-size:13px;font-weight:600;width:28%">Date</td><td style="padding:11px 12px;border-bottom:1px solid #e8eee8;color:#18251b;font-size:13px">20th–24th October, 2026</td></tr><tr><td style="padding:11px 12px;color:#536357;font-size:13px;font-weight:600;vertical-align:top">Venue</td><td style="padding:11px 12px;color:#18251b;font-size:13px;line-height:1.6">Ogbonnaya Onu Polytechnic Aba, Abia State, Nigeria</td></tr></table><p style="margin:18px 0 0;color:#536357;font-size:13px;line-height:1.6">This confirmation was sent to every attendee email provided for the group registration. Please keep this email for your records.</p></td></tr>'
         . '<tr><td style="padding:16px 28px;background:#f8faf8;border-top:1px solid #e8eee8;color:#718074;font-size:11px;line-height:1.6">NACOS South East Convention 2026<br>We look forward to seeing you.</td></tr>'
         . '</table></td></tr></table></body></html>';
 
     $text = "Payment confirmed — NACOS South East Convention 2026\n\n"
         . "Your group registration payment has been verified. Registration: " . $countLabel . ".\n"
         . "Payment reference: " . $reference . "\n\n"
-        . "Event date: 20–24 October, 2026\n"
+        . "Event date: 20th–24th October, 2026\n"
         . "Venue: Ogbonnaya Onu Polytechnic Aba, Abia State, Nigeria\n\n"
         . "This confirmation was sent to every attendee email provided for the group registration. Please keep this email for your records.\n\n"
         . "NACOS South East Convention 2026";
 
     return nacos_add_email_banner([
         'subject' => 'Payment confirmed — NACOS South East Convention 2026',
+        'htmlContent' => $html,
+        'textContent' => $text,
+    ]);
+}
+
+function nacos_hackathon_participant_confirmation_template(string $name, int $registrationId): array
+{
+    $safe = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+    $safeName = $safe($name);
+    $safeId = $safe((string) $registrationId);
+    $html = '<!doctype html><html><body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#18251b">'
+        . '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#ffffff;padding:24px 12px"><tr><td align="center">'
+        . '<table role="presentation" width="600" cellspacing="0" cellpadding="0" style="width:100%;max-width:600px;background:#fff;border:1px solid #dfe8df;border-radius:12px;overflow:hidden">'
+        . '<tr><td style="padding:26px 28px 10px"><div style="color:#16803a;font-size:11px;font-weight:700;letter-spacing:1.5px">HACKATHON REGISTRATION</div><h1 style="margin:8px 0;color:#132219;font-size:23px;line-height:1.3">Your registration is confirmed</h1><p style="margin:0;color:#536357;font-size:14px;line-height:1.7">Hello ' . $safeName . ', your NACOS South East Hackathon registration has been received. Our team will contact you with the next steps.</p></td></tr>'
+        . '<tr><td style="padding:14px 28px 18px"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f2f8f2;border:1px solid #d8e9d9;border-collapse:separate;border-radius:8px"><tr><td style="padding:12px 14px;border-bottom:1px solid #d8e9d9;color:#536357;font-size:13px;font-weight:600">Registration number</td><td align="right" style="padding:12px 14px;border-bottom:1px solid #d8e9d9;color:#18251b;font-size:13px;font-weight:700">#' . $safeId . '</td></tr><tr><td style="padding:12px 14px;border-bottom:1px solid #d8e9d9;color:#536357;font-size:13px;font-weight:600">Date</td><td align="right" style="padding:12px 14px;border-bottom:1px solid #d8e9d9;color:#18251b;font-size:13px">20th–24th October, 2026</td></tr><tr><td style="padding:12px 14px;color:#536357;font-size:13px;font-weight:600">Venue</td><td align="right" style="padding:12px 14px;color:#18251b;font-size:13px">Ogbonnaya Onu Polytechnic, Aba</td></tr></table></td></tr>'
+        . '<tr><td style="padding:0 28px 22px"><p style="margin:0;color:#536357;font-size:13px;line-height:1.7">Please keep this email for your records. We look forward to seeing what you build.</p></td></tr>'
+        . '<tr><td style="padding:16px 28px;background:#f8faf8;border-top:1px solid #e8eee8;color:#718074;font-size:11px;line-height:1.6">NACOS South East Hackathon 2026<br>Thank you for registering with us.</td></tr>'
+        . '</table></td></tr></table></body></html>';
+    $text = 'Hello ' . $name . ",\n\nYour NACOS South East Hackathon registration has been received. Our team will contact you with the next steps.\n\n"
+        . 'Registration number: #' . $registrationId . "\nDate: 20th–24th October, 2026\nVenue: Ogbonnaya Onu Polytechnic, Aba\n\n"
+        . "Please keep this email for your records. We look forward to seeing what you build.\n\nNACOS South East";
+    return nacos_add_email_banner([
+        'subject' => 'Your NACOS South East Hackathon registration is confirmed',
         'htmlContent' => $html,
         'textContent' => $text,
     ]);
@@ -108,7 +131,7 @@ function nacos_paid_applicant_confirmation_template(array $entry): array
         . '<tr><td style="padding:11px 12px;color:#536357;font-size:13px;font-weight:600">Payment reference</td><td style="padding:11px 12px;color:#18251b;font-size:13px;font-weight:700">' . $safe($reference) . '</td></tr>';
 
     $eventDetails = $type === 'convention'
-        ? '<tr><td style="padding:11px 12px;border-bottom:1px solid #e8eee8;color:#536357;font-size:13px;font-weight:600;width:28%">Date</td><td style="padding:11px 12px;border-bottom:1px solid #e8eee8;color:#18251b;font-size:13px">20–24 October, 2026</td></tr><tr><td style="padding:11px 12px;color:#536357;font-size:13px;font-weight:600;vertical-align:top">Venue</td><td style="padding:11px 12px;color:#18251b;font-size:13px;line-height:1.6">Ogbonnaya Onu Polytechnic Aba, Abia State, Nigeria</td></tr>'
+        ? '<tr><td style="padding:11px 12px;border-bottom:1px solid #e8eee8;color:#536357;font-size:13px;font-weight:600;width:28%">Date</td><td style="padding:11px 12px;border-bottom:1px solid #e8eee8;color:#18251b;font-size:13px">20th–24th October, 2026</td></tr><tr><td style="padding:11px 12px;color:#536357;font-size:13px;font-weight:600;vertical-align:top">Venue</td><td style="padding:11px 12px;color:#18251b;font-size:13px;line-height:1.6">Ogbonnaya Onu Polytechnic Aba, Abia State, Nigeria</td></tr>'
         : '<tr><td style="padding:11px 12px;color:#18251b;font-size:13px;line-height:1.6">The NACOS South East team will contact you with the next steps.</td></tr>';
 
     $html = '<!doctype html><html><body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#18251b">'
@@ -121,7 +144,7 @@ function nacos_paid_applicant_confirmation_template(array $entry): array
         . '</table></td></tr></table></body></html>';
     $text = 'Hello ' . $name . ",\n\nYour payment was verified and your NACOS South East registration has been received.\n\nForm: " . $typeInfo['name'] . "\nPackage: " . $package . "\nAmount paid: " . $amount . "\nPayment reference: " . $reference . "\n\n";
     $text .= $type === 'convention'
-        ? "Event date: 20–24 October, 2026\nVenue: Ogbonnaya Onu Polytechnic Aba, Abia State, Nigeria\n\n"
+        ? "Event date: 20th–24th October, 2026\nVenue: Ogbonnaya Onu Polytechnic Aba, Abia State, Nigeria\n\n"
         : "The NACOS South East team will contact you with the next steps.\n\n";
     $text .= "Please keep this email and your payment reference for your records.\n\nNACOS South East";
 
