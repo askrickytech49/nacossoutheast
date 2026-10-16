@@ -33,8 +33,10 @@ function paid_send_brevo_email(array $message, string $apiKey): bool
         return false;
     }
     // Never let a preview marker leak into real paid-registration emails.
-    if (isset($message['subject'])) {
-        $message['subject'] = preg_replace('/^\s*\[\s*SAMPLE(?:\s+PREVIEW)?\s*\]\s*/i', '', (string) $message['subject']);
+    foreach (['subject', 'htmlContent', 'textContent'] as $field) {
+        if (isset($message[$field]) && is_string($message[$field])) {
+            $message[$field] = preg_replace('/\[\s*SAMPLE(?:\s+PREVIEW)?\s*\]\s*/i', '', $message[$field]);
+        }
     }
     $curl = curl_init('https://api.brevo.com/v3/smtp/email');
     $message = nacos_add_email_banner($message);
@@ -121,28 +123,45 @@ function paid_send_notifications(array $entry): string
         'htmlContent' => $applicantTemplate['htmlContent'],
         'textContent' => $applicantTemplate['textContent'],
     ];
-    if ((string) $entry['type'] === 'convention' && !empty($entry['data']['attendees']) && is_array($entry['data']['attendees'])) {
-        $bcc = [];
+    $attendeeRecipients = [];
+    $isGroupConvention = (string) $entry['type'] === 'convention'
+        && !empty($entry['data']['attendees'])
+        && is_array($entry['data']['attendees']);
+    if ($isGroupConvention) {
+        $seenRecipients = [];
         foreach ($entry['data']['attendees'] as $attendee) {
             if (!is_array($attendee) || empty($attendee['email'])) continue;
             $attendeeEmail = trim((string) $attendee['email']);
             if (!filter_var($attendeeEmail, FILTER_VALIDATE_EMAIL) || strcasecmp($attendeeEmail, $adminEmail) === 0) continue;
-            $bcc[] = ['email' => $attendeeEmail];
+            $recipientKey = strtolower($attendeeEmail);
+            if (isset($seenRecipients[$recipientKey])) continue;
+            $seenRecipients[$recipientKey] = true;
+            $attendeeRecipients[] = [
+                'email' => $attendeeEmail,
+                'name' => trim((string) ($attendee['name'] ?? '')),
+            ];
         }
         $groupCount = count($entry['data']['attendees']);
         $attendeeTemplate = nacos_convention_attendee_confirmation_template($groupCount, (string) $entry['reference']);
-        $attendeeMessage = [
-            'sender' => ['name' => $senderName, 'email' => $senderEmail],
-            'to' => [['email' => $adminEmail, 'name' => 'NACOS South East']],
-            'subject' => $attendeeTemplate['subject'],
-            'htmlContent' => $attendeeTemplate['htmlContent'],
-            'textContent' => $attendeeTemplate['textContent'],
-        ];
-        if ($bcc) $attendeeMessage['bcc'] = $bcc;
-        $applicantMessage = $attendeeMessage;
+        $applicantTemplate = $attendeeTemplate;
     }
     $adminSent = paid_send_brevo_email($adminMessage, $apiKey);
-    $applicantSent = paid_send_brevo_email($applicantMessage, $apiKey);
+    if ($isGroupConvention) {
+        $applicantSent = true;
+        foreach ($attendeeRecipients as $recipient) {
+            $attendeeMessage = [
+                'sender' => ['name' => $senderName, 'email' => $senderEmail],
+                'to' => [$recipient],
+                'subject' => $applicantTemplate['subject'],
+                'htmlContent' => $applicantTemplate['htmlContent'],
+                'textContent' => $applicantTemplate['textContent'],
+            ];
+            if (!paid_send_brevo_email($attendeeMessage, $apiKey)) $applicantSent = false;
+        }
+        if (!$attendeeRecipients) $applicantSent = false;
+    } else {
+        $applicantSent = paid_send_brevo_email($applicantMessage, $apiKey);
+    }
     return $adminSent && $applicantSent ? 'sent' : ($adminSent || $applicantSent ? 'partial' : 'failed');
 }
 
