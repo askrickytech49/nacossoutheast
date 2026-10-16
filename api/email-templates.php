@@ -7,13 +7,13 @@ function nacos_add_email_banner(array $message): array
     $bannerUrl = 'https://www.nacosoutheast.org.ng/images/Banner.png';
     if ($html === '' || str_contains($html, $bannerUrl)) return $message;
 
-    $banner = '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="width:100%;background:#f1f5f1"><tr><td align="center" style="padding:0 12px"><table role="presentation" width="600" cellspacing="0" cellpadding="0" style="width:100%;max-width:600px"><tr><td style="padding:0"><img src="' . $bannerUrl . '" alt="NACOS South East" width="600" style="display:block;width:100%;max-width:600px;height:auto;border:0;outline:none;text-decoration:none"></td></tr></table></td></tr></table>';
+    $banner = '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="width:100%;background:#ffffff"><tr><td align="center" style="padding:0 12px"><table role="presentation" width="600" cellspacing="0" cellpadding="0" style="width:100%;max-width:600px"><tr><td style="padding:0"><img src="' . $bannerUrl . '" alt="NACOS South East" width="600" style="display:block;width:100%;max-width:600px;height:auto;border:0;outline:none;text-decoration:none"></td></tr></table></td></tr></table>';
     if (preg_match('/<body\b[^>]*>/i', $html, $match, PREG_OFFSET_CAPTURE)) {
         $bodyTag = $match[0][0];
         $position = $match[0][1] + strlen($bodyTag);
         $html = substr($html, 0, $position) . $banner . substr($html, $position);
     } else {
-        $html = '<!doctype html><html><body style="margin:0;padding:0;background:#f1f5f1">' . $banner . $html . '</body></html>';
+        $html = '<!doctype html><html><body style="margin:0;padding:0;background:#ffffff">' . $banner . $html . '</body></html>';
     }
     $message['htmlContent'] = $html;
     return $message;
@@ -41,8 +41,8 @@ function nacos_admin_notification_template(string $kind, int|string $recordId, a
     $safeRecordId = $safe((string) $recordId);
     $safeUrl = $safe($detailUrl);
     $sampleNotice = $sample ? '<tr><td style="padding:12px 28px 0"><div style="padding:11px 13px;border:1px solid #f0d9a5;border-radius:7px;background:#fff8e8;color:#805a12;font-size:12px;font-weight:700">SAMPLE PREVIEW · This message contains fictional details and is not a real submission.</div></td></tr>' : '';
-    $html = '<!doctype html><html><body style="margin:0;padding:0;background:#f1f5f1;font-family:Arial,Helvetica,sans-serif;color:#18251b">'
-        . '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f1f5f1;padding:28px 12px"><tr><td align="center">'
+    $html = '<!doctype html><html><body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#18251b">'
+        . '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#ffffff;padding:28px 12px"><tr><td align="center">'
         . '<table role="presentation" width="600" cellspacing="0" cellpadding="0" style="width:100%;max-width:600px;background:#fff;border:1px solid #dfe8df;border-radius:12px;overflow:hidden">'
         . '<tr><td style="padding:26px 28px 8px"><div style="color:#16803a;font-size:11px;font-weight:700;letter-spacing:1.5px">' . $safe($template['eyebrow']) . '</div><h1 style="margin:8px 0 8px;font-size:23px;line-height:1.3;color:#132219">' . $safeTitle . '</h1><p style="margin:0;color:#617064;font-size:14px;line-height:1.6">A new form submission has been received by NACOS South East.</p></td></tr>'
         . $sampleNotice
@@ -63,8 +63,8 @@ function nacos_convention_attendee_confirmation_template(int $groupCount, string
     $safe = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     $countLabel = $groupCount . ' attendee' . ($groupCount === 1 ? '' : 's');
     $safeReference = $safe($reference);
-    $html = '<!doctype html><html><body style="margin:0;padding:0;background:#f1f5f1;font-family:Arial,Helvetica,sans-serif;color:#18251b">'
-        . '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f1f5f1;padding:28px 12px"><tr><td align="center">'
+    $html = '<!doctype html><html><body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#18251b">'
+        . '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#ffffff;padding:28px 12px"><tr><td align="center">'
         . '<table role="presentation" width="600" cellspacing="0" cellpadding="0" style="width:100%;max-width:600px;background:#fff;border:1px solid #dfe8df;border-radius:12px;overflow:hidden">'
         . '<tr><td style="padding:26px 28px 8px"><div style="color:#16803a;font-size:11px;font-weight:700;letter-spacing:1.5px">CONVENTION REGISTRATION</div><h1 style="margin:8px 0;font-size:23px;line-height:1.3;color:#132219">Payment confirmed</h1><p style="margin:0;color:#617064;font-size:14px;line-height:1.6">Your NACOS South East Convention group registration payment has been verified.</p></td></tr>'
         . '<tr><td style="padding:16px 28px 8px"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f2f8f2;border:1px solid #d8e9d9;border-radius:8px"><tr><td style="padding:15px;color:#294530;font-size:13px"><strong>Registration:</strong> ' . $safe($countLabel) . '<br><strong>Payment reference:</strong> ' . $safeReference . '</td></tr></table></td></tr>'
@@ -111,8 +111,8 @@ function nacos_paid_applicant_confirmation_template(array $entry): array
         ? '<tr><td style="padding:11px 12px;border-bottom:1px solid #e8eee8;color:#536357;font-size:13px;font-weight:600;width:28%">Date</td><td style="padding:11px 12px;border-bottom:1px solid #e8eee8;color:#18251b;font-size:13px">20–24 October, 2026</td></tr><tr><td style="padding:11px 12px;color:#536357;font-size:13px;font-weight:600;vertical-align:top">Venue</td><td style="padding:11px 12px;color:#18251b;font-size:13px;line-height:1.6">Ogbonnaya Onu Polytechnic Aba, Abia State, Nigeria</td></tr>'
         : '<tr><td style="padding:11px 12px;color:#18251b;font-size:13px;line-height:1.6">The NACOS South East team will contact you with the next steps.</td></tr>';
 
-    $html = '<!doctype html><html><body style="margin:0;padding:0;background:#f1f5f1;font-family:Arial,Helvetica,sans-serif;color:#18251b">'
-        . '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f1f5f1;padding:24px 12px"><tr><td align="center">'
+    $html = '<!doctype html><html><body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#18251b">'
+        . '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#ffffff;padding:24px 12px"><tr><td align="center">'
         . '<table role="presentation" width="600" cellspacing="0" cellpadding="0" style="width:100%;max-width:600px;background:#fff;border:1px solid #dfe8df;border-radius:12px;overflow:hidden">'
         . '<tr><td style="padding:26px 28px 10px"><div style="color:#16803a;font-size:11px;font-weight:700;letter-spacing:1.5px">PAYMENT CONFIRMATION</div><h1 style="margin:8px 0;color:#132219;font-size:23px;line-height:1.3">Registration confirmed</h1><p style="margin:0;color:#536357;font-size:14px;line-height:1.7">Hello ' . $safe($name) . ', your payment was verified and your NACOS South East registration has been received.</p></td></tr>'
         . '<tr><td style="padding:14px 28px 18px"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #e4ebe4;border-collapse:separate;border-radius:8px">' . $details . '</table></td></tr>'
