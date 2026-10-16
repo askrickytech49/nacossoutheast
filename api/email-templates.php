@@ -4,7 +4,7 @@ declare(strict_types=1);
 function nacos_add_email_banner(array $message): array
 {
     $html = (string) ($message['htmlContent'] ?? '');
-    $bannerUrl = 'https://raw.githubusercontent.com/askrickytech49/nacossoutheast/main/images/Banner.png';
+    $bannerUrl = 'https://www.nacosoutheast.org.ng/images/Banner.png';
     if ($html === '' || str_contains($html, $bannerUrl)) return $message;
 
     $banner = '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="width:100%;background:#f1f5f1"><tr><td align="center" style="padding:0 12px"><table role="presentation" width="600" cellspacing="0" cellpadding="0" style="width:100%;max-width:600px"><tr><td style="padding:0"><img src="' . $bannerUrl . '" alt="NACOS South East" width="600" style="display:block;width:100%;max-width:600px;height:auto;border:0;outline:none;text-decoration:none"></td></tr></table></td></tr></table>';
