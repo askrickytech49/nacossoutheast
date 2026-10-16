@@ -1,1 +1,18 @@
-/*    /404.html   404
+/index.html              /                         301
+/hackathon.html          /hackathon                301
+/hackerton.html          /hackerton                301
+/mr_nacos.html           /mr_nacos                 301
+/sponsor.html            /sponsor                  301
+/thank-you.html          /thank-you                301
+/sponsor-confirmation.html /sponsor-confirmation    301
+/mr-miss-confirmation.html /mr-miss-confirmation    301
+
+/hackathon               /hackathon.html           200
+/hackerton               /hackerton.html           200
+/mr_nacos                /mr_nacos.html            200
+/sponsor                 /sponsor.html             200
+/thank-you               /thank-you.html           200
+/sponsor-confirmation    /sponsor-confirmation.html 200
+/mr-miss-confirmation    /mr-miss-confirmation.html 200
+
+/*                       /404.html                 404

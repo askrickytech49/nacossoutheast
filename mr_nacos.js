@@ -1,4 +1,4 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("mr-nacos-form");
   const alertBox = document.getElementById("mr-form-alert");
   const submitButton = document.getElementById("mr-submit-button");
@@ -222,7 +222,7 @@
             const saved = await saveResponse.json();
             if (!saveResponse.ok || !saved.ok) throw new Error(saved.error || "Payment could not be verified.");
 
-            window.location.href = "mr-miss-confirmation.html?email=" + encodeURIComponent(saved.email_status || "failed");
+            window.location.href = "/mr-miss-confirmation?email=" + encodeURIComponent(saved.email_status || "failed");
             } catch (error) {
               console.error("Mr & Miss NACOS payment callback error:", error);
               alertBox.textContent = `${error.message || "Payment was received, but the application could not be saved."} Keep your payment reference: ${response.reference}. Please contact the NACOS team.`;

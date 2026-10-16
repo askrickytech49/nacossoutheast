@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!savedResponse.ok || !saved.ok) throw new Error(saved.error || "Payment could not be verified.");
 
           // Payment is verified and notification emails are sent by the server.
-          window.location.href = "thank-you.html?email=" + encodeURIComponent(saved.email_status || "failed");
+          window.location.href = "/thank-you?email=" + encodeURIComponent(saved.email_status || "failed");
         } catch (e) {
           console.error("Payment verification or registration save failed:", e);
           alert(`${e.message || "We could not save your registration."} Your payment reference is ${response.reference}. Please contact the NACOS team and keep this reference.`);
