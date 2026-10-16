@@ -109,12 +109,13 @@ function paid_send_notifications(array $entry): string
         'htmlContent' => $adminTemplate['htmlContent'],
         'textContent' => $adminTemplate['textContent'],
     ];
+    $applicantTemplate = nacos_paid_applicant_confirmation_template($entry);
     $applicantMessage = [
         'sender' => ['name' => $senderName, 'email' => $senderEmail],
         'to' => [['email' => (string) $entry['email'], 'name' => (string) $entry['name']]],
-        'subject' => 'Your NACOS South East registration is confirmed',
-        'htmlContent' => '<p>Hello ' . htmlspecialchars((string) $entry['name'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . ',</p><p>Your payment was verified and your NACOS South East registration has been received.</p><p>Reference: <strong>' . htmlspecialchars((string) $entry['reference'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '</strong></p><p>Thank you,<br>NACOS South East</p>',
-        'textContent' => 'Hello ' . (string) $entry['name'] . ",\n\nYour payment was verified and your NACOS South East registration has been received.\nReference: " . (string) $entry['reference'] . "\n\nThank you,\nNACOS South East",
+        'subject' => $applicantTemplate['subject'],
+        'htmlContent' => $applicantTemplate['htmlContent'],
+        'textContent' => $applicantTemplate['textContent'],
     ];
     if ((string) $entry['type'] === 'convention' && !empty($entry['data']['attendees']) && is_array($entry['data']['attendees'])) {
         $bcc = [];
