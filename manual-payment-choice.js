@@ -106,10 +106,31 @@
         }
       });
       if (errorTarget) errorTarget.textContent = '';
-      // Always let the registrant choose automatic Paystack or manual bank transfer.
-      // The "already paid" answer is form information; it must not bypass the method picker.
-      showStep("choice");
-      dialog.showModal();
+      // Respect the admin payment switches. If only one method is enabled, use it as the default.
+      fetch('api/payment-readiness.php', { cache: 'no-store' })
+        .then((response) => response.json().then((methods) => {
+          if (!response.ok) throw new Error('Payment options are temporarily unavailable. Please try again.');
+          return methods;
+        }))
+        .then((methods) => {
+          const automaticButton = dialog.querySelector('[data-automatic]');
+          const manualButton = dialog.querySelector('[data-manual]');
+          automaticButton.hidden = !methods.automatic_enabled;
+          manualButton.hidden = !methods.manual_enabled;
+          automaticButton.classList.toggle('is-default', methods.default_method === 'automatic');
+          manualButton.classList.toggle('is-default', methods.default_method === 'manual');
+          if (methods.automatic_enabled && !methods.manual_enabled) { finish('automatic'); return; }
+          if (methods.manual_enabled && !methods.automatic_enabled) { showStep('bank'); dialog.showModal(); return; }
+          if (!methods.automatic_enabled && !methods.manual_enabled) throw new Error('Payments are temporarily unavailable. Please contact the NACOS team.');
+          showStep('choice');
+          dialog.showModal();
+        })
+        .catch((exception) => {
+          const message = dialog.querySelector('[data-error]');
+          message.textContent = exception.message || 'Could not load payment options. Please try again.';
+          showStep('choice');
+          dialog.showModal();
+        });
     });
   };
 })();

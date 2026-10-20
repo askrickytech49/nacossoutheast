@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/payment-method-settings.php';
 require_once __DIR__ . '/manual-payment-mail.php';
 
 header('Content-Type: application/json; charset=utf-8');
@@ -35,6 +36,7 @@ function manual_upload(array $upload, array $mimeExtensions, string $label, int 
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') manual_reply(405, ['ok' => false, 'error' => 'Use POST to submit a payment receipt.']);
+if (!nacos_payment_method_settings()['manual_enabled']) manual_reply(503, ['ok' => false, 'error' => 'Manual bank transfer is currently unavailable. Please choose another payment method.']);
 $registrationJson = $_POST['registration'] ?? '';
 if (!is_string($registrationJson) || strlen($registrationJson) > 100000) manual_reply(422, ['ok' => false, 'error' => 'Registration details are invalid.']);
 $input = json_decode($registrationJson, true);

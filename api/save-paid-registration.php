@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/payment-method-settings.php';
 require_once __DIR__ . '/email-templates.php';
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
@@ -187,6 +188,9 @@ function paid_verify_transaction(string $reference, int $expectedKobo, string $e
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     paid_reply(405, ['ok' => false, 'error' => 'Use POST to submit a payment record.']);
+}
+if (!nacos_payment_method_settings()['automatic_enabled']) {
+    paid_reply(503, ['ok' => false, 'error' => 'Automatic Paystack payment is currently unavailable. Please choose another payment method.']);
 }
 
 $isMultipart = str_starts_with(strtolower((string) ($_SERVER['CONTENT_TYPE'] ?? '')), 'multipart/form-data');

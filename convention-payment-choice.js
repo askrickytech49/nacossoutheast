@@ -101,8 +101,19 @@ document.addEventListener('DOMContentLoaded', () => {
       availability.textContent = '';
       receiptError.textContent = '';
       bankReceiptError.textContent = '';
-      setStep('choice');
-      dialog.showModal();
+      fetch('api/payment-readiness.php', { cache: 'no-store' }).then(readApiJson).then((methods) => {
+        const automatic = document.getElementById('pay-automatically');
+        const manual = document.getElementById('pay-manually');
+        automatic.hidden = !methods.automatic_enabled;
+        manual.hidden = !methods.manual_enabled;
+        automatic.classList.toggle('is-default', methods.default_method === 'automatic');
+        manual.classList.toggle('is-default', methods.default_method === 'manual');
+        if (methods.automatic_enabled && !methods.manual_enabled) { automatic.click(); return; }
+        if (methods.manual_enabled && !methods.automatic_enabled) { manual.click(); dialog.showModal(); return; }
+        if (!methods.automatic_enabled && !methods.manual_enabled) throw new Error('Payments are temporarily unavailable. Please contact the NACOS team.');
+        setStep('choice');
+        dialog.showModal();
+      }).catch((error) => { availability.textContent = error.message || 'Could not load payment options. Please try again.'; setStep('choice'); dialog.showModal(); });
     } catch (error) {
       alert(error.message || 'Check your registration details and try again.');
     }
