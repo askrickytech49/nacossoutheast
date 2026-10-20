@@ -27,6 +27,12 @@ function nacos_config(): array
             'secret_key' => getenv('PAYSTACK_SECRET_KEY') ?: '',
             'public_key' => getenv('PAYSTACK_PUBLIC_KEY') ?: '',
         ], $local['paystack'] ?? []),
+        'manual_payment' => array_merge([
+            'bank_name' => 'Signature Bank',
+            'account_name' => 'NACOS SOUTH EAST',
+            'account_number' => '2000557961',
+            'instructions' => '',
+        ], $local['manual_payment'] ?? []),
         'admin_email' => $local['admin_email'] ?? (getenv('HACKATHON_ADMIN_EMAIL') ?: 'nacosoutheast@gmail.com'),
         'session_secure' => $local['session_secure'] ?? (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'),
     ];

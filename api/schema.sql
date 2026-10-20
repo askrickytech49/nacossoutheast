@@ -54,3 +54,30 @@ CREATE TABLE IF NOT EXISTS paid_registrations (
   KEY idx_paid_form_created (form_type, created_at),
   KEY idx_paid_email (applicant_email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS manual_payment_submissions (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  form_type ENUM('convention', 'sponsorship', 'pageant') NOT NULL DEFAULT 'convention',
+  applicant_name VARCHAR(180) NOT NULL,
+  applicant_email VARCHAR(254) NOT NULL,
+  phone VARCHAR(50) NOT NULL,
+  category VARCHAR(120) NULL,
+  package_name VARCHAR(160) NOT NULL,
+  amount_kobo BIGINT UNSIGNED NOT NULL,
+  currency CHAR(3) NOT NULL DEFAULT 'NGN',
+  submission_data LONGTEXT NOT NULL,
+  proof_path VARCHAR(255) NOT NULL,
+  application_photo_path VARCHAR(255) NULL,
+  status ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending',
+  admin_email_status ENUM('pending', 'sent', 'failed') NOT NULL DEFAULT 'pending',
+  payer_email_status ENUM('pending', 'sent', 'failed') NOT NULL DEFAULT 'pending',
+  paid_registration_id BIGINT UNSIGNED NULL,
+  admin_notes TEXT NULL,
+  submitted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  reviewed_at DATETIME NULL,
+  reviewed_by BIGINT UNSIGNED NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY uniq_manual_paid_registration (paid_registration_id),
+  KEY idx_manual_status_submitted (status, submitted_at),
+  KEY idx_manual_applicant_email (applicant_email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

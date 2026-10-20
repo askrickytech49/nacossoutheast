@@ -175,7 +175,7 @@ body {
 /* HERO HEADER */
 .hero {
   position: relative;
-  background: url("images/hero.jpg") center/cover no-repeat #042e0f;
+  background: url("images/spad.png") center 32%/cover no-repeat #042e0f;
   color: #ffffff;
   padding: 40px 16px 80px;
 }
@@ -616,7 +616,7 @@ body {
 
   .students-table td:first-child {
     font-weight: 700;
-    color: #000;
+    color: var(--primary-green);
     border-bottom: 1px solid #f1f5f9;
     padding-bottom: 6px;
     margin-bottom: 6px;
@@ -855,7 +855,7 @@ body {
 .mr-hero {
   position: relative;
   min-height: 100vh;
-  background: url("images/hero.jpg") center center / cover no-repeat #042e0f;
+  background: url("images/Mr nacos.jpeg") center center / cover no-repeat #042e0f;
   padding: 28px 16px 64px;
 }
 

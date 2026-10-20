@@ -12,7 +12,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500;1,700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20261020-spad-hero" />
+  <link rel="stylesheet" href="manual-payment.css?v=20261020-no-scrollbar1" />
   <link rel="icon" href="images/favicon.png" type="image/png" />
 
   <!-- Social sharing meta (Open Graph & Twitter Card) -->
@@ -52,172 +53,6 @@
     50% { transform: scale(1.05); opacity: 1; }
     100% { transform: scale(1); opacity: 0.9; }
   }
-  </style>
-
-  <!-- SPONSOR POPUP STYLES -->
-  <style>
-    /* === Backdrop — column layout so close btn sits below card === */
-    #sponsor-popup-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.65);
-      z-index: 99998;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      gap: 16px;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition: opacity 0.35s ease, visibility 0.35s ease;
-    }
-
-    #sponsor-popup-backdrop.visible {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-
-    /* === Modal card === */
-    #sponsor-popup {
-      position: relative;
-      width: 100%;
-      max-width: 340px;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
-      transform: translateY(24px) scale(0.97);
-      transition: transform 0.35s ease;
-      background: #042e0f;
-    }
-
-    #sponsor-popup-backdrop.visible #sponsor-popup {
-      transform: translateY(0) scale(1);
-    }
-
-    /* === Image fills top of card === */
-    .sp-image-wrap {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .sp-image-wrap img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
-      object-position: top center;
-    }
-
-    /* Dark gradient at bottom so title text and button are readable */
-    .sp-image-wrap::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 55%;
-      background: linear-gradient(to bottom, transparent 0%, rgba(4,46,15,0.82) 60%, rgba(4,46,15,0.97) 100%);
-      pointer-events: none;
-    }
-
-    /* === Title overlaid on image === */
-    .sp-title {
-      position: absolute;
-      bottom: 80px;
-      left: 0;
-      right: 0;
-      padding: 0 20px;
-      z-index: 2;
-      font-family: 'Poppins', sans-serif;
-      font-size: 28px;
-      font-weight: 900;
-      color: #ffffff;
-      line-height: 1.25;
-      text-align: center;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
-    }
-
-    .sp-title span {
-      color: #5ddb8a;
-    }
-
-    /* === CTA button — pulled up to overlap bottom of image === */
-    .sp-btn-wrap {
-      background: #042e0f;
-      padding: 0 20px 22px;
-      margin-top: -30px;
-      position: relative;
-      z-index: 3;
-    }
-
-    .sp-cta-btn {
-      display: block;
-      width: 100%;
-      background: linear-gradient(135deg, #0b6623, #12a33a);
-      color: #ffffff;
-      font-family: 'Poppins', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      text-align: center;
-      padding: 14px 20px;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-      letter-spacing: 0.3px;
-      box-shadow: 0 6px 24px rgba(11, 102, 35, 0.55);
-    }
-
-    .sp-cta-btn:hover {
-      background: linear-gradient(135deg, #084c1a, #0f8a30);
-      transform: translateY(-1px);
-    }
-
-    .sp-cta-btn:active {
-      transform: translateY(0);
-    }
-
-    /* === Close X button — OUTSIDE the card, centred below === */
-    #sp-close-btn {
-      flex-shrink: 0;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15);
-      border: 2px solid rgba(255, 255, 255, 0.50);
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.2s;
-      padding: 0;
-    }
-
-    #sp-close-btn:hover {
-      background: rgba(255, 255, 255, 0.28);
-    }
-
-    /* === Responsive === */
-    @media (max-width: 400px) {
-      #sponsor-popup {
-        max-width: 100%;
-        border-radius: 14px;
-      }
-
-      .sp-image-wrap {
-        border-radius: 14px;
-      }
-
-      .sp-title {
-        font-size: 18px;
-        bottom: 48px;
-      }
-    }
   </style>
 
   <!-- NAV + SIDE DRAWER STYLES -->
@@ -575,42 +410,12 @@
       </button>
     </div>
     <div class="drawer-nav">
-      <a href="/" class="active">Home</a>
-      <a href="/hackathon">Hackathon</a>
-      <a href="/mr_nacos">Mr &amp; Miss NACOS</a>
-      <a href="/sponsor" class="primary-cta">Become a Sponsor</a>
+      <a href="./" class="active">Home</a>
+      <a href="hackathon">Hackathon</a>
+      <a href="mr_nacos">Mr &amp; Miss NACOS</a>
+      <a href="sponsor" class="primary-cta">Become a Sponsor</a>
     </div>
   </nav>
-
-  <!-- SPONSOR POPUP HTML -->
-  <div id="sponsor-popup-backdrop" role="dialog" aria-modal="true" aria-label="Sponsorship Opportunity">
-
-    <!-- Modal card -->
-    <div id="sponsor-popup">
-      <!-- Image fills top of card -->
-      <div class="sp-image-wrap">
-        <img src="images/spad.png" alt="NACOS South East Convention 2026 Sponsorship" />
-
-        <!-- Title overlaid on the image -->
-        <h2 class="sp-title">Support the Future<br>of <span>Tech in Nigeria</span></h2>
-      </div>
-
-      <!-- Button sits below image, pulled up to overlap its bottom edge -->
-      <div class="sp-btn-wrap">
-        <a href="/sponsor" class="sp-cta-btn" id="sp-cta-link">Become a Sponsor</a>
-      </div>
-    </div>
-
-    <!-- Close X — outside the card, centred below -->
-    <button id="sp-close-btn" aria-label="Close popup">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
-    </button>
-
-  </div>
-
-
   <!-- HERO HEADER -->
   <header class="hero">
     <div class="hero-overlay"></div>
@@ -626,13 +431,13 @@
           </div>
         </div>
         <div class="nav-button-group">
-          <a href="/hackathon" class="nav-secondary-link">
+          <a href="hackathon" class="nav-secondary-link">
             Hackathon
           </a>
-          <a href="/mr_nacos" class="nav-secondary-link">
+          <a href="mr_nacos" class="nav-secondary-link">
             Mr &amp; Miss NACOS
           </a>
-          <a href="/sponsor" class="nav-sponsor-link">
+          <a href="sponsor" class="nav-sponsor-link">
             Become a Sponsor
           </a>
         </div>
@@ -947,15 +752,68 @@
               </div>
             </div>
 
-            <button type="submit" class="btn-pay-submit" id="btn-pay-submit">
+            <button type="button" class="btn-pay-submit" id="btn-pay-submit">
                Proceed to Payment
             </button>
-            <p class="secure-text">You will be redirected to our secure payment gateway.</p>
+            <p class="secure-text">Choose secure online payment or manual bank transfer.</p>
           </section>
 
         </div>
 
       </div>
+
+      <dialog id="payment-choice-dialog" class="payment-choice-dialog" aria-labelledby="payment-choice-title">
+        <div class="payment-choice-shell">
+          <button type="button" class="payment-choice-close" id="payment-choice-close" aria-label="Close payment options">×</button>
+          <section data-payment-step="choice">
+            <p class="payment-eyebrow">CONVENTION REGISTRATION</p>
+            <h2 id="payment-choice-title">Choose how to pay</h2>
+            <p class="payment-intro">Select a payment method for <strong id="payment-choice-amount">₦0.00</strong>.</p>
+            <div class="payment-choice-actions">
+              <button type="button" class="payment-option" id="pay-automatically">
+                <strong>Pay automatically</strong><span>Continue to secure Paystack checkout.</span>
+              </button>
+              <button type="button" class="payment-option" id="pay-manually">
+                <strong>Pay manually</strong><span>Transfer to the NACOS bank account and upload your receipt.</span>
+              </button>
+            </div>
+            <p id="manual-payment-availability" class="manual-payment-availability" role="status"></p>
+          </section>
+
+          <section data-payment-step="bank" hidden>
+            <p class="payment-eyebrow">BANK TRANSFER</p>
+            <h2>Transfer the exact amount</h2>
+            <p class="payment-intro">Your registration will remain pending until the NACOS team verifies the transfer.</p>
+            <p class="manual-payment-reminder">Upload your proof of payment before clicking “I have made the payment”.</p>
+            <div class="manual-payment-amount"><span>Amount to pay</span><strong id="manual-payment-amount">₦0.00</strong></div>
+            <div class="manual-bank-details">
+              <div><span>Bank</span><strong id="manual-bank-name"></strong></div>
+              <div><span>Account name</span><strong id="manual-account-name"></strong></div>
+              <div class="manual-account-number"><span>Account number</span><div class="manual-account-value"><strong id="manual-account-number"></strong><span id="copy-account-feedback" class="copy-account-feedback" role="status" aria-live="polite"></span></div><button type="button" class="copy-account" data-copy-account aria-label="Copy account number" title="Copy account number"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path></svg></button></div>
+              <p id="manual-bank-instructions" class="manual-bank-instructions"></p>
+            </div>
+            <label class="manual-receipt-label" for="manual-payment-proof">Transfer receipt</label>
+            <label class="receipt-dropzone" id="manual-receipt-dropzone" for="manual-payment-proof">
+              <input id="manual-payment-proof" class="receipt-file-input" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" />
+              <span class="receipt-upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 15.5v3A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-3"/></svg></span>
+              <span class="receipt-dropzone-copy"><strong>Choose a receipt to upload</strong><span>Drag and drop here, or <b>browse files</b></span></span>
+              <span class="receipt-file-types">JPG, PNG, WEBP or PDF · up to 5 MB</span>
+            </label>
+            <p id="manual-payment-file-name" class="manual-file-name" aria-live="polite">No file selected</p>
+            <p id="manual-payment-bank-error" class="manual-payment-error" role="alert"></p>
+            <div class="payment-dialog-actions"><button type="button" class="payment-secondary" data-payment-back>Back</button><button type="button" class="payment-primary" id="manual-payment-made">I have made the payment</button></div>
+          </section>
+
+          <section data-payment-step="receipt" hidden>
+            <p class="payment-eyebrow">PAYMENT RECEIPT</p>
+            <h2>Submit your transfer receipt</h2>
+            <p class="payment-intro">Your selected proof will be sent securely for NACOS admin review.</p>
+            <p id="manual-payment-confirm-file" class="manual-file-name has-file"></p>
+            <p id="manual-payment-error" class="manual-payment-error" role="alert"></p>
+            <div class="payment-dialog-actions"><button type="button" class="payment-secondary" data-payment-back>Back</button><button type="button" class="payment-primary" id="manual-payment-submit">Submit receipt</button></div>
+          </section>
+        </div>
+      </dialog>
     </form>
   </main>
 
@@ -973,10 +831,10 @@
 
       <div class="site-footer__links">
         <h4>Explore</h4>
-        <a href="/">Home</a>
-        <a href="/hackathon">Hackathon</a>
-        <a href="/mr_nacos">Mr &amp; Miss NACOS</a>
-        <a href="/sponsor">Sponsor</a>
+        <a href="./">Home</a>
+        <a href="hackathon">Hackathon</a>
+        <a href="mr_nacos">Mr &amp; Miss NACOS</a>
+        <a href="sponsor">Sponsor</a>
       </div>
 
       <div class="site-footer__links">
@@ -984,7 +842,7 @@
         <a href="tel:+2349083731989">0908 373 1989</a>
         <a href="mailto:hello@nacosoutheast.org.ng">hello@nacosoutheast.org.ng</a>
         <a href="https://www.nacosoutheast.org.ng/">nacosoutheast.org.ng</a>
-        <a href="/">Ogbonnaya Onu Polytechnic, Aba</a>
+        <a href="./">Ogbonnaya Onu Polytechnic, Aba</a>
       </div>
     </div>
 
@@ -1014,40 +872,6 @@
         }, 400);
       }, 5000);
     }
-  </script>
-
-  <!-- SPONSOR POPUP SCRIPT -->
-  <script>
-    (function () {
-      var backdrop = document.getElementById('sponsor-popup-backdrop');
-      var closeBtn = document.getElementById('sp-close-btn');
-
-      function closePopup() {
-        backdrop.classList.remove('visible');
-      }
-
-      function openPopup() {
-        backdrop.classList.add('visible');
-      }
-
-      // Always show popup after loader finishes
-      setTimeout(openPopup, 5500);
-
-      // Close on X button
-      if (closeBtn) closeBtn.addEventListener('click', closePopup);
-
-      // Close on backdrop click (outside modal)
-      if (backdrop) {
-        backdrop.addEventListener('click', function(e) {
-          if (e.target === backdrop) closePopup();
-        });
-      }
-
-      // Close on ESC key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closePopup();
-      });
-    })();
   </script>
 
   <!-- SIDE DRAWER SCRIPT -->
@@ -1082,6 +906,7 @@
 
   <script src="payment-overlay.js?v=20261016-overlay1"></script>
   <script src="script.js?v=20261016-central-paystack-key-overlay1"></script>
+  <script src="convention-payment-choice.js?v=20261020-reminder-top2"></script>
 </body>
 </html>
 

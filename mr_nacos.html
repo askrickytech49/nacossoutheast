@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500;1,700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="manual-payment.css?v=20261020-no-scrollbar1" />
   <link rel="icon" href="images/favicon.png" type="image/png" />
 
   <!-- Social sharing meta (Open Graph & Twitter Card) -->
@@ -35,6 +36,8 @@
   <!-- Payment SDK -->
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <style>
+    .hero.mr-nacos-page-hero{background:url("images/Mr nacos.jpeg") center 38%/cover no-repeat #042e0f}
+
 .page-intro{max-width:720px;margin:0 0 18px;color:rgba(255,255,255,.9);font-size:15px;line-height:1.7}.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:10px}.choice-card,.choice-grid label{display:flex;align-items:center;gap:10px;padding:14px;border:1px solid var(--border-color);border-radius:10px;cursor:pointer;background:#fff}.choice-card:has(input:checked),.choice-grid label:has(input:checked){border-color:var(--primary-green);background:#f2faf4}.choice-card input,.choice-grid input{accent-color:var(--primary-green)}.team-extra{display:none;margin-top:14px}.team-extra.visible{display:block}.hackathon-success{display:none;margin-top:16px;padding:14px;border-radius:8px;color:#14532d;background:#dcfce7}.hackathon-success.visible{display:block}.mr-form-card{max-width:100%;color:var(--text-dark)}.mr-form-card>.card-head h2{color:var(--text-dark)}.mr-success[hidden]{display:none!important}.file-help{color:var(--text-muted);font-size:12px}@media(max-width:549px){.choice-grid{grid-template-columns:1fr}}
   </style>
 <style>
@@ -52,6 +55,7 @@
     .mr-upload-card.is-dragging{border-color:#0b6623;background:#e8f5e8;box-shadow:0 0 0 4px rgba(11,102,35,.1)}
     @media(max-width:380px){.mr-upload-card{gap:9px;padding:10px}.mr-upload-icon{width:38px;height:38px;flex-basis:38px}.mr-upload-action{padding:8px;font-size:10px}}
   </style>
+<style>.form-group[hidden]{display:none!important}.form-group .choice-grid input[type="radio"]{appearance:auto;width:18px!important;min-width:18px;max-width:18px;height:18px;padding:0;margin:0;flex:0 0 18px}.form-group .choice-grid label>span{color:#14251a!important}</style>
 </head>
 <body>
 
@@ -593,14 +597,14 @@
       </button>
     </div>
     <div class="drawer-nav">
-      <a href="/" class="active">Home</a>
-      <a href="/hackathon">Hackathon</a>
-      <a href="/mr_nacos">Mr &amp; Miss NACOS</a>
-      <a href="/sponsor" class="primary-cta">Become a Sponsor</a>
+      <a href="./" class="active">Home</a>
+      <a href="hackathon">Hackathon</a>
+      <a href="mr_nacos">Mr &amp; Miss NACOS</a>
+      <a href="sponsor" class="primary-cta">Become a Sponsor</a>
     </div>
   </nav>
 
-  <!-- SPONSOR POPUP HTML --><header class="hero">
+  <!-- SPONSOR POPUP HTML --><header class="hero mr-nacos-page-hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
 
@@ -614,13 +618,13 @@
           </div>
         </div>
         <div class="nav-button-group">
-          <a href="/hackathon" class="nav-secondary-link">
+          <a href="hackathon" class="nav-secondary-link">
             Hackathon
           </a>
-          <a href="/mr_nacos" class="nav-secondary-link">
+          <a href="mr_nacos" class="nav-secondary-link">
             Mr &amp; Miss NACOS
           </a>
-          <a href="/sponsor" class="nav-sponsor-link">
+          <a href="sponsor" class="nav-sponsor-link">
             Become a Sponsor
           </a>
         </div>
@@ -691,6 +695,14 @@
             </div>
           </fieldset>
 
+          <div class="form-group mr-full-width">
+            <label>Gender/Sex <span aria-hidden="true">*</span></label>
+            <div class="choice-grid">
+              <label><input type="radio" name="gender" value="Male" required /><span>Male</span></label>
+              <label><input type="radio" name="gender" value="Female" required /><span>Female</span></label>
+            </div>
+          </div>
+
           <div class="input-grid">
             <div class="form-group">
               <label for="mr-full-name">Full Name <span aria-hidden="true">*</span></label>
@@ -733,6 +745,13 @@
               <input id="mr-dob" name="dateOfBirth" type="date" required />
             </div>
             <div class="form-group mr-full-width">
+              <label>Have you registered for NACOS Southeast Convention? <span aria-hidden="true">*</span></label>
+              <div class="choice-grid">
+                <label><input type="radio" name="conventionRegistered" value="Yes" required /><span>Yes</span></label>
+                <label><input type="radio" name="conventionRegistered" value="No" required /><span>No</span></label>
+              </div>
+            </div>
+            <div class="form-group mr-full-width">
               <label for="mr-bio">Short Bio / About Yourself <span aria-hidden="true">*</span></label>
               <textarea id="mr-bio" name="bio" rows="4" minlength="30" maxlength="500" placeholder="Tell the judges a little about your interests, strengths and personality (30–500 characters)." required></textarea>
               <small class="mr-field-help">Minimum 30 characters.</small>
@@ -741,8 +760,34 @@
               <label for="mr-social">Social Media Handle(s)</label>
               <input id="mr-social" name="socialHandles" type="text" placeholder="@instagram, @tiktok" />
             </div>
+            <div class="form-group mr-full-width">
+              <label for="mr-why-participate">Why do you want to participate in Mr. &amp; Miss NACOS?</label>
+              <textarea id="mr-why-participate" name="whyParticipate" rows="3" maxlength="3000"></textarea>
+            </div>
+            <div class="form-group mr-full-width">
+              <label for="mr-suitable-representative">What makes you a suitable representative of NACOS?</label>
+              <textarea id="mr-suitable-representative" name="suitableRepresentative" rows="3" maxlength="3000"></textarea>
+            </div>
+            <div class="form-group mr-full-width">
+              <label for="mr-nacos-meaning">What does NACOS mean to you?</label>
+              <textarea id="mr-nacos-meaning" name="nacosMeaning" rows="3" maxlength="3000"></textarea>
+            </div>
+            <fieldset class="mr-fieldset mr-full-width">
+              <legend>Accuracy Confirmation &amp; Agreement to Rules <span aria-hidden="true">*</span></legend>
+              <div class="choice-grid">
+                <label><input type="radio" name="accuracyRulesAgreement" value="Yes" required /><span>Yes</span></label>
+                <label><input type="radio" name="accuracyRulesAgreement" value="No" required /><span>No</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="mr-fieldset mr-full-width">
+              <legend>Media &amp; Promotional Usage Consent <span aria-hidden="true">*</span></legend>
+              <div class="choice-grid">
+                <label><input type="radio" name="mediaConsent" value="Yes" required /><span>Yes</span></label>
+                <label><input type="radio" name="mediaConsent" value="No" required /><span>No</span></label>
+              </div>
+            </fieldset>
             <div class="form-group mr-full-width mr-photo-group">
-              <span class="mr-upload-label">Profile / Passport Photograph <span aria-hidden="true">*</span></span>
+              <span class="mr-upload-label">Upload Picture <span aria-hidden="true">*</span></span>
               <label class="mr-upload-card" for="mr-photo">
                 <input id="mr-photo" class="mr-photo-input" name="photo" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Choose a profile or passport photograph" required />
                 <span class="mr-upload-copy"><strong>Drag your photo here</strong><small>or select a file from your device</small></span>
@@ -751,8 +796,21 @@
                 <img id="mr-photo-preview-image" alt="Selected profile photograph preview" />
                 <span id="mr-photo-filename" aria-live="polite">No photo selected</span>
               </div>
-              <small class="mr-field-help">JPG, PNG or WEBP. Maximum file size: 5 MB.</small>
+              <small class="mr-field-help">JPG, PNG or WEBP. Maximum file size: 10 MB.</small>
             </div>
+          </div>
+
+          <fieldset class="mr-fieldset mr-full-width">
+            <legend>Have you made the registration payment? <span aria-hidden="true">*</span></legend>
+            <p class="mr-field-help">Select Yes if you already paid by bank transfer and will upload your receipt for review. Select No to choose a payment method after submitting this form.</p>
+            <div class="choice-grid">
+              <label><input type="radio" name="paymentMade" value="Yes" required /><span>Yes</span></label>
+              <label><input type="radio" name="paymentMade" value="No" required /><span>No</span></label>
+            </div>
+          </fieldset>
+          <div class="form-group mr-full-width" id="mr-unpaid-reason-group" hidden>
+            <label for="mr-unpaid-reason">Reason for not making payment yet <span aria-hidden="true">*</span></label>
+            <textarea id="mr-unpaid-reason" name="reasonNotPaid" rows="3" maxlength="1500"></textarea>
           </div>
 
           <button type="submit" class="btn-pay-submit mr-submit-button" id="mr-submit-button">
@@ -765,7 +823,7 @@
           <div class="mr-success-icon" aria-hidden="true">✓</div>
           <h2>Application received</h2>
           <p>Thank you for registering for Mr &amp; Miss NACOS 2026. The NACOS South East team will contact you using the details provided.</p>
-          <a href="/" class="btn-secondary mr-back-button">Back to convention registration</a>
+          <a href="./" class="btn-secondary mr-back-button">Back to convention registration</a>
         </div>
       </section>
   </section></main><footer class="site-footer" aria-label="Site footer">
@@ -782,10 +840,10 @@
 
       <div class="site-footer__links">
         <h4>Explore</h4>
-        <a href="/">Home</a>
-        <a href="/hackathon">Hackathon</a>
-        <a href="/mr_nacos">Mr &amp; Miss NACOS</a>
-        <a href="/sponsor">Sponsor</a>
+        <a href="./">Home</a>
+        <a href="hackathon">Hackathon</a>
+        <a href="mr_nacos">Mr &amp; Miss NACOS</a>
+        <a href="sponsor">Sponsor</a>
       </div>
 
       <div class="site-footer__links">
@@ -793,7 +851,7 @@
         <a href="tel:+2349083731989">0908 373 1989</a>
         <a href="mailto:hello@nacosoutheast.org.ng">hello@nacosoutheast.org.ng</a>
         <a href="https://www.nacosoutheast.org.ng/">nacosoutheast.org.ng</a>
-        <a href="/">Ogbonnaya Onu Polytechnic, Aba</a>
+        <a href="./">Ogbonnaya Onu Polytechnic, Aba</a>
       </div>
     </div>
 
@@ -801,7 +859,7 @@
       <p>© 2026 NACOS South East. All rights reserved.</p>
       <p>Built for innovation. Designed for impact.</p>
     </div>
-  </footer><script>const loader=document.getElementById('page-loader');if(loader){loader.style.opacity='0';setTimeout(()=>loader.remove(),400);}</script><script src="payment-overlay.js?v=20261016-overlay1"></script><script src="mr_nacos.js?v=20261016-central-paystack-key-overlay1"></script><script>
+  </footer><script>const loader=document.getElementById('page-loader');if(loader){loader.style.opacity='0';setTimeout(()=>loader.remove(),400);}</script><script src="payment-overlay.js?v=20261016-overlay1"></script><script src="manual-payment-choice.js?v=20261020-reminder-top1"></script><script src="mr_nacos.js?v=20261020-form-fields"></script><script>
     (function () {
       var hamburger = document.getElementById('hamburger-btn');
       var drawer    = document.getElementById('side-drawer');

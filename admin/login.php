@@ -3,14 +3,17 @@ declare(strict_types=1);
 require_once __DIR__ . '/auth.php';
 
 if (!empty($_SESSION['admin_id'])) {
-    header('Location: payments.php');
+    header('Location: index.php');
     exit;
 }
 
 $error = '';
+$lockedUntil = (int) ($_SESSION['login_locked_until'] ?? 0);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!admin_verify_csrf()) {
         $error = 'This login session expired. Refresh the page and try again.';
+    } elseif ($lockedUntil > time()) {
+        $error = 'Too many attempts. Please wait 15 minutes before trying again.';
     } else {
         $email = strtolower(trim((string) ($_POST['email'] ?? '')));
         $password = (string) ($_POST['password'] ?? '');
@@ -28,13 +31,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['admin_id'] = (int) $admin['id'];
             $_SESSION['admin_email'] = $admin['email'];
             $_SESSION['admin_csrf'] = bin2hex(random_bytes(32));
+            unset($_SESSION['login_attempts'], $_SESSION['login_locked_until']);
             $update = nacos_db()->prepare('UPDATE admin_users SET last_login_at = NOW() WHERE id = :id');
             $update->execute([':id' => $admin['id']]);
-            header('Location: payments.php');
+            header('Location: index.php');
             exit;
         }
 
-        $error = 'Email or password is incorrect.';
+        $attempts = (int) ($_SESSION['login_attempts'] ?? 0) + 1;
+        $_SESSION['login_attempts'] = $attempts;
+        if ($attempts >= 5) {
+            $_SESSION['login_attempts'] = 0;
+            $_SESSION['login_locked_until'] = time() + 900;
+            $error = 'Too many attempts. Please wait 15 minutes before trying again.';
+        } else {
+            $error = 'Email or password is incorrect.';
+        }
     }
 }
 

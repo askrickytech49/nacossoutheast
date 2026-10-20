@@ -188,6 +188,21 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    const submitBtn = document.getElementById("btn-sponsor-submit");
+    if (window.NacosManualPaymentChoice) {
+      const choice = await window.NacosManualPaymentChoice({
+        type: "sponsorship",
+        amount,
+        payload: {
+          type: "sponsorship", package_name: packageName,
+          custom_amount: isCustom ? Math.round(amount) : null,
+          full_name: fullName, email, phone, category,
+          organisation: orgName, message
+        }
+      });
+      if (choice !== "automatic") return;
+    }
+
     window.NacosPaymentOverlay?.show();
     let paystackPublicKey = "";
     try {
@@ -202,7 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- Disable submit button to prevent double clicks ---
-    const submitBtn = document.getElementById("btn-sponsor-submit");
     submitBtn.disabled = true;
     submitBtn.textContent = "Processing...";
 
@@ -277,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!saveResponse.ok || !saved.ok) throw new Error(saved.error || "Payment could not be verified.");
 
           // Payment is verified and notification emails are sent by the server.
-          window.location.href = "/sponsor-confirmation?email=" + encodeURIComponent(saved.email_status || "failed");
+          window.location.href = "sponsor-confirmation?email=" + encodeURIComponent(saved.email_status || "failed");
           } catch (e) {
             console.error("Callback Execution Error:", e);
             alert(`${e.message || "We could not save your sponsorship."} Your payment reference is ${response.reference}. Please contact the NACOS team and keep this reference.`);

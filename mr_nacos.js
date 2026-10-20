@@ -39,6 +39,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const photoPreview = document.getElementById("mr-photo-preview");
   const photoPreviewImage = document.getElementById("mr-photo-preview-image");
   const photoFileName = document.getElementById("mr-photo-filename");
+  const unpaidReasonGroup = document.getElementById("mr-unpaid-reason-group");
+  const unpaidReasonInput = document.getElementById("mr-unpaid-reason");
+  const getPaymentMade = () => form.querySelector('input[name="paymentMade"]:checked')?.value || "";
+  const updatePaymentReason = () => {
+    const notPaid = getPaymentMade() === "No";
+    if (unpaidReasonGroup) unpaidReasonGroup.hidden = !notPaid;
+    if (unpaidReasonInput) unpaidReasonInput.required = notPaid;
+  };
+  form.querySelectorAll('input[name="paymentMade"]').forEach((input) => input.addEventListener("change", updatePaymentReason));
+  updatePaymentReason();
 
   const uploadCard = photoInput.closest(".mr-upload-card");
   if (uploadCard) {
@@ -116,8 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const photo = photoInput.files[0];
-    if (!photo || !photo.type.startsWith("image/") || photo.size > 5 * 1024 * 1024) {
-      alertBox.textContent = "Please select a JPG, PNG or WEBP image no larger than 5 MB.";
+    if (!photo || !photo.type.startsWith("image/") || photo.size > 10 * 1024 * 1024) {
+      alertBox.textContent = "Please select a JPG, PNG or WEBP image no larger than 10 MB.";
       alertBox.classList.add("is-error");
       photoInput.focus();
       return;
@@ -134,8 +144,41 @@ document.addEventListener("DOMContentLoaded", () => {
     const socialHandles = document.getElementById("mr-social").value.trim();
     const dateOfBirth = document.getElementById("mr-dob").value;
     const category = getSelectedCategory();
+    const gender = form.querySelector('input[name="gender"]:checked')?.value || "";
+    const conventionRegistered = form.querySelector('input[name="conventionRegistered"]:checked')?.value || "";
+    const whyParticipate = document.getElementById("mr-why-participate").value.trim();
+    const suitableRepresentative = document.getElementById("mr-suitable-representative").value.trim();
+    const nacosMeaning = document.getElementById("mr-nacos-meaning").value.trim();
+    const accuracyRulesAgreement = form.querySelector('input[name="accuracyRulesAgreement"]:checked')?.value || "";
+    const mediaConsent = form.querySelector('input[name="mediaConsent"]:checked')?.value || "";
+    const paymentMade = getPaymentMade();
+    const reasonNotPaid = unpaidReasonInput?.value.trim() || "";
 
     const amount = 20000;
+
+    if (window.NacosManualPaymentChoice) {
+      const choice = await window.NacosManualPaymentChoice({
+        type: "pageant",
+        amount,
+        errorTarget: alertBox,
+        photo,
+        alreadyPaid: paymentMade === "Yes",
+        payload: {
+          type: "pageant", category, full_name: fullName, email, phone,
+          institution, department, level, state, date_of_birth: dateOfBirth,
+          bio, social_handles: socialHandles, gender,
+          convention_registered: conventionRegistered,
+          why_participate: whyParticipate,
+          suitable_representative: suitableRepresentative,
+          nacos_meaning: nacosMeaning,
+          accuracy_rules_agreement: accuracyRulesAgreement,
+          media_promotional_consent: mediaConsent,
+          have_made_registration_payment: paymentMade,
+          reason_not_made_payment: reasonNotPaid
+        }
+      });
+      if (choice !== "automatic") return;
+    }
 
     window.NacosPaymentOverlay?.show();
     let paystackPublicKey = "";
@@ -213,7 +256,16 @@ document.addEventListener("DOMContentLoaded", () => {
               state,
               date_of_birth: dateOfBirth,
               bio,
-              social_handles: socialHandles
+              social_handles: socialHandles,
+              gender,
+              convention_registered: conventionRegistered,
+              why_participate: whyParticipate,
+              suitable_representative: suitableRepresentative,
+              nacos_meaning: nacosMeaning,
+              accuracy_rules_agreement: accuracyRulesAgreement,
+              media_promotional_consent: mediaConsent,
+              have_made_registration_payment: paymentMade,
+              reason_not_made_payment: reasonNotPaid
             };
             const formData = new FormData();
             formData.append("submission", JSON.stringify(submission));
@@ -222,7 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const saved = await saveResponse.json();
             if (!saveResponse.ok || !saved.ok) throw new Error(saved.error || "Payment could not be verified.");
 
-            window.location.href = "/mr-miss-confirmation?email=" + encodeURIComponent(saved.email_status || "failed");
+            window.location.href = "mr-miss-confirmation?email=" + encodeURIComponent(saved.email_status || "failed");
             } catch (error) {
               console.error("Mr & Miss NACOS payment callback error:", error);
               alertBox.textContent = `${error.message || "Payment was received, but the application could not be saved."} Keep your payment reference: ${response.reference}. Please contact the NACOS team.`;

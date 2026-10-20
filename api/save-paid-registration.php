@@ -33,10 +33,8 @@ function paid_send_brevo_email(array $message, string $apiKey): bool
         return false;
     }
     // Never let a preview marker leak into real paid-registration emails.
-    foreach (['subject', 'htmlContent', 'textContent'] as $field) {
-        if (isset($message[$field]) && is_string($message[$field])) {
-            $message[$field] = preg_replace('/\[\s*SAMPLE(?:\s+PREVIEW)?\s*\]\s*/i', '', $message[$field]);
-        }
+    if (isset($message['subject'])) {
+        $message['subject'] = preg_replace('/^\s*\[\s*SAMPLE(?:\s+PREVIEW)?\s*\]\s*/i', '', (string) $message['subject']);
     }
     $curl = curl_init('https://api.brevo.com/v3/smtp/email');
     $message = nacos_add_email_banner($message);
@@ -123,45 +121,28 @@ function paid_send_notifications(array $entry): string
         'htmlContent' => $applicantTemplate['htmlContent'],
         'textContent' => $applicantTemplate['textContent'],
     ];
-    $attendeeRecipients = [];
-    $isGroupConvention = (string) $entry['type'] === 'convention'
-        && !empty($entry['data']['attendees'])
-        && is_array($entry['data']['attendees']);
-    if ($isGroupConvention) {
-        $seenRecipients = [];
+    if ((string) $entry['type'] === 'convention' && !empty($entry['data']['attendees']) && is_array($entry['data']['attendees'])) {
+        $bcc = [];
         foreach ($entry['data']['attendees'] as $attendee) {
             if (!is_array($attendee) || empty($attendee['email'])) continue;
             $attendeeEmail = trim((string) $attendee['email']);
             if (!filter_var($attendeeEmail, FILTER_VALIDATE_EMAIL) || strcasecmp($attendeeEmail, $adminEmail) === 0) continue;
-            $recipientKey = strtolower($attendeeEmail);
-            if (isset($seenRecipients[$recipientKey])) continue;
-            $seenRecipients[$recipientKey] = true;
-            $attendeeRecipients[] = [
-                'email' => $attendeeEmail,
-                'name' => trim((string) ($attendee['name'] ?? '')),
-            ];
+            $bcc[] = ['email' => $attendeeEmail];
         }
         $groupCount = count($entry['data']['attendees']);
         $attendeeTemplate = nacos_convention_attendee_confirmation_template($groupCount, (string) $entry['reference']);
-        $applicantTemplate = $attendeeTemplate;
+        $attendeeMessage = [
+            'sender' => ['name' => $senderName, 'email' => $senderEmail],
+            'to' => [['email' => $adminEmail, 'name' => 'NACOS South East']],
+            'subject' => $attendeeTemplate['subject'],
+            'htmlContent' => $attendeeTemplate['htmlContent'],
+            'textContent' => $attendeeTemplate['textContent'],
+        ];
+        if ($bcc) $attendeeMessage['bcc'] = $bcc;
+        $applicantMessage = $attendeeMessage;
     }
     $adminSent = paid_send_brevo_email($adminMessage, $apiKey);
-    if ($isGroupConvention) {
-        $applicantSent = true;
-        foreach ($attendeeRecipients as $recipient) {
-            $attendeeMessage = [
-                'sender' => ['name' => $senderName, 'email' => $senderEmail],
-                'to' => [$recipient],
-                'subject' => $applicantTemplate['subject'],
-                'htmlContent' => $applicantTemplate['htmlContent'],
-                'textContent' => $applicantTemplate['textContent'],
-            ];
-            if (!paid_send_brevo_email($attendeeMessage, $apiKey)) $applicantSent = false;
-        }
-        if (!$attendeeRecipients) $applicantSent = false;
-    } else {
-        $applicantSent = paid_send_brevo_email($applicantMessage, $apiKey);
-    }
+    $applicantSent = paid_send_brevo_email($applicantMessage, $apiKey);
     return $adminSent && $applicantSent ? 'sent' : ($adminSent || $applicantSent ? 'partial' : 'failed');
 }
 
@@ -305,6 +286,22 @@ if ($type === 'convention') {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) paid_reply(422, ['ok' => false, 'error' => 'The applicant email is invalid.']);
     $category = paid_text($input, 'category', 60);
     if (!in_array($category, ['Mr NACOS', 'Miss NACOS'], true)) paid_reply(422, ['ok' => false, 'error' => 'The pageant category is invalid.']);
+    $gender = paid_text($input, 'gender', 10);
+    $conventionRegistered = paid_text($input, 'convention_registered', 3);
+    $accuracyRulesAgreement = paid_text($input, 'accuracy_rules_agreement', 3);
+    $mediaConsent = paid_text($input, 'media_promotional_consent', 3);
+    $paymentMade = paid_text($input, 'have_made_registration_payment', 3);
+    foreach ([
+        'gender' => [$gender, ['Male', 'Female']],
+        'convention registration' => [$conventionRegistered, ['Yes', 'No']],
+        'accuracy confirmation' => [$accuracyRulesAgreement, ['Yes', 'No']],
+        'media consent' => [$mediaConsent, ['Yes', 'No']],
+        'payment answer' => [$paymentMade, ['Yes', 'No']],
+    ] as $label => [$answer, $allowed]) {
+        if (!in_array($answer, $allowed, true)) paid_reply(422, ['ok' => false, 'error' => 'The ' . $label . ' answer is invalid.']);
+    }
+    $reasonNotPaid = paid_text($input, 'reason_not_made_payment', 1500, false);
+    if ($paymentMade === 'No' && $reasonNotPaid === '') paid_reply(422, ['ok' => false, 'error' => 'Please provide the reason you have not made the payment yet.']);
     $base = [
         'institution' => paid_text($input, 'institution', 200),
         'department' => paid_text($input, 'department', 160),
@@ -313,10 +310,19 @@ if ($type === 'convention') {
         'date_of_birth' => paid_text($input, 'date_of_birth', 20),
         'bio' => paid_text($input, 'bio', 500),
         'social_handles' => paid_text($input, 'social_handles', 300, false),
+        'gender' => $gender,
+        'convention_registered' => $conventionRegistered,
+        'why_participate' => paid_text($input, 'why_participate', 3000, false),
+        'suitable_representative' => paid_text($input, 'suitable_representative', 3000, false),
+        'nacos_meaning' => paid_text($input, 'nacos_meaning', 3000, false),
+        'accuracy_rules_agreement' => $accuracyRulesAgreement,
+        'media_promotional_consent' => $mediaConsent,
+        'have_made_registration_payment' => $paymentMade,
+        'reason_not_made_payment' => $reasonNotPaid,
     ];
     if (!isset($_FILES['photo']) || ($_FILES['photo']['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK
-        || (int) ($_FILES['photo']['size'] ?? 0) > 5 * 1024 * 1024) {
-        paid_reply(422, ['ok' => false, 'error' => 'Please include a profile photo smaller than 5 MB.']);
+        || (int) ($_FILES['photo']['size'] ?? 0) > 10 * 1024 * 1024) {
+        paid_reply(422, ['ok' => false, 'error' => 'Please include a profile photo smaller than 10 MB.']);
     }
     $photoTemp = (string) $_FILES['photo']['tmp_name'];
     $photoSize = (int) $_FILES['photo']['size'];
@@ -343,6 +349,7 @@ if ($photoTemp !== null) {
     $photoPath = $fileName;
     $base['photo_mime'] = $photoMime;
     $base['photo_size'] = $photoSize;
+    if ($type === 'pageant') $base['profile_picture'] = 'Uploaded and stored with application';
 }
 
 $submissionData = json_encode($base, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);

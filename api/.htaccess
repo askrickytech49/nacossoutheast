@@ -1,5 +1,5 @@
 Options -Indexes
 
-<FilesMatch "^(schema\.sql|\.env|README\.md|config\.local\.php|config\.example\.php|setup-xampp\.php|migrate-paid\.php)$">
+<FilesMatch "^(schema\.sql|migrate-.*\.sql|\.env|README\.md|config\.local\.php|config\.example\.php|setup-xampp\.php|migrate-paid\.php|manual-payment-mail\.php)$">
   Require all denied
 </FilesMatch>
