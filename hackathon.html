@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NACOS South East Hackathon 2026 | Build, Compete, Win</title>
+<meta name="description" content="Explore the NACOS South East Hackathon 2026 at Ogbonnaya Onu Polytechnic, Aba. Build a project idea, compete for ₦500,000 and other gadgets." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="images/favicon.png" type="image/png" /><!-- NAV + SIDE DRAWER STYLES -->
+  <style>
+    /* === Hero nav bar === */
+    .hero-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 12px;
+    }
+
+    .hero-nav .nav-button-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    .nav-sponsor-link,
+    .nav-secondary-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.2px;
+      transition: all 220ms ease;
+      white-space: nowrap;
+    }
+
+    .nav-secondary-link {
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.22);
+    }
+
+    .nav-secondary-link:hover,
+    .nav-secondary-link:focus-visible {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.45);
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .nav-button-group {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-button-group a {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.04);
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14px;
+      text-decoration: none;
+      transition: all 220ms ease;
+      white-space: nowrap;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-button-group a:hover,
+    .nav-button-group a:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.10);
+      box-shadow: 0 10px 22px rgba(7, 32, 20, 0.18);
+    }
+
+    .nav-secondary-link {
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.22);
+    }
+
+    .nav-sponsor-link {
+      background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(232,249,237,0.16));
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.52);
+      box-shadow: 0 10px 24px rgba(11, 102, 35, 0.20);
+    }
+
+    .nav-sponsor-link:hover,
+    .nav-sponsor-link:focus-visible {
+      background: linear-gradient(135deg, #ffffff 0%, #e8f9ed 100%);
+      color: #0b6623;
+      border-color: rgba(255, 255, 255, 0.8);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(11, 102, 35, 0.24);
+    }
+
+    .nav-sponsor-link:active,
+    .nav-secondary-link:active {
+      transform: translateY(0);
+    }
+
+    .nav-sponsor-link:focus-visible,
+    .nav-secondary-link:focus-visible,
+    .hamburger-btn:focus-visible,
+    .drawer-close-btn:focus-visible,
+    .drawer-nav a:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.9);
+      outline-offset: 2px;
+    }
+
+    .hamburger-btn {
+      display: none;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: #ffffff;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .hamburger-btn:hover {
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.55);
+      transform: translateY(-1px);
+    }
+
+    /* Mobile: keep the three key actions visible in the header */
+    @media (max-width: 849px) {
+      .hero-nav {
+        flex-wrap: wrap;
+        row-gap: 12px;
+      }
+
+      .hero-nav .nav-button-group {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        order: 3;
+        flex-basis: 100%;
+        width: 100%;
+        gap: 6px;
+      }
+
+      .hero-nav .nav-button-group a {
+        min-height: 36px;
+        padding: 7px 4px;
+        border-radius: 9px;
+        font-size: 9px;
+        line-height: 1.15;
+        text-align: center;
+        white-space: normal;
+      }
+
+      .hamburger-btn { display: none; }
+    }
+
+    /* === Side drawer backdrop === */
+    #drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 88888;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    #drawer-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* === Side drawer panel === */
+    #side-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 240px;
+      height: 100%;
+      background: #ffffff;
+      z-index: 88889;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 24px 20px;
+      overflow: hidden;
+    }
+
+    #side-drawer.open {
+      transform: translateX(0);
+    }
+
+    /* "Networking the world" watermark effect */
+    #side-drawer::before {
+      content: "Networking\A the world";
+      white-space: pre;
+      position: absolute;
+      bottom: 30px;
+      right: 0px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: rgba(11, 102, 35, 0.06);
+      line-height: 1.15;
+      text-align: right;
+      pointer-events: none;
+      letter-spacing: -0.5px;
+      z-index: 0;
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .drawer-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .drawer-logo-wrap img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(11, 102, 35, 0.3);
+      object-fit: cover;
+    }
+
+    .drawer-logo-wrap span {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0b6623;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+    }
+
+    .drawer-close-btn {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      color: #64748b;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .drawer-close-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .drawer-nav a {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 10px 12px;
+      text-decoration: none;
+      color: #334155;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid rgba(11, 102, 35, 0.12);
+      border-radius: 12px;
+      background: rgba(11, 102, 35, 0.02);
+      transition: all 220ms ease;
+      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02);
+    }
+
+    .drawer-nav a:hover,
+    .drawer-nav a:focus-visible {
+      color: #0b6623;
+      background: rgba(11, 102, 35, 0.05);
+      border-color: rgba(11, 102, 35, 0.2);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(11, 102, 35, 0.08);
+    }
+
+    .drawer-nav a.active {
+      color: #ffffff;
+      background: linear-gradient(135deg, #0b6623, #0f7d31);
+      border-color: rgba(11, 102, 35, 0.8);
+      box-shadow: 0 10px 20px rgba(11, 102, 35, 0.18);
+      font-weight: 700;
+    }
+
+    .drawer-nav a.primary-cta {
+      color: #ffffff;
+      background: linear-gradient(135deg, #0b6623, #0f7d31);
+      border-color: rgba(11, 102, 35, 0.8);
+      box-shadow: 0 12px 26px rgba(11, 102, 35, 0.18);
+    }
+
+    .drawer-nav a.primary-cta:hover,
+    .drawer-nav a.primary-cta:focus-visible {
+      background: linear-gradient(135deg, #ffffff, #e8f9ed);
+      color: #0b6623;
+      border-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 14px 30px rgba(11, 102, 35, 0.22);
+    }
+  </style>  <style>
+:root{--hack-deep:#062e0b;--hack-green:#087c25;--hack-pale:#e5f2e3;--hack-soft:#f5f9f3}.hack-hero{position:relative;overflow:hidden;padding:22px 16px 90px;background-color:var(--hack-deep);background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);background-size:32px 32px;color:#fff;border-radius:0 0 50% 2.5%/0 0 5% 2.5%}.hack-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 74% 45%,rgba(47,153,61,.2),transparent 34%),linear-gradient(90deg,rgba(5,43,9,.08),rgba(5,43,9,.5));pointer-events:none}.hack-hero-inner{position:relative;z-index:1;max-width:1120px;margin:auto}.hack-hero .hero-nav{margin-bottom:48px}.hack-hero .hero-content{max-width:none}.hack-hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px;min-height:310px}.hack-tag{display:inline-block;padding:6px 12px;border-radius:99px;background:#126f20;color:#dbf5d7;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.hack-hero h1{max-width:700px;margin:16px 0 14px;font-size:clamp(44px,7vw,86px);font-weight:800;line-height:.98;letter-spacing:-.055em;text-transform:uppercase}.hack-hero h1 span{color:#8be39f}.hack-hero-copy>p{max-width:600px;color:#d9e9d7;font-size:16px;line-height:1.7}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.hero-actions a{display:inline-flex;align-items:center;justify-content:center;padding:13px 21px;border-radius:99px;background:#188b2c;color:#fff;text-decoration:none;font-size:13px;font-weight:700}.hero-actions a.secondary{background:transparent;border:1px solid rgba(255,255,255,.35)}.hero-actions a:hover{transform:translateY(-2px);background:#239f39}.build-visual{position:relative;min-height:260px;display:grid;place-items:center}.build-orbit{position:absolute;width:245px;height:245px;border:1px solid rgba(185,228,185,.24);border-radius:50%}.build-card{position:relative;width:min(100%,310px);padding:25px 24px;border-radius:24px;background:#f9fff7;color:var(--hack-deep);box-shadow:0 22px 50px rgba(0,0,0,.25);transform:rotate(-5deg)}.build-card::before{content:'';position:absolute;z-index:-1;inset:-14px 12px 13px -10px;border-radius:30px;background:#acd9ad;transform:rotate(10deg)}.build-card small{display:block;color:#2e8736;font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.build-card strong{display:block;margin:10px 0 15px;font-size:28px;letter-spacing:-.06em}.build-card i{display:block;height:7px;border-radius:5px;background:#419749}.go-badge{position:absolute;right:4%;bottom:13%;display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:#168e27;color:#fff;font-weight:800;transform:rotate(8deg)}.facts-band{margin-top:-1px;padding:26px 16px;background:#dcefd9}.facts-grid{max-width:1120px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.fact{padding:18px;border:1px solid rgba(7,90,25,.1);border-radius:14px;background:rgba(255,255,255,.43);color:var(--text-dark)}.fact small{display:block;color:#347e39;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.fact strong{display:block;margin-top:8px;font-size:16px}.landing-section{padding:76px 16px;background:#fff}.landing-inner{max-width:1120px;margin:auto}.about-grid{display:grid;grid-template-columns:.65fr 1.35fr;gap:44px}.eyebrow{color:#368641;font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}.section-title{margin:8px 0 14px;color:#112c16;font-size:clamp(27px,4vw,44px);line-height:1.08;letter-spacing:-.045em}.section-copy{max-width:760px;color:#536356;font-size:14px;line-height:1.85}.highlight{color:#168a2a}.prize-section{padding:68px 16px;background:#eaf4e8}.prize-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:stretch}.prize-main,.schedule-card{padding:28px;border-radius:20px;background:#fff;color:var(--text-dark)}.prize-main h2{margin:8px 0 22px;color:#17351a;font-size:clamp(28px,4vw,42px);letter-spacing:-.05em}.prize-award{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:19px 20px;border-radius:14px;background:#f2f8f0;margin-top:10px}.prize-award span{font-size:13px;font-weight:700}.prize-award strong{color:#146c24;font-size:20px}.schedule-card{background:#073b12;color:#fff}.schedule-card h3{margin:8px 0 22px;color:#fff;font-size:20px}.schedule-card p{color:#deebdb;font-size:13px;line-height:1.8}.schedule-card .eyebrow{color:#a9e6a8}.details-section{padding:76px 16px;background:#0a390f;color:#fff}.details-section .section-title{color:#fff}.submission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:28px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.14);border-radius:18px;overflow:hidden}.submission{min-height:150px;padding:24px;background:#0a390f}.submission small{color:#a6d8a7;font-size:10px;font-weight:800;letter-spacing:.15em}.submission h3{margin:26px 0 8px;font-size:17px}.submission p{color:#c9dcc9;font-size:12px;line-height:1.6}.eligibility-section{padding:70px 16px;background:#e2f0df}.eligibility-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:42px}.requirements{display:grid;gap:0;list-style:none;padding:0;margin:0}.requirements li{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid rgba(6,75,17,.1);color:#28442b;font-size:13px;line-height:1.6}.requirements b{display:grid;place-items:center;flex:0 0 25px;height:25px;border-radius:50%;background:#17852a;color:#fff;font-size:12px}.final-cta{padding:64px 16px;background:#b9dcb4}.cta-grid{max-width:1120px;margin:auto;display:grid;grid-template-columns:.8fr 1.2fr;align-items:center;gap:34px}.cta-copy h2{margin:8px 0 12px;color:#0b3410;font-size:clamp(34px,5vw,56px);line-height:1;letter-spacing:-.06em}.cta-copy p{color:#385b3b;font-size:14px;line-height:1.7}.cta-card{padding:28px;border-radius:22px;background:#fff;box-shadow:0 12px 36px rgba(9,58,14,.1);color:var(--text-dark)}.cta-card h3{font-size:22px}.cta-card p{margin:8px 0 18px;color:#607061;font-size:13px;line-height:1.65}.cta-card a{display:flex;justify-content:center;padding:14px;border-radius:99px;background:#16852a;color:#fff;text-decoration:none;font-size:13px;font-weight:700}.cta-card a:hover{background:#0b6623}.site-footer{margin-top:0}@media(max-width:760px){.hack-hero-grid{grid-template-columns:1fr;gap:10px}.hack-hero .hero-nav{margin-bottom:38px}.hack-hero-copy{padding-top:10px}.build-visual{min-height:230px}.facts-grid{grid-template-columns:1fr}.about-grid,.prize-grid,.eligibility-grid,.cta-grid{grid-template-columns:1fr;gap:24px}.landing-section,.prize-section,.eligibility-section{padding-top:54px;padding-bottom:54px}.submission-grid{grid-template-columns:1fr}.submission{min-height:120px}.submission h3{margin-top:16px}.cta-card{padding:22px}}@media(max-width:480px){.hack-hero{padding-bottom:70px}.hack-hero h1{font-size:45px}.build-visual{min-height:205px}.build-card{width:260px}.build-card strong{font-size:24px}.prize-main,.schedule-card{padding:22px}.prize-award{padding:16px}.prize-award strong{font-size:17px}}
+  </style>
+<style>
+@keyframes grid-drift{from{background-position:0 0,0 0}to{background-position:32px 32px,-32px 0}}@keyframes hero-rise{0%{opacity:0;transform:translateY(28px)}100%{opacity:1;transform:translateY(0)}}@keyframes visual-float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-12px) rotate(-3deg)}}@keyframes orbit-turn{to{transform:rotate(360deg)}}.build-orbit::before{content:"";position:absolute;top:18%;right:18%;width:10px;height:10px;border-radius:50%;background:#9be59b;box-shadow:0 0 18px rgba(155,229,155,.9)}@keyframes badge-bob{0%,100%{transform:translateY(0) rotate(8deg)}50%{transform:translateY(-8px) rotate(2deg)}}.hack-hero{background-position:0 0,0 0;animation:grid-drift 24s linear infinite}.hack-hero::before{animation:hero-glow 8s ease-in-out infinite alternate}@keyframes hero-glow{from{opacity:.65;transform:scale(1)}to{opacity:1;transform:scale(1.08)}}.hack-hero-copy{animation:hero-rise .85s cubic-bezier(.2,.75,.25,1) both}.build-visual{animation:hero-rise .95s .12s cubic-bezier(.2,.75,.25,1) both}.build-orbit{animation:orbit-turn 42s linear infinite}.build-card{animation:visual-float 5s ease-in-out infinite}.go-badge{animation:badge-bob 3.2s ease-in-out infinite}.hero-actions a,.cta-card a{transition:transform .22s ease,box-shadow .22s ease,background-color .22s ease}.hero-actions a:hover,.hero-actions a:focus-visible,.cta-card a:hover,.cta-card a:focus-visible{transform:translateY(-3px);box-shadow:0 12px 26px rgba(3,37,10,.24)}.motion-ready .reveal{opacity:0;transform:translateY(28px) scale(.985);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.75,.25,1);transition-delay:var(--reveal-delay,0ms)}.motion-ready .reveal.is-visible{opacity:1;transform:translateY(0) scale(1)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.motion-ready .reveal{opacity:1;transform:none}}
+</style>
+<style>
+/* Animated IDE preview in the hero */
+.build-visual{isolation:isolate}
+.build-visual::before{content:"";position:absolute;z-index:-2;width:min(88vw,430px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 48%,rgba(28,157,34,.82) 0 34%,rgba(13,112,25,.72) 35% 50%,rgba(8,75,18,.25) 51% 64%,transparent 65%);filter:drop-shadow(0 0 36px rgba(26,174,42,.2));animation:backdrop-pulse 6s ease-in-out infinite alternate}
+.build-visual::after{content:"";position:absolute;z-index:-1;inset:4% -10%;border-radius:50%;background:repeating-linear-gradient(0deg,transparent 0 35px,rgba(188,239,178,.08) 35px 36px),repeating-linear-gradient(90deg,transparent 0 35px,rgba(188,239,178,.08) 35px 36px);mask-image:radial-gradient(ellipse at center,#000 0 56%,transparent 76%);pointer-events:none}
+.build-orbit{z-index:-1;width:min(96vw,470px);height:auto;aspect-ratio:1;border:1px dashed rgba(156,229,152,.38);box-shadow:0 0 0 18px rgba(23,134,36,.035),inset 0 0 38px rgba(18,127,32,.12);animation:orbit-turn 55s linear infinite}
+.build-orbit::before{top:12%;right:18%;width:9px;height:9px;background:#b0f5a8;box-shadow:0 0 18px 5px rgba(104,226,100,.56)}
+.workspace-shell{z-index:1}
+@keyframes backdrop-pulse{from{transform:scale(.94);opacity:.76}to{transform:scale(1.04);opacity:1}}
+.workspace-shell{width:min(100%,390px);padding:0 16px 15px;transform:rotate(-2deg);animation:ide-float 6s ease-in-out infinite;overflow:hidden}
+.workspace-bar{height:42px;display:flex;justify-content:flex-start;gap:10px;font-size:8px}
+.workspace-bar>span:nth-child(2){flex:1}
+.ide-body{display:grid;grid-template-columns:1.05fr .95fr;gap:10px;padding-top:13px}
+.ide-editor,.ide-preview{min-width:0;border:1px solid rgba(211,242,206,.13);border-radius:10px;background:rgba(0,0,0,.17);overflow:hidden}
+.ide-file{padding:8px 9px;border-bottom:1px solid rgba(255,255,255,.1);color:#b8d8b4;font-size:8px;font-weight:700;letter-spacing:.08em}
+.ide-code{padding:10px 8px 12px;font:7.5px/1.9 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:nowrap;overflow:hidden;color:#e9f4e7}
+.ide-code .ln{display:inline-block;width:13px;color:#719a70}.ide-code .kw{color:#8be39f}.ide-code .str{color:#f2d68a}.ide-typed{display:inline-block;max-width:0;overflow:hidden;vertical-align:bottom;animation:ide-type 2.8s steps(29,end) .5s forwards;}
+.ide-terminal{margin:0 8px 9px;padding:8px;border-radius:7px;background:#041d08;color:#bfe8ba;font:7px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace}
+.ide-terminal strong{display:block;margin-bottom:3px;color:#85bd7e;font:700 7px/1.4 inherit;letter-spacing:.08em}
+.terminal-command{display:inline-block;max-width:0;overflow:hidden;vertical-align:bottom;white-space:nowrap;animation:terminal-type 1.7s steps(12,end) 3.7s forwards}
+.terminal-cursor{display:inline-block;width:4px;height:8px;margin-left:2px;background:#a6eaa0;vertical-align:-1px;animation:cursor-blink .8s steps(2,end) infinite}
+.ide-preview{padding:9px;background:#e6f2e2;color:#143819;display:flex;flex-direction:column;gap:7px}
+.preview-top{display:flex;align-items:center;justify-content:space-between;font-size:6px;font-weight:800;letter-spacing:.07em;color:#427d42}
+.preview-mark{display:grid;place-items:center;width:21px;height:21px;border-radius:7px;background:#16852a;color:#fff;font-weight:800;font-size:10px}
+.ide-preview h4{margin:1px 0 0;font-size:10px;line-height:1.1;letter-spacing:-.04em;color:#123b18}
+.ide-preview p{margin:0;color:#4b6d4c;font-size:6px;line-height:1.5}
+.preview-progress{height:4px;border-radius:9px;background:#c5dec1;overflow:hidden}.preview-progress i{display:block;width:74%;height:100%;border-radius:inherit;background:#16852a;transform-origin:left;animation:preview-load 5s ease-in-out 5s infinite alternate}
+.preview-link{margin-top:auto;padding:6px 5px;border-radius:6px;text-align:center;background:#16852a;color:#fff;font-size:6px;font-weight:800}
+@keyframes ide-type{to{max-width:100%}}@keyframes terminal-type{to{max-width:100%}}@keyframes cursor-blink{50%{opacity:0}}@keyframes ide-float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(-1deg)}}@keyframes preview-load{from{width:26%}to{width:92%}}
+.go-badge{z-index:2}
+@media(max-width:560px){.workspace-shell{width:min(100%,390px);padding:0 12px 12px}.workspace-bar{height:40px}.ide-body{gap:7px;padding-top:10px}.ide-file{padding:7px;font-size:7px}.ide-code{padding:8px 6px;font-size:6.7px;line-height:1.85}.ide-code .ln{width:11px}.ide-terminal{margin:0 6px 7px;padding:7px;font-size:6px}.ide-terminal strong{font-size:6px}.ide-preview{padding:7px;gap:6px}.ide-preview h4{font-size:9px}.ide-preview p{font-size:5.7px}.go-badge{right:1%;bottom:8%}}
+@media(max-width:560px){.build-visual::before{width:min(94vw,390px)}.build-visual::after{inset:6% -16%;background-size:30px 30px}.build-orbit{width:min(100vw,410px)}}
+@media(prefers-reduced-motion:reduce){.build-visual::before{animation:none}.build-orbit{animation:none}.workspace-shell,.ide-typed,.terminal-command,.terminal-cursor,.preview-progress i{animation:none}.ide-typed,.terminal-command{max-width:100%}}
+</style>
+<style>
+/* Keep the hero visual closer to a working project workspace than a floating illustration. */
+.build-visual{isolation:auto}
+.build-visual::before,.build-visual::after{content:none}
+.build-orbit{display:none}
+.workspace-shell{width:min(100%,410px);padding:0 14px 14px;transform:none;animation:none;border:1px solid rgba(213,239,209,.22);border-radius:12px;background:#0b2910;box-shadow:0 18px 42px rgba(0,0,0,.2)}
+.ide-editor,.ide-preview{border-radius:7px}
+.ide-preview{background:#f5f8f2}
+.preview-progress i{width:74%;animation:none}
+.ide-terminal>div{opacity:0;animation:terminal-ready .3s ease 5.5s forwards}
+@keyframes terminal-ready{to{opacity:1}}
+.go-badge{display:none}
+@media(prefers-reduced-motion:reduce){.workspace-shell{animation:none}.ide-terminal>div{opacity:1;animation:none}}
+</style>
+<style>
+/* VS Code inspired frame: menu, activity rail, editor split, and docked terminal. */
+.workspace-shell{width:min(100%,430px);padding:0;overflow:hidden;border:1px solid #35423a;border-radius:9px;background:#1e1f1e;color:#d4d4d4;box-shadow:0 18px 42px rgba(0,0,0,.24)}
+.workspace-shell{width:min(118%,500px);max-width:none;border:0!important;outline:0!important;box-shadow:none!important}
+@media(min-width:761px){.hack-hero-grid{grid-template-columns:.9fr 1.1fr;gap:22px}.workspace-shell{width:min(128%,620px)}}
+@media(max-width:760px){.hack-hero{padding-bottom:54px}.hack-hero-grid{min-height:0}.build-visual{min-height:0;height:auto;margin-bottom:0}}
+.workspace-bar{height:28px;padding:0 9px;background:#252526;border:0;color:#bbb;font-size:7px;letter-spacing:0}
+.window-dots{gap:4px}.window-dots i{width:5px;height:5px;background:#858585!important;opacity:1!important}
+.workspace-status{padding:3px 6px;border-radius:4px;background:#264b32;color:#c7e8ca;font-size:6px}
+.ide-body{position:relative;grid-template-columns:22px minmax(0,1.1fr) minmax(0,.9fr);grid-template-rows: minmax(119px,auto) 53px;gap:0;padding:0;background:#1e1f1e}
+.ide-editor{grid-column:2;grid-row:1;min-height:0;border:0;border-right:1px solid #363636;border-radius:0;background:#1e1e1e}
+.ide-file{height:23px;padding:6px 8px;background:#252526;border:0;border-bottom:1px solid #333;color:#d5d5d5;font-size:6.5px;letter-spacing:0}
+.ide-code{padding:8px 6px 5px;background:#1e1e1e;color:#d4d4d4;font-size:6.3px;line-height:1.8}
+.ide-code .ln{width:11px;color:#858585}.ide-code .kw{color:#c586c0}.ide-code .str{color:#ce9178}
+.ide-preview{grid-column:3;grid-row:1;min-height:0;padding:0;border:0;border-radius:0;background:#fff;color:#252525}
+.preview-top{height:23px;padding:0 6px;border:0;border-bottom:1px solid #ddd;background:#f3f3f3;color:#626262;font-size:5.5px;letter-spacing:0}
+.ide-preview h4{margin:6px 6px 0;font-size:8px;color:#242424}.ide-preview p{margin:0 6px;font-size:5.5px;color:#666;line-height:1.4}
+.preview-progress{height:3px;margin:0 6px;background:#e5e5e5}.preview-progress i{background:#16852a}
+.preview-link{margin:4px 6px 6px;padding:5px 3px;border-radius:3px;background:#16852a;font-size:5.2px}
+.ide-terminal{grid-column:2/4;grid-row:2;margin:0;padding:6px 8px;border:0;border-top:1px solid #454545;border-radius:0;background:#181818;color:#ccc;font-size:6px;line-height:1.55}
+.ide-terminal strong{display:inline;margin-right:8px;color:#ccc;font-size:6px;letter-spacing:.03em}
+.ide-terminal>div{margin-left:0}
+.ide-activity{grid-column:1;grid-row:1/3;display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:9px;border-right:1px solid #333;background:#252526;color:#aaa;font-size:8px}
+.ide-activity span:first-child{color:#fff}
+@media(max-width:560px){.workspace-shell{width:100%;max-width:390px}.ide-body{grid-template-columns:19px minmax(0,1.1fr) minmax(0,.9fr);grid-template-rows:minmax(116px,auto) 50px}.ide-activity{gap:9px}.ide-code{padding:7px 4px;font-size:5.8px;line-height:1.8}.ide-code .ln{width:9px}.ide-file{padding-left:5px;font-size:6px}.ide-preview h4{font-size:7px}.ide-preview p{font-size:5px}.ide-terminal{padding:5px;font-size:5.5px}}
+</style>
+<style>
+@media(max-width:560px){
+  .hack-hero{padding:24px 18px 92px}
+  .hack-hero-inner{width:100%}
+  .hack-hero .hero-nav{margin-bottom:50px;row-gap:16px}
+  .hack-hero .hero-nav .nav-button-group{gap:8px}
+  .hack-hero .hero-nav .nav-button-group a{min-height:44px;padding:10px 8px;font-size:10px;line-height:1.35;white-space:normal;text-align:center}
+  .hack-hero-grid{gap:34px;min-height:0}
+  .hack-hero-copy{padding-top:2px}
+  .hack-tag{padding:8px 12px;font-size:10px}
+  .hack-hero h1{margin:22px 0 20px;font-size:clamp(42px,11vw,54px);line-height:1.02;letter-spacing:-.05em}
+  .hack-hero-copy>p{font-size:15px;line-height:1.8}
+  .hero-actions{gap:10px;margin-top:28px}
+  .hero-actions a{min-height:48px;padding:13px 17px;font-size:11px}
+  .build-visual{min-height:245px;margin-top:0}
+  .build-card{padding:24px 22px}
+  .go-badge{right:5%;bottom:11%}
+  .facts-band{padding:28px 18px}
+  .facts-grid{gap:12px}
+  .fact{padding:20px;border-radius:15px}
+  .fact strong{margin-top:9px;line-height:1.45}
+  .landing-section,.prize-section,.details-section,.eligibility-section,.final-cta{padding-top:68px;padding-bottom:68px}
+  .about-grid,.prize-grid,.eligibility-grid,.cta-grid{gap:30px}
+  .section-title{margin-top:12px;margin-bottom:18px;line-height:1.13}
+  .section-copy{font-size:14px;line-height:1.9}
+  .prize-main,.schedule-card{padding:25px 22px;border-radius:18px}
+  .prize-award{min-height:66px;padding:17px 18px;margin-top:12px}
+  .submission-grid{margin-top:30px;gap:10px;background:transparent;border:0;overflow:visible}
+  .submission{min-height:0;padding:22px 20px;border:1px solid rgba(255,255,255,.14);border-radius:14px}
+  .submission h3{margin:18px 0 10px;font-size:18px}
+  .submission p{font-size:13px;line-height:1.75}
+  .requirements li{gap:14px;padding:17px 0;font-size:13px;line-height:1.75}
+  .cta-card{padding:25px 22px;border-radius:18px}
+  .cta-card h3{margin-top:8px}
+  .cta-card p{line-height:1.8;margin:12px 0 22px}
+  .cta-card a{min-height:50px;padding:15px}
+}
+</style>
+<style>
+.hack-hero{background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),radial-gradient(ellipse at 78% 44%,rgba(54,153,61,.24),transparent 40%);background-size:38px 38px,38px 38px,auto}.hack-hero h1{max-width:760px;text-transform:none;letter-spacing:-.065em}.hack-hero h1 span{color:#9be5a0}.hack-tag{background:rgba(30,125,43,.48);border:1px solid rgba(166,226,161,.22);letter-spacing:.05em}.workspace-shell{position:relative;width:min(100%,340px);padding:0 20px 22px;border:1px solid rgba(211,242,206,.26);border-radius:20px;background:linear-gradient(145deg,#143c1b,#09280e);color:#eff9ea;box-shadow:0 28px 70px rgba(0,0,0,.3);transform:rotate(-4deg);animation:visual-float 6s ease-in-out infinite}.workspace-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;height:44px;border-bottom:1px solid rgba(255,255,255,.12);font-size:8px;font-weight:700;letter-spacing:.12em;color:#c4dec0}.window-dots{display:flex;gap:4px}.window-dots i{width:6px;height:6px;border-radius:50%;background:#9bd89a}.window-dots i:nth-child(2){opacity:.6}.window-dots i:nth-child(3){opacity:.35}.workspace-status{padding:4px 7px;border-radius:99px;background:rgba(86,190,83,.2);color:#a6eaa0}.workspace-content{padding:24px 4px 0}.workspace-content>small{color:#94c991;font-size:8px;font-weight:700;letter-spacing:.16em}.workspace-content>strong{display:block;margin:14px 0 24px;font-size:34px;line-height:.98;letter-spacing:-.06em}.workspace-content>strong em{color:#9be5a0;font-style:normal}.workspace-line{display:flex;justify-content:space-between;padding:11px 0;border-top:1px solid rgba(255,255,255,.13);font-size:8px;letter-spacing:.08em;color:#d4e8d0}.workspace-line b{color:#9be5a0}.go-badge{width:58px;height:58px;font-size:10px;letter-spacing:.12em;box-shadow:0 0 0 8px rgba(24,142,39,.12)}.facts-band{background:#dcefd9}.fact{background:transparent;border:0;border-radius:0;padding:18px 22px;position:relative}.fact+.fact{border-left:1px solid rgba(7,90,25,.16)}.fact small{letter-spacing:.16em}.fact strong{font-size:15px}.landing-section{padding-top:94px;padding-bottom:94px}.about-grid{grid-template-columns:.8fr 1.2fr;gap:70px}.about-grid .section-title{font-size:clamp(29px,4.5vw,48px)}.section-copy{font-size:15px;line-height:1.9}.prize-section{background:#eef5eb}.prize-main{background:transparent;padding:28px 10px}.prize-main h2{font-size:clamp(34px,5vw,54px);line-height:1.02}.prize-main .section-copy{max-width:550px}.prize-award{border-radius:10px;background:#fff;box-shadow:0 5px 18px rgba(6,54,14,.05)}.schedule-card{border-radius:24px;padding:34px;background:linear-gradient(145deg,#0a4215,#062b0c)}.details-section{background:#082e0c}.details-section>.landing-inner>.section-copy{color:#c9dcc9}.submission-grid{gap:12px;background:transparent;border:0;overflow:visible}.submission{min-height:190px;border:1px solid rgba(255,255,255,.14);border-radius:16px;background:rgba(255,255,255,.035);transition:background .25s ease,border-color .25s ease,transform .25s ease}.submission:hover{background:rgba(255,255,255,.08);border-color:rgba(158,225,154,.45);transform:translateY(-4px)}.submission h3{font-size:20px}.submission p{font-size:13px;line-height:1.75}.eligibility-section{background:#e3f0df}.eligibility-grid{grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}.eligibility-grid>.format-grid{margin-top:0}.format-card{padding:24px;border-radius:16px;background:rgba(255,255,255,.68)}.format-card small{display:block;margin-bottom:14px;color:#368641;font-size:9px;font-weight:800;letter-spacing:.14em}.format-card h3{margin-bottom:8px;color:#153a19;font-size:16px}.format-card p{color:#566a56;font-size:13px;line-height:1.75}.final-cta{background:#b9dcb4}.cta-copy h2{max-width:400px;font-size:clamp(38px,5vw,58px)}.cta-card{border:1px solid rgba(7,83,20,.09);box-shadow:0 20px 50px rgba(9,58,14,.12)}
+@media(max-width:760px){.facts-grid{grid-template-columns:1fr}.fact+.fact{border-left:0;border-top:1px solid rgba(7,90,25,.16)}.fact{padding:18px 8px}.landing-section{padding-top:70px;padding-bottom:70px}.about-grid{gap:24px}.prize-main{padding:12px 4px}.eligibility-grid{gap:22px}.format-grid{margin-top:0}}
+@media(max-width:560px){.workspace-shell{width:min(100%,320px)}.workspace-content>strong{font-size:31px}.submission{min-height:0}.fact strong{font-size:16px}.about-grid .section-title{font-size:34px}}
+</style>
+<style>
+@keyframes mobile-workspace-float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-7px) rotate(0deg)}}@media(max-width:760px){
+  .hack-hero-grid{gap:20px}
+  .build-visual{grid-template-columns:1fr;grid-template-rows:auto auto;row-gap:13px;align-content:center;min-height:310px;margin:16px 0 4px}
+  .workspace-shell{width:min(100%,390px);box-sizing:border-box;padding:0 22px 22px;transform:rotate(-1deg);animation:mobile-workspace-float 6s ease-in-out infinite;border-radius:19px}
+  .workspace-bar{min-height:50px;height:auto;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;font-size:8px;letter-spacing:.08em}
+  .workspace-bar>span:nth-child(2){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .workspace-status{font-size:8px}
+  .workspace-content{padding:26px 5px 0}
+  .workspace-content>small{font-size:9px;letter-spacing:.13em}
+  .workspace-content>strong{margin:17px 0 22px;font-size:clamp(34px,8vw,42px);line-height:1.02}
+  .workspace-line{min-height:43px;padding:13px 0;font-size:9px;letter-spacing:.06em}
+  .go-badge{position:relative;right:auto;bottom:auto;justify-self:end;width:auto;height:auto;min-height:36px;padding:0 15px;border-radius:999px;font-size:9px}
+  .about-grid{grid-template-columns:minmax(0,1fr);gap:25px}
+  .about-grid>div{min-width:0}
+  .about-grid .section-title{max-width:650px;margin-top:10px;margin-bottom:0;font-size:clamp(32px,7vw,40px);line-height:1.1;letter-spacing:-.045em}
+  .about-grid>div:nth-child(2) .section-title{margin-bottom:16px}
+  .about-grid .section-copy{max-width:680px;font-size:15px;line-height:1.85}
+  .landing-section{padding-top:76px;padding-bottom:76px}
+}
+@media(max-width:420px){
+  .workspace-shell{padding-right:17px;padding-left:17px}
+  .workspace-bar{gap:7px;font-size:7px}
+  .workspace-content>strong{font-size:34px}
+  .workspace-line{font-size:8px}
+  .about-grid .section-title{font-size:32px}
+}
+</style>
+<style>
+.schedule-card a{text-decoration:none}.schedule-card a:hover,.schedule-card a:focus-visible{text-decoration:none;color:#d5f4d2!important}
+@media(max-width:760px){
+  .eligibility-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+  .eligibility-grid>div:first-child{max-width:600px}
+  .eligibility-grid .section-title{margin-bottom:12px}
+  .eligibility-grid .section-copy{max-width:600px}
+  .eligibility-grid>.format-grid{grid-template-columns:minmax(0,1fr);gap:22px!important;row-gap:22px!important;width:100%;margin:0}.eligibility-grid>.format-grid>.format-card+.format-card{margin-top:0}
+  .eligibility-grid .format-card{width:100%;padding:22px 20px}
+}
+</style>
+<style>
+@media(max-width:760px){
+  .hack-hero{padding-bottom:36px}
+  .hack-hero-grid{gap:20px}
+  .build-visual{display:grid;grid-template-rows:auto;row-gap:0;align-content:start;min-height:0!important;height:auto;margin:4px 0 0}
+  .workspace-shell{width:100%;max-width:390px;padding:0!important;transform:none;animation:none;border-radius:10px}
+}
+</style>
+<style>
+/* Let the IDE visibly build in a calm repeating cycle. */
+.ide-typed{max-width:0;animation:editor-type-loop 8s steps(28,end) infinite}
+.terminal-command{max-width:0;animation:command-type-loop 8s steps(12,end) infinite}
+.ide-terminal>div{opacity:0;animation:terminal-output-loop 8s linear infinite}
+.terminal-cursor{animation:cursor-blink .8s steps(2,end) infinite}
+@keyframes editor-type-loop{0%,3%{max-width:0}27%,100%{max-width:100%}}
+@keyframes command-type-loop{0%,35%{max-width:0}52%,100%{max-width:100%}}
+@keyframes terminal-output-loop{0%,56%{opacity:0}61%,96%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.ide-typed,.terminal-command,.ide-terminal>div,.terminal-cursor{animation:none}.ide-typed,.terminal-command{max-width:100%}.ide-terminal>div{opacity:1}}
+</style>
+</head>
+<body>
+<!-- SIDE DRAWER HTML -->
+  <div id="drawer-backdrop"></div>
+  <nav id="side-drawer" aria-label="Side menu">
+    <div class="drawer-header">
+      <div class="drawer-logo-wrap">
+        <img src="images/nacos-logo.jpg" alt="NACOS Logo" />
+        <span>NACOS<br>SOUTH EAST</span>
+      </div>
+      <button class="drawer-close-btn" id="drawer-close" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-nav">
+      <a href="./" class="active">Home</a>
+      <a href="hackathon">Hackathon</a>
+      <a href="mr_nacos">Mr &amp; Miss NACOS</a>
+      <a href="sponsor" class="primary-cta">Become a Sponsor</a>
+    </div>
+  </nav>
+
+  <!-- SPONSOR POPUP HTML --><header class="hack-hero">
+  <div class="hack-hero-inner">
+    <div class="hero-nav">
+        <!-- Logo + brand name (left) -->
+        <div class="brand" style="margin-bottom:0;">
+          <img src="images/nacos-logo.jpg" alt="NACOS Logo" class="brand-logo" />
+          <div class="brand-text">
+            <span class="brand-name">NACOS <br>SOUTH EAST <br><span class="brand-tagline">Networking the world</span></span>
+          </div>
+        </div>
+        <div class="nav-button-group">
+          <a href="./#convention-form" class="nav-secondary-link">Convention Form</a>
+          <a href="hackathon" class="nav-secondary-link">
+            Hackathon
+          </a>
+          <a href="mr_nacos" class="nav-secondary-link">
+            Mr &amp; Miss NACOS
+          </a>
+          <a href="sponsor" class="nav-sponsor-link">
+            Become a Sponsor
+          </a>
+          <a href="https://nacoschapter.netlify.app/" class="nav-secondary-link" target="_blank" rel="noopener noreferrer">Nacos Chapters</a>
+        </div>
+        <!-- Mobile: hamburger -->
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      
+    <div class="hack-hero-grid">
+      <div class="hack-hero-copy"><span class="hack-tag">A NACOS South East build challenge · 2026</span><h1>Make something <span>matter.</span></h1><p>Got an idea you want to take further? Bring it to the NACOS South East Hackathon, build alongside other computing students and compete for ₦500,000 plus gadgets.</p><div class="hero-actions"><a href="hackerton">Apply to take part</a><a class="secondary" href="#about">See what it involves</a></div></div>
+      <div class="build-visual" aria-label="VS Code style editor with terminal and live preview of a sample campus support app"><div class="workspace-shell"><div class="workspace-bar"><span>File&nbsp;&nbsp; Edit&nbsp;&nbsp; Selection&nbsp;&nbsp; View&nbsp;&nbsp; Go&nbsp;&nbsp; Run</span><span>campusaid</span></div><div class="ide-body"><div class="ide-activity" aria-hidden="true"><span>▣</span><span>⌕</span><span>⑂</span><span>◉</span></div><div class="ide-editor"><div class="ide-file">●&nbsp; App.jsx&nbsp;&nbsp; ×</div><div class="ide-code"><div><span class="ln">1</span><span class="kw">function</span> CampusAid() {</div><div><span class="ln">2</span>&nbsp; <span class="kw">return</span> (</div><div><span class="ln">3</span>&nbsp;&nbsp; &lt;main&gt;</div><div><span class="ln">4</span>&nbsp;&nbsp;&nbsp; &lt;h1&gt;<span class="str">Find campus support</span></div><div><span class="ln">5</span>&nbsp;&nbsp; &lt;/main&gt;</div><div><span class="ln">6</span>&nbsp; ); }</div><div><span class="ln">7</span><span class="ide-typed">export default CampusAid;</span></div></div></div><div class="ide-preview"><div class="preview-top"><span>localhost:3000</span><span>↻</span></div><h4>Find campus support</h4><p>Student services, all in one place.</p><div class="preview-progress"><i></i></div><span class="preview-link">VIEW SERVICES</span></div><div class="ide-terminal"><strong>TERMINAL</strong><span>› </span><span class="terminal-command">npm run dev</span><span class="terminal-cursor"></span><div>✓ Ready on localhost:3000</div></div></div></div></div>
+    </div>
+  </div>
+</header><section class="facts-band" aria-label="Hackathon details"><div class="facts-grid"><div class="fact"><small>When</small><strong>20–24 October, 2026</strong></div><div class="fact"><small>Where</small><strong>Ogbonnaya Onu Polytechnic, Aba</strong></div><div class="fact"><small>What’s at stake</small><strong>₦500,000 and gadgets</strong></div></div></section>
+<main>
+  <section class="landing-section" id="about"><div class="landing-inner about-grid"><div><span class="eyebrow">The idea</span><h2 class="section-title">Start with a problem you care about.</h2></div><div><h2 class="section-title">Then give it a <span class="highlight">real-world shape.</span></h2><p class="section-copy">The NACOS South East Hackathon is a chance to move from “what if?” to “here’s what I built.” Bring a project idea, explain the problem behind it and put your skills to work. Your idea can be at an early stage; the application asks you to describe what you want to create.</p><p class="section-copy" style="margin-top:16px">Meet us at Ogbonnaya Onu Polytechnic, Aba, during the NACOS South East Convention, 20–24 October 2026.</p></div></div></section>
+  <section class="prize-section"><div class="landing-inner prize-grid"><article class="prize-main"><span class="eyebrow">The reward</span><h2>Build for the<br>possibility.</h2><p class="section-copy">There’s a ₦500,000 grand prize on the line, with other gadgets up for grabs. Bring your curiosity, your skills and an idea worth exploring.</p><div class="prize-award"><span>Grand prize</span><strong>₦500,000</strong></div><div class="prize-award"><span>Also up for grabs</span><strong>Gadgets</strong></div></article><aside class="schedule-card"><span class="eyebrow">Make a plan</span><h3>Show up ready to build.</h3><p><strong>Dates</strong><br>20–24 October, 2026</p><p><strong>Venue</strong><br>Ogbonnaya Onu Polytechnic<br>Aba, Abia State</p><p><strong>Need more information?</strong><br><a href="tel:+2349083731989" style="color:#b5ebb2">0908 373 1989</a></p></aside></div></section>
+  <section class="details-section"><div class="landing-inner"><span class="eyebrow">Your application</span><h2 class="section-title">A good place to start is a clear idea.</h2><p class="section-copy">The form helps you tell the team what you want to build and how you plan to take part.</p><div class="submission-grid"><article class="submission"><small>01 / THE IDEA</small><h3>What are you solving?</h3><p>Describe your project or concept in a few clear sentences.</p></article><article class="submission"><small>02 / THE PEOPLE</small><h3>Who’s building it?</h3><p>Apply on your own or tell us about your team of 2–5.</p></article><article class="submission"><small>03 / THE PROOF</small><h3>What have you made?</h3><p>Add a GitHub or portfolio link if you have one. It’s optional.</p></article></div></div></section>
+  <section class="eligibility-section"><div class="landing-inner eligibility-grid"><div><span class="eyebrow">Pick your format</span><h2 class="section-title">Build your way.</h2><p class="section-copy">Choose the setup that works for you when you apply.</p></div><div class="format-grid"><article class="format-card"><small>SOLO</small><h3>One idea. One builder.</h3><p>Register as an individual and share your project idea, background and skills.</p></article><article class="format-card"><small>TEAM</small><h3>Better ideas, together.</h3><p>Register a team of 2–5. Add your team name and team size to the form.</p></article></div></div></section>
+  <section class="final-cta"><div class="cta-grid"><div class="cta-copy"><span class="eyebrow">Your next step</span><h2>Let’s see what you’re building.</h2><p>Tell us a little about yourself, your team and the idea you want to bring to life.</p></div><div class="cta-card"><span class="eyebrow">NACOS South East Hackathon · 2026</span><h3>Take your idea further.</h3><p>The application form collects your contact and institution details, project idea and participation format.</p><a href="hackerton">Open the application form</a></div></div></section>
+</main><footer class="site-footer" aria-label="Site footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <div class="brand footer-brand" style="margin-bottom:0;">
+          <img src="images/nacos-logo.jpg" alt="NACOS Logo" class="brand-logo" />
+          <div class="brand-text">
+            <span class="brand-name">NACOS <br>SOUTH EAST <br><span class="brand-tagline">Networking the world</span></span>
+          </div>
+        </div>
+        <p>Connecting computing students, innovators, and professionals across South East Nigeria through learning, collaboration, and technology-driven opportunities.</p>
+      </div>
+
+      <div class="site-footer__links">
+        <h4>Explore</h4>
+        <a href="./">Home</a>
+        <a href="hackathon">Hackathon</a>
+        <a href="mr_nacos">Mr &amp; Miss NACOS</a>
+        <a href="sponsor">Sponsor</a>
+        <a href="https://nacoschapter.netlify.app/">Nacos Chapters</a>
+      </div>
+
+      <div class="site-footer__links">
+        <h4>Contact</h4>
+        <a href="tel:+2349083731989">0908 373 1989</a>
+        <a href="mailto:hello@nacosoutheast.org.ng">hello@nacosoutheast.org.ng</a>
+        <a href="https://www.nacosoutheast.org.ng/">nacosoutheast.org.ng</a>
+        <a href="./">Ogbonnaya Onu Polytechnic, Aba</a>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 NACOS South East. All rights reserved.</p>
+      <p>Built for innovation. Designed for impact.</p>
+    </div>
+  </footer><script>
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+
+  const groups = [
+    '.facts-grid > .fact',
+    '.about-grid > div',
+    '.prize-main, .schedule-card',
+    '.submission-grid > .submission',
+    '.eligibility-grid > *',
+    '.cta-grid > *'
+  ];
+
+  groups.forEach((selector) => {
+    document.querySelectorAll(selector).forEach((element, index) => {
+      element.classList.add('reveal');
+      element.style.setProperty('--reveal-delay', `${Math.min(index * 110, 330)}ms`);
+    });
+  });
+
+  document.documentElement.classList.add('motion-ready');
+  const observer = new IntersectionObserver((entries, currentObserver) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      currentObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.14, rootMargin: '0px 0px -45px 0px' });
+
+  document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+})();
+</script>
+<script>
+    (function () {
+      var hamburger = document.getElementById('hamburger-btn');
+      var drawer    = document.getElementById('side-drawer');
+      var backdrop  = document.getElementById('drawer-backdrop');
+      var closeBtn  = document.getElementById('drawer-close');
+
+      function openDrawer() {
+        drawer.classList.add('open');
+        backdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeDrawer() {
+        drawer.classList.remove('open');
+        backdrop.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      if (hamburger) hamburger.addEventListener('click', openDrawer);
+      if (closeBtn)  closeBtn.addEventListener('click', closeDrawer);
+      if (backdrop)  backdrop.addEventListener('click', closeDrawer);
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeDrawer();
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

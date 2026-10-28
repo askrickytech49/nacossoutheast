@@ -1,0 +1,19 @@
+# Serve custom 404 page
+ErrorDocument 404 /404.html
+
+RewriteEngine On
+
+# Keep the homepage at the domain root.
+RewriteRule ^index\.html$ ./ [R=301,L,NE]
+
+# Redirect public pages to their clean URLs.
+RewriteRule ^(hackathon|hackerton|mr_nacos|sponsor|thank-you|sponsor-confirmation|mr-miss-confirmation|hackathon-confirmation|manual-payment-pending)\.html$ $1 [R=301,L,NE]
+
+# Serve the existing HTML files when a clean URL is requested.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [END]
+
+<Files "Auth">
+  Require all denied
+</Files>

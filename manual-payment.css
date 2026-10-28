@@ -1,0 +1,53 @@
+.payment-choice-dialog{position:fixed;inset:0;margin:auto;width:min(calc(100vw - 28px),540px);max-width:540px;max-height:min(90vh,760px);overflow:auto;scrollbar-width:none;-ms-overflow-style:none;padding:0;border:0;border-radius:18px;background:#fff;color:#132219;box-shadow:0 24px 80px rgba(4,35,15,.3);font-family:'Poppins',Arial,sans-serif}
+.payment-choice-dialog::-webkit-scrollbar{display:none}
+.payment-choice-dialog::backdrop{background:rgba(4,20,10,.68);backdrop-filter:blur(3px)}
+.payment-choice-shell{position:relative;padding:30px}
+.payment-choice-close{position:absolute;right:16px;top:12px;width:38px;height:38px;border:0;border-radius:50%;background:#f0f5f0;color:#354a38;font-size:27px;line-height:1;cursor:pointer}
+.payment-eyebrow{margin:0 45px 8px 0;color:#078135;font-size:11px;font-weight:800;letter-spacing:.14em}
+.payment-choice-shell h2{margin:0 38px 8px 0;font-size:24px;line-height:1.25}
+.payment-intro{margin:0 0 20px;color:#657469;font-size:14px;line-height:1.6}
+.payment-intro strong{color:#086b2b}
+.payment-choice-actions{display:grid;gap:12px}
+.payment-option{display:grid;gap:5px;width:100%;padding:17px 18px;border:1px solid #d8e5d9;border-radius:12px;background:#fff;color:#17331e;text-align:left;cursor:pointer;transition:border-color .15s,background .15s,transform .15s}
+.payment-option:hover{border-color:#08752d;background:#f4fbf5;transform:translateY(-1px)}
+.payment-option strong{font-size:15px}
+.payment-option span{color:#68776a;font-size:13px;line-height:1.5}
+.manual-payment-availability{min-height:18px;margin:12px 0 0;color:#a33a1f;font-size:12px;line-height:1.5}
+.manual-payment-amount{display:flex;justify-content:space-between;gap:16px;padding:15px 16px;margin:16px 0;border:1px solid #cfe5d1;border-radius:10px;background:#f0fbf2}
+.manual-payment-amount span,.manual-bank-details span{color:#68776a;font-size:12px}
+.manual-payment-amount strong{color:#08752d;font-size:18px}
+.manual-bank-details{padding:4px 16px;border:1px solid #e2eae2;border-radius:10px}
+.manual-bank-details>div{display:grid;grid-template-columns:120px minmax(0,1fr) auto;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #edf1ed}
+.manual-bank-details strong{overflow-wrap:anywhere;font-size:14px}
+.manual-account-number strong{font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.manual-account-value{display:flex;align-items:center;gap:8px;min-width:0}
+.copy-account{display:grid;place-items:center;width:36px;height:36px;border:1px solid #dbe5db;border-radius:8px;background:#fff;color:#0b6623;cursor:pointer}
+.copy-account svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.copy-account-feedback{min-width:58px;color:#08752d;font-size:12px;font-weight:700}
+.copy-account-feedback.is-error{color:#b42318}
+.manual-bank-instructions{margin:12px 0;color:#69766b;font-size:12px;line-height:1.5}
+.manual-payment-reminder{margin:0 0 14px;color:#bf1d1d;font-size:13px;font-weight:800;line-height:1.5}
+.payment-dialog-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+.payment-dialog-actions button{min-height:44px;padding:10px 16px;border:0;border-radius:9px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.payment-primary{background:#0b6623;color:#fff}
+.payment-primary:hover{background:#084c1a}
+.payment-secondary{border:1px solid #d7e0d6!important;background:#fff;color:#315039}
+.manual-receipt-label{display:block;margin:18px 0 7px;font-size:13px;font-weight:700}
+.receipt-dropzone{position:relative;display:flex;min-height:150px;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;border:1.5px dashed #c5ccc7;border-radius:14px;background:#fff;color:#25432c;text-align:center;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s}
+.receipt-dropzone:hover,.receipt-dropzone.is-dragging{border-color:#aeb8b1;background:#fff;box-shadow:0 0 0 3px rgba(72,91,77,.07)}
+.receipt-dropzone:focus-within{outline:3px solid rgba(11,102,35,.2);outline-offset:2px}
+.receipt-file-input{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;clip-path:inset(50%);border:0}
+.receipt-upload-icon{display:grid;width:42px;height:42px;place-items:center;border-radius:12px;background:#dff3e3;color:#0b6623}
+.receipt-upload-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.receipt-dropzone-copy{display:grid;gap:4px}
+.receipt-dropzone-copy strong{font-size:13px;font-weight:700}
+.receipt-dropzone-copy span{color:#718074;font-size:12px}
+.receipt-dropzone-copy b{color:#08752d;font-weight:700}
+.receipt-file-types{color:#829085;font-size:11px}
+.manual-file-name{display:none;align-items:center;gap:8px;max-width:100%;margin:9px 0 0;padding:9px 11px;border:1px solid #dbe9dd;border-radius:9px;background:#f8fcf8;color:#315039;font-size:12px;overflow-wrap:anywhere}
+.manual-file-name.has-file{display:flex}
+.manual-file-name::before{content:'✓';display:grid;flex:0 0 20px;width:20px;height:20px;place-items:center;border-radius:50%;background:#dff3e3;color:#08752d;font-weight:800}
+.manual-payment-error{min-height:18px;margin:10px 0 0;color:#a32222;font-size:13px}
+@media(max-width:520px){.payment-choice-dialog{width:calc(100vw - 20px);max-height:92vh;border-radius:15px}.payment-choice-shell{padding:24px 19px}.payment-choice-shell h2{font-size:21px}.manual-bank-details>div{grid-template-columns:82px minmax(0,1fr) auto;gap:5px}.manual-account-value{gap:4px}.manual-account-number strong{font-size:12px}.copy-account{width:32px;height:32px}.copy-account-feedback{min-width:0;font-size:11px}.receipt-dropzone{min-height:138px;padding:16px}.payment-dialog-actions{flex-direction:column-reverse}.payment-dialog-actions button{width:100%}}
+
+.payment-option.is-default{border-color:#08752d;background:#f1faf2;box-shadow:inset 0 0 0 1px #08752d}.payment-option.is-default strong::after{content:" (DEFAULT)";color:#08752d;font-size:10px;letter-spacing:.06em}

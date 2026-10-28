@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 — Page Not Found</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+  <style>
+    /* Match the page loader / splash: light white overlay over preload image */
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+      background-image: linear-gradient(rgba(248, 249, 250, 0.92), rgba(233, 235, 239, 0.92)), url('images/preload.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #ffffff;
+    }
+
+    .error-card {
+      background: transparent;
+      border-radius: 12px;
+      padding: 12px 18px 36px;
+      max-width: 720px;
+      text-align: center;
+      border: none;
+    }
+
+    .error-card img { margin-bottom: 8px; }
+
+    .error-card h1 { font-size: 72px; color: black; margin: 4px 0 6px; color: #ffffff; }
+    .error-card p { font-size: 16px; color: #000000; margin-bottom: 18px; color: rgba(0,0,0,0.7); }
+
+    /* Keep action buttons visible against the light overlay */
+    .error-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap }
+    .error-actions a.btn-secondary { width: auto; padding: 10px 18px; }
+    .error-actions a.btn-pay-submit { width: auto; padding: 10px 18px; }
+
+    @media (max-width: 480px) {
+      .error-card h1 { font-size: 56px; color: #0B6623; margin: 4px 0 6px; }
+      .error-card p { font-size: 14px; color: #0B6623;}
+    }
+  </style>
+</head>
+<body>
+  <main class="error-page">
+    <div class="error-card">
+      <img src="images/nacos-logo.jpg" alt="Logo" style="width:72px;height:72px;border-radius:50%;border:2px solid rgba(255,255,255,0.6);margin-bottom:12px;" />
+      <h1>404</h1>
+      <p>Sorry, the page you were looking for doesn't exist or has been moved.</p>
+      <div class="error-actions">
+        <a href="index.html" class="btn-secondary">Go to Homepage</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

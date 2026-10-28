@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Transfer proof received · NACOS South East</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:#f2f6f2;color:#14251a;font-family:Poppins,Arial,sans-serif;display:grid;place-items:center;padding:24px}.card{width:min(100%,560px);padding:38px;background:#fff;border:1px solid #dfe8df;border-radius:18px;box-shadow:0 18px 55px rgba(13,48,22,.1);text-align:center}.mark{width:68px;height:68px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:#fff4d8;color:#9a6500;font-size:34px;font-weight:700}.mark>span{line-height:1;transform:translateY(-4px)}.eyebrow{color:#0b7130;font-size:11px;letter-spacing:.15em;font-weight:800}h1{font-size:27px;line-height:1.25;margin:9px 0 12px}.description{color:#647268;font-size:14px;line-height:1.75;margin:0}.reference{padding:14px;margin:22px 0;border:1px solid #dbe8db;border-radius:10px;background:#f5faf5;color:#23442a;font-size:13px;overflow-wrap:anywhere}.warning{padding:13px;border-radius:9px;background:transparent;color:#000;font-size:12px;line-height:1.6}.home{display:block;margin-top:22px;padding:13px;border-radius:9px;background:#0b6623;color:white;text-decoration:none;font-weight:700}@media(max-width:520px){body{padding:14px}.card{padding:28px 20px}h1{font-size:23px}}
+  </style>
+</head>
+<body>
+  <main class="card">
+    
+    <p class="eyebrow" id="pending-form-name">PAYMENT SUBMISSION</p>
+    <h1>Transfer proof received</h1>
+    <p class="description">Your registration and receipt are waiting for the NACOS team to review the bank transfer. Your registration will appear as paid only after the payment is confirmed.</p>
+    <p class="reference"><strong>Submission reference:</strong> <span id="submission-reference">Loading…</span></p>
+    <p class="warning">This is not a payment confirmation. Please keep your transfer receipt and reference until the team contacts you.</p>
+    <a class="home" href="./">Back to Home</a>
+  </main>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const reference = params.get('reference');
+    const names = { convention: 'CONVENTION REGISTRATION', sponsorship: 'SPONSORSHIP', pageant: 'MR & MISS NACOS' };
+    document.getElementById('pending-form-name').textContent = names[params.get('form')] || 'PAYMENT SUBMISSION';
+    document.getElementById('submission-reference').textContent = reference || 'Submitted';
+  </script>
+</body>
+</html>
